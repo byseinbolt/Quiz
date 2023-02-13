@@ -7,13 +7,13 @@ public class GameController : MonoBehaviour
     private ItemHolder _itemHolder;
 
     [SerializeField]
-    private GameObject _PrefabCell;
+    private GameObject _prefabCell;
 
     private void Start()
     {
         for (int i = 0; i < 3; i++)
         {
-            Instantiate(_PrefabCell, transform);
+            Instantiate(_prefabCell, transform);
         }
     }
 }

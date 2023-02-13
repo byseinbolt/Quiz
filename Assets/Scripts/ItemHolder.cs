@@ -4,14 +4,11 @@ using UnityEngine.UI;
 
 public class ItemHolder : MonoBehaviour
 {
-    [SerializeField]
-    private Image _image;
+    public Image Image => _image;
+    public GameSet GameSet => _gameSet;
 
     [SerializeField]
-    private Item[] _items;
-    
-    public Image Image { get => _image; }
-    
-    public Item[] Items { get => _items; }
-    
+    private Image _image;
+    [SerializeField]
+    private GameSet _gameSet;
 }

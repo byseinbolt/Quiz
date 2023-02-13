@@ -12,25 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742da680902a4e7b808ef2bd472ebe57, type: 3}
   m_Name: Numbers
   m_EditorClassIdentifier: 
-  _name: Numbers
-  _sprite:
-  - {fileID: -629009061, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: -28330670, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: -360852177, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: 1017717815, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: 706248540, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: -749324017, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: 535938037, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: -2000478, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: 686967913, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: -1240439888, guid: cf7708d7e5389044796061f774a241ff, type: 3}
-  - {fileID: -1151330433, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 1127498000, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 140128730, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 275799395, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 1026903805, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: -1426048959, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 1333137600, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 1954533725, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 623549640, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
-  - {fileID: 2087922465, guid: 1210e25f2c0ae3646aa58b9cd6db306f, type: 3}
+  _gameSetName: Numbers
+  _gameSetView: {fileID: -360852177, guid: cf7708d7e5389044796061f774a241ff, type: 3}
+  _gameSet: {fileID: 0}

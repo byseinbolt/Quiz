@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 2876329439264486575}
-  _items: []
+  _gameSet: {fileID: 0}
 --- !u!1 &5358704595395277566
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,10 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 2876329439264486575}
-  _items:
-  - {fileID: 11400000, guid: a45266f92d59fed4280f1a92df614638, type: 2}
-  - {fileID: 11400000, guid: bdd0792fab2942e38f9b35ce4c4f29c4, type: 2}
-  - {fileID: 11400000, guid: 24efda394eae23c4e81c979516c5c5ee, type: 2}
+  _gameSet: {fileID: 11400000, guid: a51f44eb4c266e244a85a63ae6a8bb52, type: 2}
 --- !u!1 &6203183182161848202
 GameObject:
   m_ObjectHideFlags: 0
