@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742da680902a4e7b808ef2bd472ebe57, type: 3}
+  m_Name: Cars
+  m_EditorClassIdentifier: 
+  _name: car
+  _sprite:
+  - {fileID: -16323313, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1217013979, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -2137003595, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1014549465, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 881949882, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1455698192, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 125171011, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -396046345, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1908304493, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 82267309, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1292235801, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1272697766, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1224005405, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -307930338, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 942942108, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -735061761, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 2119754560, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 2010462174, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -2000492018, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 1156092, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 263392086, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -1906040361, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 1900973498, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -27326649, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -1305489766, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 2103029021, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
