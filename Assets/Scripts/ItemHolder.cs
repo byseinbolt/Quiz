@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemHolder : MonoBehaviour
@@ -8,9 +9,9 @@ public class ItemHolder : MonoBehaviour
 
     [SerializeField]
     private Item[] _items;
-
-    private void Start()
-    {
-        _image.sprite = _items[1].Sprite;
-    }
+    
+    public Image Image { get => _image; }
+    
+    public Item[] Items { get => _items; }
+    
 }

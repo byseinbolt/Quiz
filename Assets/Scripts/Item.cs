@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Letters",menuName = "Letter")]
+[CreateAssetMenu(fileName = "Items",menuName = "Item")]
 public class Item : ScriptableObject
 {
-    public string Name { get => _name; }
-    public Sprite Sprite { get => _sprite;}
-    
     [SerializeField]
     private string _name;
     [SerializeField]
-    private Sprite _sprite;
+    private Sprite[] _sprite;
+    
+
+    public  Sprite[] Sprite => _sprite;
 }
