@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSetName: Letters
   _gameSetView: {fileID: -1513204764, guid: 0ca35679219111d4884cdfb563e366af, type: 3}
-  _gameSet: {fileID: 0}
+  _gameSet: {fileID: 11400000, guid: 9c97ffe07d6c54049bbd2812d07c7e76, type: 2}

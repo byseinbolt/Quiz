@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameItems", menuName = "GameSet")]
 public class GameSet : ScriptableObject

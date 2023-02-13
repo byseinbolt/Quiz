@@ -4,16 +4,16 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    private ItemHolder _itemHolder;
-
+    private Canvas _canvasForCells;
     [SerializeField]
-    private GameObject _prefabCell;
-
+    private ItemHolder _itemHolder;
+    
     private void Start()
     {
         for (int i = 0; i < 3; i++)
         {
-            Instantiate(_prefabCell, transform);
+            Instantiate(_itemHolder.gameObject, _canvasForCells.transform);
+            _itemHolder.Image.sprite = _itemHolder.GameSet.GameItemViews[i];
         }
     }
 }
