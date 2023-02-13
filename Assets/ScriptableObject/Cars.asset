@@ -13,4 +13,31 @@ MonoBehaviour:
   m_Name: Cars
   m_EditorClassIdentifier: 
   _name: car
-  _sprite: []
+  _sprite:
+  - {fileID: 1576300364, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1003316376, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -47936879, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1420701359, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1918301453, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1281493971, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1948473520, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 770661634, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1810136238, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1548263642, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1702061269, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1475520317, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 427131010, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: 1147762413, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -1461985617, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  - {fileID: -735061761, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -735061761, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 2010462174, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -2000492018, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 1156092, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 263392086, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -1906040361, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 1900973498, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -27326649, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: -1305489766, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 2103029021, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
+  - {fileID: 2119754560, guid: 47ffb54c669351a459be8239d9a7ebd3, type: 3}
