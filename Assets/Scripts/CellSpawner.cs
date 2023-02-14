@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using GameData;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class CellSpawner : MonoBehaviour
@@ -41,7 +40,7 @@ public class CellSpawner : MonoBehaviour
             _oneLevelUsedElements.Add(randomElementIndex);
             
             var cell = Instantiate(_cell, _cellsSpawnPosition);
-            cell.SetClickCallback(value =>OnClicked.Invoke(value));
+            //cell.SetClickCallback(value =>OnClicked.Invoke(value));
             cell.Image.sprite = randomGameElementView;
         }
         _spawnCompleted.Invoke();

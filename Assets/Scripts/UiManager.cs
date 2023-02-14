@@ -16,3 +16,5 @@ public class UiManager : MonoBehaviour
         _goalLabel.text = $"Find {_cellSpawner.GetGoal()}";
     }
 }
+
+

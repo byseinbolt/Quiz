@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -12,7 +11,7 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
-        _cellSpawner.OnClicked += OnCellClicked;
+//        _cellSpawner.OnClicked += OnCellClicked;
         _cellSpawner.Spawn();
     }
 
@@ -23,6 +22,6 @@ public class LevelController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _cellSpawner.OnClicked -= OnCellClicked;
+  //      _cellSpawner.OnClicked -= OnCellClicked;
     }
 }
