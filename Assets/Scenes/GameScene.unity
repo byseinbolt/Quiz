@@ -132,11 +132,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5052831694425656907, guid: 8148490937835324289c5b12b0242eeb, type: 3}
       propertyPath: m_StartCorner
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5052831695375698488, guid: 8148490937835324289c5b12b0242eeb, type: 3}
       propertyPath: m_Name
       value: GamePlane
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052831695375698488, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5052831695375698489, guid: 8148490937835324289c5b12b0242eeb, type: 3}
       propertyPath: m_Pivot.x
@@ -222,8 +226,78 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5052831695396420113, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052831695396420142, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052831695396420142, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052831695396420142, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052831695396420142, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052831695396420142, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+--- !u!1 &212207803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 212207805}
+  - component: {fileID: 212207804}
+  m_Layer: 0
+  m_Name: UiManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &212207804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212207803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5bc990a932c4091a757ab440854fd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goalLabel: {fileID: 2061073022}
+  _cellSpawner: {fileID: 1456499677}
+--- !u!4 &212207805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212207803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 971.09705, y: 618.30096, z: -1.5902219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,9 +382,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!223 &950460038 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 5052831694425656902, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+--- !u!224 &950460042 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5052831694425656906, guid: 8148490937835324289c5b12b0242eeb, type: 3}
   m_PrefabInstance: {fileID: 16284433}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1112496723
@@ -391,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1456499676}
   - component: {fileID: 1456499675}
+  - component: {fileID: 1456499677}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -410,8 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e8cacacea47b4bb07835e1ca037cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasForCells: {fileID: 950460038}
-  _itemHolder: {fileID: 7729850102225070914, guid: 38f7c35cf727d974cb27217a46b6c7d9, type: 3}
 --- !u!4 &1456499676
 Transform:
   m_ObjectHideFlags: 0
@@ -427,6 +500,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1456499677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456499674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de8f0bf0eb94d39ad5e24dc29a6cec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 212207804}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: SetGoal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _cellsSpawnPosition: {fileID: 950460042}
+  _cell: {fileID: 7729850102225070914, guid: 38f7c35cf727d974cb27217a46b6c7d9, type: 3}
+  _gameSet: {fileID: 11400000, guid: f16c968c2548d814b8fda06840ba2546, type: 2}
 --- !u!1 &1745357650
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,3 +574,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2061073022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5052831695396420142, guid: 8148490937835324289c5b12b0242eeb, type: 3}
+  m_PrefabInstance: {fileID: 16284433}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
