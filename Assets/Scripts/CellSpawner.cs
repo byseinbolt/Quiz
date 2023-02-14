@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameData;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -45,7 +46,7 @@ public class CellSpawner : MonoBehaviour
         }
         _spawnCompleted.Invoke();
     }
-
+    
     public string GetGoal()
     {
         var randomUsedElement = Random.Range(0, _oneLevelUsedElements.Count);
