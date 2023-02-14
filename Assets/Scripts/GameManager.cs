@@ -1,24 +1,14 @@
 ﻿using GameData;
-using JetBrains.Annotations;
+using UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private GameSetData[] _gameSetsData;
-
+    private UiController _uiController;
     [SerializeField]
-    private GameObject _gamePlane;
+    private LevelController _levelController;
 
-    [SerializeField]
-    private GameObject _startScreen;
 
-    [UsedImplicitly]
-    // при клике на набор
-    public void ShowGamePlane()
-    {
-        _startScreen.SetActive(false);
-        _gamePlane.SetActive(true);
-        
-    }
+
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     private CellSpawner _cellSpawner;
+    [SerializeField]
+    private GameSetData[] _gameSetData;
 
     [UsedImplicitly]
     // при клике на набор

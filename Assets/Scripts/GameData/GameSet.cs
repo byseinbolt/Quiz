@@ -14,3 +14,10 @@ namespace GameData
         private Sprite[] _gameItemViews;
     }
 }
+
+public class GameItem : ScriptableObject
+{
+    [SerializeField] private string _itemName;
+    [SerializeField] private Sprite _itemView;
+    
+}

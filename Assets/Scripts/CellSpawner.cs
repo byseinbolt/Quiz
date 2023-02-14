@@ -8,18 +8,15 @@ using Random = UnityEngine.Random;
 public class CellSpawner : MonoBehaviour
 {
     public Action<Cell> OnClicked;
-
-    [SerializeField]
-    private UnityEvent _spawnCompleted;
     
     [SerializeField]
     private Transform _cellsSpawnPosition;
     [SerializeField]
-    private Cell _cell;
+    private Cell _cellPrefab;
     
-    // [SerializeField]
-    // private GameSet _gameSet;
-
+    [SerializeField]
+    private UnityEvent _spawnCompleted;
+    
     private GameSetData _gameSetData;
     private Dictionary<string, Sprite> _allUsedElements = new();
     private List<int> _oneLevelUsedElements;
@@ -37,7 +34,7 @@ public class CellSpawner : MonoBehaviour
             var randomElementIndex = Random.Range(0, _gameSetData.GameSet.GameItemViews.Length);
             var randomGameElementView = _gameSetData.GameSet.GameItemViews[randomElementIndex];
             var randomGameElementName = _gameSetData.GameSet.GameItemNames[randomElementIndex];
-
+            
             if (_allUsedElements.ContainsKey(randomGameElementName))
             {
                 i--;
@@ -47,11 +44,11 @@ public class CellSpawner : MonoBehaviour
             _allUsedElements.Add(randomGameElementName, randomGameElementView);
             _oneLevelUsedElements.Add(randomElementIndex);
             
-            var cell = Instantiate(_cell, _cellsSpawnPosition);
+            var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
             //cell.SetClickCallback(value =>OnClicked.Invoke(value));
             cell.Image.sprite = randomGameElementView;
         }
-        //_spawnCompleted.Invoke();
+        _spawnCompleted.Invoke();
     }
     
     public string GetGoal()
