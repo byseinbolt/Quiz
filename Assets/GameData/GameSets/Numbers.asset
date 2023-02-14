@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 742da680902a4e7b808ef2bd472ebe57, type: 3}
-  m_Name: Numbers
+  m_Name: 
   m_EditorClassIdentifier: 
-  _gameSetName: Numbers
   _gameSetView: {fileID: -360852177, guid: cf7708d7e5389044796061f774a241ff, type: 3}
   _gameSet: {fileID: 11400000, guid: f16c968c2548d814b8fda06840ba2546, type: 2}

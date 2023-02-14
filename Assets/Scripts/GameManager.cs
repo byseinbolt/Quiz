@@ -21,5 +21,4 @@ public class GameManager : MonoBehaviour
         _gamePlane.SetActive(true);
         
     }
-
 }

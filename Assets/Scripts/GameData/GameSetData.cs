@@ -15,5 +15,6 @@ namespace GameData
         private Sprite _gameSetView;
         [SerializeField]
         private GameSet _gameSet;
+        
     }
 }

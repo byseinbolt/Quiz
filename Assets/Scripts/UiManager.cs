@@ -7,7 +7,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] 
     private TextMeshProUGUI _goalLabel;
 
-    [SerializeField] private CellSpawner _cellSpawner;
+    [SerializeField]
+    private CellSpawner _cellSpawner;
 
     [UsedImplicitly]
     // когда спавн закончился

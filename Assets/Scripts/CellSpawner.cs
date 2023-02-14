@@ -17,7 +17,6 @@ public class CellSpawner : MonoBehaviour
     [SerializeField]
     private Cell _cell;
     
-    
     // [SerializeField]
     // private GameSet _gameSet;
 
@@ -32,7 +31,8 @@ public class CellSpawner : MonoBehaviour
     public void Spawn()
     {
         _oneLevelUsedElements = new List<int>();
-        for (int i = 0; i < 6; i++)
+        
+        for (var i = 0; i < 3; i++)
         {
             var randomElementIndex = Random.Range(0, _gameSetData.GameSet.GameItemViews.Length);
             var randomGameElementView = _gameSetData.GameSet.GameItemViews[randomElementIndex];
@@ -43,6 +43,7 @@ public class CellSpawner : MonoBehaviour
                 i--;
                 continue;
             }
+            
             _allUsedElements.Add(randomGameElementName, randomGameElementView);
             _oneLevelUsedElements.Add(randomElementIndex);
             
@@ -50,7 +51,7 @@ public class CellSpawner : MonoBehaviour
             //cell.SetClickCallback(value =>OnClicked.Invoke(value));
             cell.Image.sprite = randomGameElementView;
         }
-        _spawnCompleted.Invoke();
+        //_spawnCompleted.Invoke();
     }
     
     public string GetGoal()
