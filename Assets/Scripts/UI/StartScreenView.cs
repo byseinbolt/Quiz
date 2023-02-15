@@ -13,7 +13,7 @@ namespace UI
         
         
         [SerializeField]
-        private GameSetInstance _gameSetsPrefab;
+        private GameSetInstance _gameSetInstancePrefab;
         
         [SerializeField]
         private Transform _iconSpawnPosition;
@@ -22,9 +22,8 @@ namespace UI
         {
             for (var i = 0; i < gameSetsData.Length; i++)
             {
-                var gameSetIconInstance = Instantiate(_gameSetsPrefab, _iconSpawnPosition);
+                var gameSetIconInstance = Instantiate(_gameSetInstancePrefab, _iconSpawnPosition);
                 gameSetIconInstance.SetClickCallback(value =>OnInstanceClicked?.Invoke(value));
-                gameSetIconInstance.SetClickCallback(value =>OnSetInstanceClicked?.Invoke());
                 gameSetIconInstance.Initialize(gameSetsData[i]);
             }
         }

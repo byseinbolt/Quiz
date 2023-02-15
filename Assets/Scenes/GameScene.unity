@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2463b53077d48b6af9969e9b92a8aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameSetsPrefab: {fileID: 0}
+  _gameSetInstancePrefab: {fileID: 4718155807812663179, guid: c8aeb0f3c05f9444e90ee4fbde53cdfc, type: 3}
   _iconSpawnPosition: {fileID: 400610918}
 --- !u!1 &1456499674
 GameObject:
@@ -930,6 +930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiController: {fileID: 212207804}
   _levelController: {fileID: 1456499675}
+  _screenChanger: {fileID: 0}
 --- !u!4 &1736882481
 Transform:
   m_ObjectHideFlags: 0

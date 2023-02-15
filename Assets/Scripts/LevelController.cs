@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    public event Action SetWasSelected;
     [SerializeField]
     private StartScreenView _startScreenView;
     
@@ -25,6 +26,7 @@ public class LevelController : MonoBehaviour
     private void OnGameSetInstanceClicked(GameSetInstance setInstance)
     {
         _selectedGameSet = setInstance.GameSetData;
+        SetWasSelected?.Invoke();
         Initialize();
     }
     

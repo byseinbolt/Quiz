@@ -16,12 +16,12 @@ namespace UI
         public void Initialize()
         {
             _startScreenView.Initialize(_gameSetsData);
-            _startScreenView.OnSetInstanceClicked += _screenChanger.ShowGameScreen;
+            //_startScreenView.OnSetInstanceClicked += _screenChanger.ShowGameScreen;
         }
 
         private void OnDestroy()
         {
-            _startScreenView.OnSetInstanceClicked -= _screenChanger.ShowGameScreen;
+           // _startScreenView.OnSetInstanceClicked -= _screenChanger.ShowGameScreen;
         }
     }
 }

@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameSetIconInstance : MonoBehaviour
+    public class GameSetInstance : MonoBehaviour
     {
         public GameSetData GameSetData { get; private set; }
 
         [SerializeField]
         private Image _icon;
         
-        private Action<GameSetIconInstance> _onClicked;
+        private Action<GameSetInstance> _onClicked;
+        
 
         public void Initialize(GameSetData gameSetData)
         {
@@ -23,12 +24,14 @@ namespace UI
         public void Click()
         {
             _onClicked?.Invoke(this);
+            
         }
         
-        public void SetClickCallback(Action<GameSetIconInstance> onClicked)
+        public void SetClickCallback(Action<GameSetInstance> onClicked)
         {
             _onClicked = onClicked;
         }
-
+        
+       
     }
 }
