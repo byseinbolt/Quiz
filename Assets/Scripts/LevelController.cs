@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    private CellSpawner _cellSpawner;
     [SerializeField]
     private GameSetData[] _gameSetData;
-
-    [UsedImplicitly]
-    // при клике на набор
-    public void Initialize(GameSetData selectedGameSet)
-    {
-        _cellSpawner.Initialize(selectedGameSet);
-        _cellSpawner.Spawn();
-    }
+    
+    private CellSpawner _cellSpawner;
+    
     private void Awake()
     {
         _cellSpawner = GetComponent<CellSpawner>();
     }
+    
+    [UsedImplicitly]
+    // при клике на набор
+    public void Initialize(GameSetData selectedGameSet)
+    {
+        // здесь теперь мы просто инициализируем CellSpawner
+        _cellSpawner.Initialize(selectedGameSet);
+    }
+   
     
 
     private void OnCellClicked(Cell cell)

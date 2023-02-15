@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameData
@@ -7,16 +8,15 @@ namespace GameData
     public class GameSetData : ScriptableObject
     {
         public Sprite GameSetView => _gameSetView;
-        public GameItem[] GameItems => _gameItems;
+        
+        // добавил сюда IReadOnlyList, потому что у нвс есть ссылка в CellSpawner  на GameSetData
+        // и из CellSpawner мы можем изменять содержимое наших GameItems. А используя IReadOnlyList 
+        // мы запрещаем любое изменение вне класса наших айтемов.
+        public IReadOnlyList<GameItem> GameItems => _gameItems;
         
         [SerializeField]
         private Sprite _gameSetView;
         [SerializeField]
-        private GameItem[] _gameItems;
+        private List<GameItem> _gameItems;
     }
 }
-
-    public class TestGameSetData : MonoBehaviour
-    {
-        
-    }
