@@ -26,8 +26,8 @@ public class LevelController : MonoBehaviour
     private void OnGameSetInstanceClicked(GameSetInstance setInstance)
     {
         _selectedGameSet = setInstance.GameSetData;
-        SetWasSelected?.Invoke();
         Initialize();
+        SetWasSelected?.Invoke();
     }
     
     private void Initialize()
