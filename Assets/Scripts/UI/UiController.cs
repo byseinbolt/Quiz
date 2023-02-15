@@ -1,4 +1,5 @@
-﻿using GameData;
+﻿using System;
+using GameData;
 using UnityEngine;
 
 namespace UI
@@ -9,10 +10,18 @@ namespace UI
         private GameSetData[] _gameSetsData;
         [SerializeField]
         private StartScreenView _startScreenView;
+        [SerializeField]
+        private ScreenChanger _screenChanger;
 
-        private void Awake()
+        public void Initialize()
         {
             _startScreenView.Initialize(_gameSetsData);
+            _startScreenView.OnSetInstanceClicked += _screenChanger.ShowGameScreen;
+        }
+
+        private void OnDestroy()
+        {
+            _startScreenView.OnSetInstanceClicked -= _screenChanger.ShowGameScreen;
         }
     }
 }

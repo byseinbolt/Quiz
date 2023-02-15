@@ -1,25 +1,36 @@
+using System;
 using GameData;
 using JetBrains.Annotations;
+using UI;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
     [SerializeField]
-    private GameSetData[] _gameSetData;
+    private StartScreenView _startScreenView;
     
     private CellSpawner _cellSpawner;
+    private GameSetData _selectedGameSet;
     
     private void Awake()
     {
         _cellSpawner = GetComponent<CellSpawner>();
     }
-    
-    [UsedImplicitly]
-    // при клике на набор
-    public void Initialize(GameSetData selectedGameSet)
+
+    private void Start()
     {
-        // здесь теперь мы просто инициализируем CellSpawner
-        _cellSpawner.Initialize(selectedGameSet);
+        _startScreenView.OnInstanceClicked += OnGameSetInstanceClicked;
+    }
+
+    private void OnGameSetInstanceClicked(GameSetInstance setInstance)
+    {
+        _selectedGameSet = setInstance.GameSetData;
+        Initialize();
+    }
+    
+    private void Initialize()
+    {
+        _cellSpawner.Initialize(_selectedGameSet);
     }
    
     
@@ -31,6 +42,7 @@ public class LevelController : MonoBehaviour
 
     private void OnDestroy()
     {
+        _startScreenView.OnInstanceClicked -= OnGameSetInstanceClicked;
   //      _cellSpawner.OnClicked -= OnCellClicked;
     }
 }

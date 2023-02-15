@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using System;
+using UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,4 +9,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private LevelController _levelController;
+
+    private void Start()
+    {
+        _uiController.Initialize();
+    }
 }

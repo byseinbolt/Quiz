@@ -8,13 +8,11 @@ namespace UI
         [SerializeField]
         private GameObject _gameScreen;
         [SerializeField]
-        private GameObject _startScreen;
-
-        [UsedImplicitly]
-        // при клике на набор
+        private StartScreenView _startScreen;
+        
         public void ShowGameScreen()
         {
-            _startScreen.SetActive(false);
+            _startScreen.gameObject.SetActive(false);
             _gameScreen.SetActive(true);
         }
     }

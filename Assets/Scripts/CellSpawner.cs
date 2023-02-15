@@ -27,9 +27,8 @@ public class CellSpawner : MonoBehaviour
 
     public void Initialize(GameSetData selectedGameSet)
     {
-        
         _gameSetData = selectedGameSet;
-        
+
         // сделал спавн приватным и ызываю его здесь
         Spawn();
     }
@@ -68,6 +67,6 @@ public class CellSpawner : MonoBehaviour
     public GameItem GetGoal()
     {
         var randomUsedGameItemIndex = Random.Range(0, _oneLevelUsedGameItems.Count);
-        return _gameSetData.GameItems[randomUsedGameItemIndex];
+        return _oneLevelUsedGameItems[randomUsedGameItemIndex];
     }
 }
