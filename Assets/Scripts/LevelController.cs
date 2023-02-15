@@ -1,6 +1,5 @@
 using System;
 using GameData;
-using JetBrains.Annotations;
 using UI;
 using UnityEngine;
 
@@ -36,9 +35,7 @@ public class LevelController : MonoBehaviour
     {
         _cellSpawner.Initialize(_selectedGameSet);
     }
-   
     
-
     private void OnCellClicked(Cell cell)
     {
         

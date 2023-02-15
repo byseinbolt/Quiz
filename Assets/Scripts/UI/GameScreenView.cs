@@ -12,7 +12,7 @@ namespace UI
         // TODO: решить как пробрасывать цель в этот класс не используя напрямую ссылку на CellSpawner
         [SerializeField]
         private CellSpawner _cellSpawner;
-
+        
         [UsedImplicitly]
         // когда спавн закончился
         public void SetGoal()

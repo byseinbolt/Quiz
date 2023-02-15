@@ -1,7 +1,5 @@
-﻿using System;
-using GameData;
+﻿using GameData;
 using UnityEngine;
-using UnityEngine.Android;
 
 namespace UI
 {

@@ -1,8 +1,6 @@
 ﻿using System;
 using GameData;
-using Unity.VisualScripting;
 using UnityEngine;
-using UI;
 
 namespace UI
 {

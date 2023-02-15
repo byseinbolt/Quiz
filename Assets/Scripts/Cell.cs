@@ -12,15 +12,21 @@ public class Cell : MonoBehaviour
     
     private Action<Cell> _onClicked;
 
-    [Header("Настройки цвета бэка")]
-    [SerializeField]
-    private float _hueMax;
-
-    // TODO: вынести настройки цвета бэка ячейки в SerializeFild
+    [Header("Background settings")]
+    [SerializeField] private float _hueMin;
+    [SerializeField] private float _hueMax = 1;
+    [SerializeField] private float _saturationMin = 1;
+    [SerializeField] private float _saturationMax = 1;
+    [SerializeField] private float _valueMin = 1;
+    [SerializeField] private float _valueMax = 1;
+    [SerializeField] private float _alphaMin = 0.6f;
+    [SerializeField] private float _alphaMax = 0.6f;
+    
     public void Initialize(Sprite gameItemView)
     {
         _image.sprite = gameItemView;
-        _background.color = Random.ColorHSV(0, 1, 1, 1, 1, 1, 0.6f, 0.6f);
+        _background.color = Random.ColorHSV(_hueMin, _hueMax, _saturationMin, 
+            _saturationMax, _valueMin, _valueMax, _alphaMin, _alphaMax);
     }
 
     public void Click()
