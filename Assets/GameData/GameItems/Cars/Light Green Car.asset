@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Light Green Car
   m_EditorClassIdentifier: 
   _itemName: Green car
-  _itemView: {fileID: 0}
+  _itemView: {fileID: 1281493971, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}

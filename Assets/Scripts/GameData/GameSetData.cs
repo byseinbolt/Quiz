@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace GameData
 {
@@ -6,13 +7,16 @@ namespace GameData
     public class GameSetData : ScriptableObject
     {
         public Sprite GameSetView => _gameSetView;
-        public GameSet GameSet => _gameSet;
-
-        public GameItem[] _gameItems;
+        public GameItem[] GameItems => _gameItems;
         
         [SerializeField]
         private Sprite _gameSetView;
         [SerializeField]
-        private GameSet _gameSet;
+        private GameItem[] _gameItems;
     }
 }
+
+    public class TestGameSetData : MonoBehaviour
+    {
+        
+    }

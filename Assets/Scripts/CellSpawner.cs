@@ -18,8 +18,8 @@ public class CellSpawner : MonoBehaviour
     private UnityEvent _spawnCompleted;
     
     private GameSetData _gameSetData;
-    private Dictionary<string, Sprite> _allUsedElements = new();
-    private List<int> _oneLevelUsedElements;
+    private HashSet<GameItem> _allUsedElements = new();
+    private List<GameItem> _oneLevelUsedElements;
 
     public void Initialize(GameSetData selectedGameSet)
     {
@@ -27,34 +27,32 @@ public class CellSpawner : MonoBehaviour
     }
     public void Spawn()
     {
-        _oneLevelUsedElements = new List<int>();
+        _oneLevelUsedElements = new List<GameItem>();
         
         for (var i = 0; i < 3; i++)
         {
-            var randomElementIndex = Random.Range(0, _gameSetData.GameSet.GameItemViews.Length);
-            var randomGameElementView = _gameSetData.GameSet.GameItemViews[randomElementIndex];
-            var randomGameElementName = _gameSetData.GameSet.GameItemNames[randomElementIndex];
+            var randomElementIndex = Random.Range(0, _gameSetData.GameItems.Length);
+            var randomGameItem = _gameSetData.GameItems[randomElementIndex];
             
-            if (_allUsedElements.ContainsKey(randomGameElementName))
+            if (_allUsedElements.Contains(randomGameItem))
             {
                 i--;
                 continue;
             }
             
-            _allUsedElements.Add(randomGameElementName, randomGameElementView);
-            _oneLevelUsedElements.Add(randomElementIndex);
+            _allUsedElements.Add(randomGameItem);
+            _oneLevelUsedElements.Add(randomGameItem);
             
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
             //cell.SetClickCallback(value =>OnClicked.Invoke(value));
-            cell.Image.sprite = randomGameElementView;
+            cell.Image.sprite = randomGameItem.ItemView;
         }
         _spawnCompleted.Invoke();
     }
     
-    public string GetGoal()
+    public GameItem GetGoal()
     {
-        var randomUsedElement = Random.Range(0, _oneLevelUsedElements.Count);
-        var randomGoalIndex = _oneLevelUsedElements[randomUsedElement];
-        return _gameSetData.GameSet.GameItemNames[randomGoalIndex];
+        var randomUsedGameItemIndex = Random.Range(0, _oneLevelUsedElements.Count);
+        return _gameSetData.GameItems[randomUsedGameItemIndex];
     }
 }

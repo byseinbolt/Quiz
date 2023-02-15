@@ -16,7 +16,7 @@ namespace UI
         // когда спавн закончился
         public void SetGoal()
         {
-            _goalLabel.text = $"Find {_cellSpawner.GetGoal()}";
+            _goalLabel.text = $"Find {_cellSpawner.GetGoal().ItemName}";
         }
     }
 }
