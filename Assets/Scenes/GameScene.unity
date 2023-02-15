@@ -157,7 +157,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24efda394eae23c4e81c979516c5c5ee, type: 2}
   - {fileID: 11400000, guid: a45266f92d59fed4280f1a92df614638, type: 2}
   _startScreenView: {fileID: 1343212288}
-  _screenChanger: {fileID: 2042283991}
 --- !u!4 &212207805
 Transform:
   m_ObjectHideFlags: 0

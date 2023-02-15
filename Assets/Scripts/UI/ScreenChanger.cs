@@ -10,6 +10,7 @@ namespace UI
         [SerializeField]
         private StartScreenView _startScreen;
         
+        // TODO: заменить включение и выключение объектов на CanvasGroup FadeIn/FadeOut
         public void ShowGameScreen()
         {
             _startScreen.gameObject.SetActive(false);

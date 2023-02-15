@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    // TODO: решить относится этот класс к UI или нет
     public class GameSetInstance : MonoBehaviour
     {
         public GameSetData GameSetData { get; private set; }

@@ -9,8 +9,6 @@ namespace UI
     public class StartScreenView : MonoBehaviour
     {
         public event Action<GameSetInstance> OnInstanceClicked;
-        public event Action OnSetInstanceClicked;
-        
         
         [SerializeField]
         private GameSetInstance _gameSetInstancePrefab;

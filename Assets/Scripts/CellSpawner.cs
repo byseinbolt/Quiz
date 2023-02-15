@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
+// TODO: прокидывать количество элементов каждого уровня через DataProvider
 public class CellSpawner : MonoBehaviour
 {
     public Action<Cell> OnClicked;

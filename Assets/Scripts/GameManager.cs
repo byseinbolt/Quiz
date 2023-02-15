@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        
         _uiController.Initialize();
         _levelController.SetWasSelected += _screenChanger.ShowGameScreen;
         

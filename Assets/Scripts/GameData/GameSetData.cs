@@ -9,9 +9,6 @@ namespace GameData
     {
         public Sprite GameSetView => _gameSetView;
         
-        // добавил сюда IReadOnlyList, потому что у нвс есть ссылка в CellSpawner  на GameSetData
-        // и из CellSpawner мы можем изменять содержимое наших GameItems. А используя IReadOnlyList 
-        // мы запрещаем любое изменение вне класса наших айтемов.
         public IReadOnlyList<GameItem> GameItems => _gameItems;
         
         [SerializeField]

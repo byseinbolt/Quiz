@@ -9,6 +9,7 @@ namespace UI
         [SerializeField] 
         private TextMeshProUGUI _goalLabel;
 
+        // TODO: решить как пробрасывать цель в этот класс не используя напрямую ссылку на CellSpawner
         [SerializeField]
         private CellSpawner _cellSpawner;
 

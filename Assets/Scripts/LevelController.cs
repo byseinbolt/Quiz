@@ -4,9 +4,11 @@ using JetBrains.Annotations;
 using UI;
 using UnityEngine;
 
+// TODO: сделать получение данных через DataProvider и доделать логику клика на ячейку
 public class LevelController : MonoBehaviour
 {
     public event Action SetWasSelected;
+    
     [SerializeField]
     private StartScreenView _startScreenView;
     
