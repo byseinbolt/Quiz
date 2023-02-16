@@ -6,12 +6,11 @@ namespace UI
     public class UiController : MonoBehaviour
     {
         [SerializeField]
-        private StartScreenController startScreenController;
+        private StartScreenController _startScreenController;
 
         public void Initialize(DataProvider dataProvider)
         {
-            startScreenController.Initialize(dataProvider.GameSetData);
+            _startScreenController.Initialize(dataProvider.GameSetData);
         }
-        
     }
 }

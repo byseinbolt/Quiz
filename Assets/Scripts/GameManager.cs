@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
     {
         _uiController.Initialize(_dataProvider);
         _levelController.Initialize(_dataProvider);
-        _levelController.SetWasSelected += _screenChanger.ShowGameScreen;
+        _levelController.SetSelected += _screenChanger.ShowGameScreen;
         _levelController.LevelCompleted += _screenChanger.ShowGameOverScreen;
     }
 
     private void OnDestroy()
     {
-        _levelController.SetWasSelected -= _screenChanger.ShowGameScreen;
+        _levelController.SetSelected -= _screenChanger.ShowGameScreen;
         _levelController.LevelCompleted -= _screenChanger.ShowGameOverScreen;
     }
 }

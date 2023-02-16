@@ -225,6 +225,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 2876329439264486575}
   _background: {fileID: 295225737073315268}
+  _hueMin: 0
+  _hueMax: 1
+  _saturationMin: 1
+  _saturationMax: 1
+  _valueMin: 1
+  _valueMax: 1
+  _alphaMin: 0.6
+  _alphaMax: 0.6
 --- !u!1 &6203183182161848202
 GameObject:
   m_ObjectHideFlags: 0

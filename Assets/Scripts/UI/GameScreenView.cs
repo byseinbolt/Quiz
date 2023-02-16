@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using GameData;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -8,16 +9,12 @@ namespace UI
     {
         [SerializeField] 
         private TextMeshProUGUI _goalLabel;
-
-        // TODO: решить как пробрасывать цель в этот класс не используя напрямую ссылку на LevelController
-        [SerializeField]
-        private LevelController _levelController;
         
-        [UsedImplicitly]
-        // когда спавн закончился
-        public void SetGoal()
+       [UsedImplicitly]
+        // когда спавн закончился (через UnityEvent)
+        public void SetGoal(string goalItemName)
         {
-            _goalLabel.text = $"Find {_levelController.GoalItem.ItemName}";
+            _goalLabel.text = $"Find {goalItemName}";
         }
     }
 }

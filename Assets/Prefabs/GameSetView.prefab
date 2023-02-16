@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4325609335533327768}
   - component: {fileID: 4325609335533327769}
   - component: {fileID: 4325609335533327774}
-  - component: {fileID: 4718155807812663179}
+  - component: {fileID: 4738830253471466901}
   m_Layer: 0
   m_Name: GameSetView
   m_TagString: Untagged
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4718155807812663179}
-        m_TargetAssemblyTypeName: UI.GameSetIconInstance, Assembly-CSharp
+      - m_Target: {fileID: 4738830253471466901}
+        m_TargetAssemblyTypeName: UI.GameSetView, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -134,7 +134,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4718155807812663179
+--- !u!114 &4738830253471466901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

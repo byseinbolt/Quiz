@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using GameData;
+using JetBrains.Annotations;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,21 +9,17 @@ using Random = UnityEngine.Random;
 
 public class LevelController : MonoBehaviour
 {
-    public event Action SetWasSelected;
+    public event Action SetSelected;
     public event Action LevelCompleted;
-    public GameItem GoalItem { get; private set; }
     
-    //TODO:подумать над названием евенту
+    //TODO:подумать над названием ивента
     [SerializeField]
-    private UnityEvent _setGoal;
-
-    //TODO: подумать над прокидванием подписания ивента клика на игровой набор
-    [SerializeField]
-    private StartScreenController _startScreenController;
+    private UnityEvent<string> _setGoal;
     
     private CellSpawner _cellSpawner;
     private Dictionary<string,IReadOnlyList<GameItem>> _gameSetsData;
     private List<LevelData> _levelsData;
+    private GameItem _goalItem;
 
     private void Awake()
     {
@@ -33,7 +30,6 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
-        _startScreenController.OnInstanceClicked += OnGameSetInstanceClicked;
         _cellSpawner.OnClicked += OnCellClicked;
     }
     
@@ -52,25 +48,28 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    private void OnGameSetInstanceClicked(GameSetView setView)
+    [UsedImplicitly]
+    // from UnityEvent in startScreenController
+    public void OnGameSetInstanceClicked(GameSetView setView)
     {
         if (_gameSetsData.ContainsKey(setView.GameSetName))
         {
-            StartLevel(_gameSetsData[setView.GameSetName]);
+            var selectedGameSet = _gameSetsData[setView.GameSetName];
+            StartLevel(selectedGameSet);
         }
-        SetWasSelected?.Invoke();
+        SetSelected?.Invoke();
     }
 
     private void StartLevel(IReadOnlyList<GameItem> selectedGameSet)
     {
-        _cellSpawner.Initialize(selectedGameSet);
-        GoalItem = GetGoal();
-        _setGoal.Invoke();
+        _cellSpawner.Spawn(selectedGameSet);
+        _goalItem = GetGoal();
+        _setGoal.Invoke(_goalItem.ItemName);
     }
     
     private void OnCellClicked(Cell cell)
     {
-        if (cell.Image.sprite == GoalItem.ItemView)
+        if (cell.Image.sprite == _goalItem.ItemView)
         {
             Debug.Log("WIN");
             LevelCompleted?.Invoke();
@@ -81,9 +80,9 @@ public class LevelController : MonoBehaviour
         var randomUsedGameItemIndex = Random.Range(0, _cellSpawner.OneLevelUsedGameItems.Count);
         return _cellSpawner.OneLevelUsedGameItems[randomUsedGameItemIndex];
     }
+    
     private void OnDestroy()
     {
-        _startScreenController.OnInstanceClicked -= OnGameSetInstanceClicked;
         _cellSpawner.OnClicked -= OnCellClicked;
     }
 }

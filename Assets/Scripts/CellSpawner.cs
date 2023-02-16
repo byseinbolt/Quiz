@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 // TODO: прокидывать инф-ию про каждый уровень, подумать над названием класса
 public class CellSpawner : MonoBehaviour
 {
-    public Action<Cell> OnClicked;
+    public event Action<Cell> OnClicked;
 
     public IReadOnlyList<GameItem> OneLevelUsedGameItems => _oneLevelUsedGameItems;
 
@@ -19,15 +19,9 @@ public class CellSpawner : MonoBehaviour
     private Cell _cellPrefab;
 
     private readonly HashSet<GameItem> _allUsedGameItems = new();
-    
     private List<GameItem> _oneLevelUsedGameItems;
-
-    public void Initialize(IReadOnlyList<GameItem> selectedGameSetItems)
-    {
-        Spawn(selectedGameSetItems);
-    }
     
-    private void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
+    public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
     {
         _oneLevelUsedGameItems = new List<GameItem>();
         
