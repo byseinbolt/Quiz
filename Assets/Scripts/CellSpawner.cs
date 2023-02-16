@@ -5,37 +5,36 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-// TODO: прокидывать количество элементов каждого уровня через DataProvider
+// TODO: прокидывать инф-ию про каждый уровень, подумать над названием класса
 public class CellSpawner : MonoBehaviour
 {
     public Action<Cell> OnClicked;
-    
+
+    public IReadOnlyList<GameItem> OneLevelUsedGameItems => _oneLevelUsedGameItems;
+
     [SerializeField]
     private Transform _cellsSpawnPosition;
+    
     [SerializeField]
     private Cell _cellPrefab;
-    
-    [SerializeField]
-    private UnityEvent _spawnCompleted;
-    
-    private readonly HashSet<GameItem> _allUsedGameItems = new();
-    private List<GameItem> _oneLevelUsedGameItems;
-    private GameSetData _gameSetData;
 
-    public void Initialize(GameSetData selectedGameSet)
+    private readonly HashSet<GameItem> _allUsedGameItems = new();
+    
+    private List<GameItem> _oneLevelUsedGameItems;
+
+    public void Initialize(IReadOnlyList<GameItem> selectedGameSetItems)
     {
-        _gameSetData = selectedGameSet;
-        Spawn();
+        Spawn(selectedGameSetItems);
     }
     
-    private void Spawn()
+    private void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
     {
         _oneLevelUsedGameItems = new List<GameItem>();
         
         for (var i = 0; i < 3; i++)
         {
-            var randomElementIndex = Random.Range(0, _gameSetData.GameItems.Count);
-            var randomGameItem = _gameSetData.GameItems[randomElementIndex];
+            var randomElementIndex = Random.Range(0, selectedGameSetItems.Count);
+            var randomGameItem = selectedGameSetItems[randomElementIndex];
             
             if (_allUsedGameItems.Contains(randomGameItem))
             {
@@ -46,14 +45,9 @@ public class CellSpawner : MonoBehaviour
             _oneLevelUsedGameItems.Add(randomGameItem);
             
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
+            cell.SetClickCallback(value => OnClicked?.Invoke(value));
             cell.Initialize(randomGameItem.ItemView);
+            
         }
-        _spawnCompleted.Invoke();
-    }
-    
-    public GameItem GetGoal()
-    {
-        var randomUsedGameItemIndex = Random.Range(0, _oneLevelUsedGameItems.Count);
-        return _oneLevelUsedGameItems[randomUsedGameItemIndex];
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4325609335533327774}
   - component: {fileID: 4718155807812663179}
   m_Layer: 0
-  m_Name: SetInstance
+  m_Name: GameSetView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

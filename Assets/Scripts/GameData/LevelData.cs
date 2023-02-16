@@ -10,6 +10,7 @@ namespace GameData
     
         [SerializeField]
         private string _levelName;
+        
         [SerializeField]
         private int _levelElementsCount;
     }

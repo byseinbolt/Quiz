@@ -9,15 +9,15 @@ namespace UI
         [SerializeField] 
         private TextMeshProUGUI _goalLabel;
 
-        // TODO: решить как пробрасывать цель в этот класс не используя напрямую ссылку на CellSpawner
+        // TODO: решить как пробрасывать цель в этот класс не используя напрямую ссылку на LevelController
         [SerializeField]
-        private CellSpawner _cellSpawner;
+        private LevelController _levelController;
         
         [UsedImplicitly]
         // когда спавн закончился
         public void SetGoal()
         {
-            _goalLabel.text = $"Find {_cellSpawner.GetGoal().ItemName}";
+            _goalLabel.text = $"Find {_levelController.GoalItem.ItemName}";
         }
     }
 }

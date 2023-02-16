@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742da680902a4e7b808ef2bd472ebe57, type: 3}
   m_Name: Letters
   m_EditorClassIdentifier: 
+  _gameSetName: Letters
   _gameSetView: {fileID: -1513204764, guid: 0ca35679219111d4884cdfb563e366af, type: 3}
   _gameItems:
   - {fileID: 11400000, guid: b3ea90d0475364f4d9ff738a7097ba7f, type: 2}

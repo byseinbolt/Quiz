@@ -5,15 +5,13 @@ namespace UI
 {
     public class UiController : MonoBehaviour
     {
-        // TODO: подумать должен ли UiController знать про GameSetData или про DataProvider
         [SerializeField]
-        private GameSetData[] _gameSetsData;
-        [SerializeField]
-        private StartScreenView _startScreenView;
+        private StartScreenController startScreenController;
 
-        public void Initialize()
+        public void Initialize(DataProvider dataProvider)
         {
-            _startScreenView.Initialize(_gameSetsData);
+            startScreenController.Initialize(dataProvider.GameSetData);
         }
+        
     }
 }

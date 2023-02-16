@@ -5,8 +5,11 @@ using Random = UnityEngine.Random;
 
 public class Cell : MonoBehaviour
 {
+    public Image Image => _image;
+    
     [SerializeField]
     private Image _image;
+    
     [SerializeField]
     private Image _background;
     

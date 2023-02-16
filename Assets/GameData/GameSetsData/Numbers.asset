@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742da680902a4e7b808ef2bd472ebe57, type: 3}
   m_Name: Numbers
   m_EditorClassIdentifier: 
+  _gameSetName: Numbers
   _gameSetView: {fileID: -360852177, guid: cf7708d7e5389044796061f774a241ff, type: 3}
   _gameItems:
   - {fileID: 11400000, guid: 63ef78cc452bde24381a6cf73393ec20, type: 2}
