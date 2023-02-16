@@ -19,7 +19,7 @@ namespace UI
             _startScreen.gameObject.SetActive(false);
             _gameScreen.SetActive(true);
         }
-        public void ShowGameOverScreen()
+        public void ShowLevelCompletedScreen()
         {
             _gameScreen.SetActive(false);
             _gameOverScreen.SetActive(true);

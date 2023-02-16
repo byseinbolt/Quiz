@@ -820,8 +820,8 @@ MonoBehaviour:
   _onSetClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1456499675}
-        m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
+      - m_Target: {fileID: 1736882480}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OnGameSetInstanceClicked
         m_Mode: 0
         m_Arguments:
@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 1695497325}
   - component: {fileID: 1695497324}
   m_Layer: 0
-  m_Name: Button
+  m_Name: NexxtLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1202,7 +1202,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1695497325}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1736882480}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2042283991}
+        m_TargetAssemblyTypeName: UI.ScreenChanger, Assembly-CSharp
+        m_MethodName: ShowGameScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1695497325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,7 +1478,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130253527
 GameObject:
@@ -1466,7 +1490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2130253528}
   m_Layer: 0
-  m_Name: GameOverScreen
+  m_Name: LevelCompletedScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1486,7 +1510,7 @@ Transform:
   m_Children:
   - {fileID: 2034272723}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5052831693833915670
 GameObject:

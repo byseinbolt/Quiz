@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GameData;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-// TODO: прокидывать инф-ию про каждый уровень, подумать над названием класса
+// TODO: подумать над названием класса
 public class CellSpawner : MonoBehaviour
 {
     public event Action<Cell> OnClicked;
@@ -19,13 +21,22 @@ public class CellSpawner : MonoBehaviour
     private Cell _cellPrefab;
 
     private readonly HashSet<GameItem> _allUsedGameItems = new();
-    private List<GameItem> _oneLevelUsedGameItems;
-    
-    public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
+    private List<GameItem> _oneLevelUsedGameItems = new();
+    private List<Cell> _cells = new();
+
+    public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems, LevelData currentLevel)
     {
+        // TODO: вынести в отдельный метод
+        if (_cells.Count!=0)
+        {
+            foreach (var cell in _cells.Where(cell => cell!=null))
+            {
+                Destroy(cell.gameObject);
+            }
+        }
         _oneLevelUsedGameItems = new List<GameItem>();
         
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < currentLevel.LevelElementsCount; i++)
         {
             var randomElementIndex = Random.Range(0, selectedGameSetItems.Count);
             var randomGameItem = selectedGameSetItems[randomElementIndex];
@@ -39,9 +50,11 @@ public class CellSpawner : MonoBehaviour
             _oneLevelUsedGameItems.Add(randomGameItem);
             
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
+            _cells.Add(cell);
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
             cell.Initialize(randomGameItem.ItemView);
-            
         }
     }
+    
+    
 }
