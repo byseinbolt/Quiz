@@ -53,7 +53,6 @@ public class LevelController : MonoBehaviour
         }
     }
     
-    
     private GameItem GetGoal()
     {
         var randomUsedGameItemIndex = Random.Range(0, _cellSpawner.OneLevelUsedGameItems.Count);
