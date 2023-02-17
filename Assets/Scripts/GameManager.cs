@@ -3,6 +3,7 @@ using GameData;
 using JetBrains.Annotations;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,19 +19,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private StartScreenController _startScreenController;
     
-    private HashSet<LevelData> _completedLevels = new();
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
 
     private void Start()
     {
         _startScreenController.Initialize(_dataProvider.GameSetData);
-        _levelController.LevelCompleted += _screenChanger.ShowLevelCompletedScreen;
+        _levelController.LevelCompleted += CheckLevel;
     }
 
     private void OnDestroy()
     {
-        _levelController.LevelCompleted -= _screenChanger.ShowLevelCompletedScreen;
+        _levelController.LevelCompleted -= CheckLevel;
     }
     
     [UsedImplicitly]
@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
                 _selectedSet = gameSetData.GameItems;
                 var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
                 _levelController.StartLevel(_selectedSet, currentLevel);
-                _completedLevels.Add(currentLevel);
             }
         }
         _screenChanger.ShowGameScreen();
@@ -63,16 +62,26 @@ public class GameManager : MonoBehaviour
     // при клике на RestartButton
     public void RestartGame()
     {
-        if (!HasMoreLevels())
+        _currentLevelIndex = 0;
+        _screenChanger.ShowStartScreen();
+    }
+    
+    // TODO: название не очень
+    private void CheckLevel()
+    {
+        if (IsNoMoreLevels())
         {
-            _currentLevelIndex = 0;
-            _screenChanger.ShowStartScreen();
+            _screenChanger.ShowGameOverScreen();
+        }
+        else
+        {
+            _screenChanger.ShowLevelCompletedScreen();
         }
     }
 
-    private bool HasMoreLevels()
+    private bool IsNoMoreLevels()
     {
-        return _currentLevelIndex != _dataProvider.GameLevelSettings.Levels.Length - 1;
+        return _currentLevelIndex == _dataProvider.GameLevelSettings.Levels.Length - 1;
     }
 }
 

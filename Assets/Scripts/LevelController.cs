@@ -16,6 +16,7 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private UnityEvent<string> _setGoal;
 
+    // TODO: куда и откуда прокидывать эту картинку в экран окончания игры
     [SerializeField]
     private Image _image;
     
@@ -40,6 +41,7 @@ public class LevelController : MonoBehaviour
         _goalItem = GetGoal();
         _currentGoalItem = _goalItem;
         _setGoal.Invoke(_goalItem.ItemName);
+        
     }
     
     private void OnCellClicked(Cell cell)
@@ -48,7 +50,6 @@ public class LevelController : MonoBehaviour
         {
             _image.sprite = cell.Image.sprite;
             Debug.Log("WIN");
-            
             LevelCompleted?.Invoke();
         }
     }
