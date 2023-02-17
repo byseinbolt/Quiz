@@ -1,17 +1,16 @@
 ﻿using DG.Tweening;
-using GameData;
 using JetBrains.Annotations;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameScreenView : MonoBehaviour,IScreen
+    public class LevelCompletedScreenView : MonoBehaviour, IScreen
     {
-        [SerializeField] 
-        private TextMeshProUGUI _goalLabel;
+        [SerializeField]
+        private Image _winImage;
         
-        [SerializeField] 
+        [SerializeField]
         private CanvasGroup _canvasGroup;
         
         private RectTransform _rectTransform;
@@ -20,12 +19,11 @@ namespace UI
         {
             _rectTransform = GetComponent<RectTransform>();
         }
-        
-       [UsedImplicitly]
-        // когда спавн закончился (через UnityEvent)
-        public void SetGoal(string goalItemName)
+
+        [UsedImplicitly]
+        public void ShowWinImage(Cell cell)
         {
-            _goalLabel.text = $"Find {goalItemName}";
+            _winImage.sprite = cell.Image.sprite;
         }
 
         public void ScreenFadeIn()

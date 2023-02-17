@@ -9,28 +9,27 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private LevelController _levelController;
-
-    [SerializeField]
-    private ScreenChanger _screenChanger;
-
     [SerializeField]
     private DataProvider _dataProvider;
     
     [SerializeField]
-    private StartScreenController _startScreenController;
+    private StartScreenView _startScreenView;
+    [SerializeField]
+    private GameScreenView _gameScreenView;
+    [SerializeField]
+    private LevelCompletedScreenView _levelCompletedScreenView;
+    [SerializeField]
+    private GameOverScreenView _gameOverScreenView;
     
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
 
     private void Start()
     {
-        _startScreenController.Initialize(_dataProvider.GameSetData);
-        _levelController.LevelCompleted += CheckLevel;
-    }
-
-    private void OnDestroy()
-    {
-        _levelController.LevelCompleted -= CheckLevel;
+        _startScreenView.Initialize(_dataProvider.GameSetData);
+        _gameScreenView.ScreenFadeOut();
+        _gameOverScreenView.ScreenFadeOut();
+        _levelCompletedScreenView.ScreenFadeOut();
     }
     
     [UsedImplicitly]
@@ -46,7 +45,8 @@ public class GameManager : MonoBehaviour
                 _levelController.StartLevel(_selectedSet, currentLevel);
             }
         }
-        _screenChanger.ShowGameScreen();
+        _startScreenView.ScreenFadeOut();
+        _gameScreenView.ScreenFadeIn();
     }
     
     [UsedImplicitly]
@@ -63,19 +63,24 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         _currentLevelIndex = 0;
-        _screenChanger.ShowStartScreen();
+        _gameOverScreenView.ScreenFadeOut();
+        _startScreenView.ScreenFadeIn();
     }
     
-    // TODO: название не очень
-    private void CheckLevel()
+    // TODO: название не очень, 
+    [UsedImplicitly]
+    // пока вызывается через unityevent levelCompletedScreenView
+    public void CheckLevel(Cell cell)
     {
         if (IsNoMoreLevels())
         {
-            _screenChanger.ShowGameOverScreen();
+            _levelCompletedScreenView.ScreenFadeOut();
+            _gameOverScreenView.ScreenFadeIn();
         }
         else
         {
-            _screenChanger.ShowLevelCompletedScreen();
+            _gameScreenView.ScreenFadeOut();
+            _levelCompletedScreenView.ScreenFadeIn();
         }
     }
 

@@ -11,20 +11,16 @@ using Random = UnityEngine.Random;
 
 public class LevelController : MonoBehaviour
 {
-    public event Action LevelCompleted;
+    [SerializeField]
+    private UnityEvent<Cell> _levelCompleted;
     
     [SerializeField]
     private UnityEvent<string> _goalSelected;
-
-    // TODO: куда и откуда прокидывать эту картинку в экран окончания игры
-    [SerializeField]
-    private Image _image;
     
     private CellSpawner _cellSpawner;
     private GameItem _currentGoalItem;
     private GameItem _goalItem;
     
-
     private void Awake()
     {
         _cellSpawner = GetComponent<CellSpawner>();
@@ -44,12 +40,12 @@ public class LevelController : MonoBehaviour
         
     }
     
+    // TODO: возможно вызывать через юнити ивент
     private void OnCellClicked(Cell cell)
     {
         if (cell.Image.sprite == _goalItem.ItemView)
         {
-            _image.sprite = cell.Image.sprite;
-            LevelCompleted?.Invoke();
+            _levelCompleted.Invoke(cell);
         }
         else
         {

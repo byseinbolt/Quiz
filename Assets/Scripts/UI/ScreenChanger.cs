@@ -8,7 +8,7 @@ namespace UI
         private GameObject _gameScreen;
         
         [SerializeField]
-        private StartScreenController _startScreen;
+        private StartScreenView _startScreen;
 
         [SerializeField]
         private GameObject _levelCompletedScreen;
