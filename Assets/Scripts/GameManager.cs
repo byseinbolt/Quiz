@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     private DataProvider _dataProvider;
 
     private HashSet<LevelData> _completedLevels = new();
-    private int _currentLevelIndex;
     private IReadOnlyList<GameItem> _selectedSet;
+    private int _currentLevelIndex;
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
         _screenChanger.ShowGameScreen();
     }
-
+    
     [UsedImplicitly]
     // при клике на кнопку NextLevel в LevelCompletedScreen
     public void LoadNextLevel()

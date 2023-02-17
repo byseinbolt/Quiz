@@ -19,21 +19,13 @@ public class CellSpawner : MonoBehaviour
     
     [SerializeField]
     private Cell _cellPrefab;
-
-    private readonly HashSet<GameItem> _allUsedGameItems = new();
+    
     private List<GameItem> _oneLevelUsedGameItems = new();
     private List<Cell> _cells = new();
 
     public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems, LevelData currentLevel)
     {
-        // TODO: вынести в отдельный метод
-        if (_cells.Count!=0)
-        {
-            foreach (var cell in _cells.Where(cell => cell!=null))
-            {
-                Destroy(cell.gameObject);
-            }
-        }
+        DestroyPreviousLevelCells();
         _oneLevelUsedGameItems = new List<GameItem>();
         
         for (var i = 0; i < currentLevel.LevelElementsCount; i++)
@@ -41,18 +33,27 @@ public class CellSpawner : MonoBehaviour
             var randomElementIndex = Random.Range(0, selectedGameSetItems.Count);
             var randomGameItem = selectedGameSetItems[randomElementIndex];
             
-            if (_allUsedGameItems.Contains(randomGameItem))
+            if (_oneLevelUsedGameItems.Contains(randomGameItem))
             {
                 i--;
                 continue;
             }
-            _allUsedGameItems.Add(randomGameItem);
             _oneLevelUsedGameItems.Add(randomGameItem);
             
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
             _cells.Add(cell);
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
             cell.Initialize(randomGameItem.ItemView);
+        }
+    }
+
+    private void DestroyPreviousLevelCells()
+    {
+        if (_cells.Count == 0) return;
+        
+        foreach (var cell in _cells.Where(cell => cell!=null))
+        {
+            Destroy(cell.gameObject);
         }
     }
     

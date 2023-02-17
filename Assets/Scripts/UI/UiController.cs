@@ -8,9 +8,13 @@ namespace UI
         [SerializeField]
         private StartScreenController _startScreenController;
 
+        // [SerializeField]
+        // private LevelCompletedScreenView _levelCompletedScreenView;
+
         public void Initialize(DataProvider dataProvider)
         {
             _startScreenController.Initialize(dataProvider.GameSetData);
+            // LevelCompletedScreenView.Initialize(winCell);
         }
     }
 }
