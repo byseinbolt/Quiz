@@ -5,20 +5,24 @@ using JetBrains.Annotations;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class LevelController : MonoBehaviour
 {
     public event Action LevelCompleted;
 
-    public GameItem GoalItem { get; private set; }
-
     //TODO:подумать над названием ивента
     [SerializeField]
     private UnityEvent<string> _setGoal;
+
+    [SerializeField]
+    private Image _image;
     
     private CellSpawner _cellSpawner;
     private GameItem _currentGoalItem;
+    private GameItem _goalItem;
+    
 
     private void Awake()
     {
@@ -33,17 +37,18 @@ public class LevelController : MonoBehaviour
     public void StartLevel(IReadOnlyList<GameItem> selectedGameSet, LevelData currentLevel)
     {
         _cellSpawner.Spawn(selectedGameSet, currentLevel);
-        GoalItem = GetGoal();
-        _currentGoalItem = GoalItem;
-        _setGoal.Invoke(GoalItem.ItemName);
-        
+        _goalItem = GetGoal();
+        _currentGoalItem = _goalItem;
+        _setGoal.Invoke(_goalItem.ItemName);
     }
     
     private void OnCellClicked(Cell cell)
     {
-        if (cell.Image.sprite == GoalItem.ItemView)
+        if (cell.Image.sprite == _goalItem.ItemView)
         {
+            _image.sprite = cell.Image.sprite;
             Debug.Log("WIN");
+            
             LevelCompleted?.Invoke();
         }
     }

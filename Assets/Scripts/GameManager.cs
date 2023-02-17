@@ -7,9 +7,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private UiController _uiController;
-
-    [SerializeField]
     private LevelController _levelController;
 
     [SerializeField]
@@ -17,14 +14,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private DataProvider _dataProvider;
-
+    
+    [SerializeField]
+    private StartScreenController _startScreenController;
+    
     private HashSet<LevelData> _completedLevels = new();
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
 
     private void Start()
     {
-        _uiController.Initialize(_dataProvider);
+        _startScreenController.Initialize(_dataProvider.GameSetData);
         _levelController.LevelCompleted += _screenChanger.ShowLevelCompletedScreen;
     }
 
@@ -58,4 +58,22 @@ public class GameManager : MonoBehaviour
         var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
         _levelController.StartLevel(_selectedSet,currentLevel);
     }
+
+    [UsedImplicitly]
+    // при клике на RestartButton
+    public void RestartGame()
+    {
+        if (!HasMoreLevels())
+        {
+            _currentLevelIndex = 0;
+            _screenChanger.ShowStartScreen();
+        }
+    }
+
+    private bool HasMoreLevels()
+    {
+        return _currentLevelIndex != _dataProvider.GameLevelSettings.Levels.Length - 1;
+    }
 }
+
+
