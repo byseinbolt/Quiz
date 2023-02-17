@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using GameData;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,7 +17,7 @@ public class CellSpawner : MonoBehaviour
     public IReadOnlyList<GameItem> OneLevelUsedGameItems => _oneLevelUsedGameItems;
 
     [SerializeField]
-    private Transform _cellsSpawnPosition;
+    private RectTransform _cellsSpawnPosition;
     
     [SerializeField]
     private Cell _cellPrefab;
@@ -30,8 +32,7 @@ public class CellSpawner : MonoBehaviour
         
         for (var i = 0; i < currentLevel.LevelElementsCount; i++)
         {
-            var randomElementIndex = Random.Range(0, selectedGameSetItems.Count);
-            var randomGameItem = selectedGameSetItems[randomElementIndex];
+            var randomGameItem = GetRandomItem(selectedGameSetItems);
             
             if (_oneLevelUsedGameItems.Contains(randomGameItem))
             {
@@ -51,11 +52,18 @@ public class CellSpawner : MonoBehaviour
     {
         if (_cells.Count == 0) return;
         
-        foreach (var cell in _cells.Where(cell => cell!=null))
+        foreach (var cell in _cells.Where(cell => cell != null))
         {
             Destroy(cell.gameObject);
         }
     }
+
+    private GameItem GetRandomItem(IReadOnlyList<GameItem> selectedGameSetItems)
+    {
+        var randomElementIndex = Random.Range(0, selectedGameSetItems.Count);
+        return selectedGameSetItems[randomElementIndex];
+    }
+
     
     
 }

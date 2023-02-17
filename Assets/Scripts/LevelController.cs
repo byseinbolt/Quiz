@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using GameData;
 using JetBrains.Annotations;
 using UI;
@@ -11,10 +12,9 @@ using Random = UnityEngine.Random;
 public class LevelController : MonoBehaviour
 {
     public event Action LevelCompleted;
-
-    //TODO:подумать над названием ивента
+    
     [SerializeField]
-    private UnityEvent<string> _setGoal;
+    private UnityEvent<string> _goalSelected;
 
     // TODO: куда и откуда прокидывать эту картинку в экран окончания игры
     [SerializeField]
@@ -40,7 +40,7 @@ public class LevelController : MonoBehaviour
         _cellSpawner.Spawn(selectedGameSet, currentLevel);
         _goalItem = GetGoal();
         _currentGoalItem = _goalItem;
-        _setGoal.Invoke(_goalItem.ItemName);
+        _goalSelected.Invoke(_goalItem.ItemName);
         
     }
     
@@ -49,8 +49,11 @@ public class LevelController : MonoBehaviour
         if (cell.Image.sprite == _goalItem.ItemView)
         {
             _image.sprite = cell.Image.sprite;
-            Debug.Log("WIN");
             LevelCompleted?.Invoke();
+        }
+        else
+        {
+           PlayRotationAnimation(cell);
         }
     }
     
@@ -68,4 +71,12 @@ public class LevelController : MonoBehaviour
     {
         _cellSpawner.OnClicked -= OnCellClicked;
     }
+
+    private void PlayRotationAnimation(Cell cell)
+    {
+        cell.Image.rectTransform.DORotate(new Vector3(0, 180, 0), 0.5f)
+            .SetEase(Ease.InBounce)
+            .SetLoops(2, LoopType.Yoyo);
+    }
+    
 }
