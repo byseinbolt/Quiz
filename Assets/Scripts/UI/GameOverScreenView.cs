@@ -19,17 +19,17 @@ namespace UI
         public void ScreenFadeIn()
         {
             _canvasGroup.alpha = 0;
-            _rectTransform.transform.localPosition = new Vector3(0f, -1000f, 0f);
-            _rectTransform.DOAnchorPos(new Vector2(0, 0), 2f);
-            _canvasGroup.DOFade(1, 2f);
+            _rectTransform.transform.localPosition = new Vector3(960, -1000f, 0f);
+            _rectTransform.DOAnchorPos(new Vector2(960, 540), 2f);
+            _canvasGroup.DOFade(1, 1);
         }
 
         public void ScreenFadeOut()
         {
             _canvasGroup.alpha = 1;
-            _rectTransform.transform.localPosition = Vector3.zero;
-            _rectTransform.DOAnchorPos(new Vector2(0, -1000), 2f);
-            _canvasGroup.DOFade(0, 2f);
+            _rectTransform.transform.localPosition = new Vector3(960,540,0);
+            _rectTransform.DOAnchorPos(new Vector2(960, -1000), 2f);
+            _canvasGroup.DOFade(0, 1);
         }
     }
 }
