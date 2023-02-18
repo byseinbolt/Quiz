@@ -30,7 +30,6 @@ namespace UI
     
         public void Initialize(IEnumerable<GameSetData> gameSetsData)
         {
-            ScreenFadeIn();
             foreach (var gameSetData in gameSetsData)
             {
                 var gameSetViewInstance = Instantiate(_gameSetViewPrefab, _iconSpawnPosition);
@@ -42,7 +41,7 @@ namespace UI
         public void ScreenFadeIn()
         {
             _canvasGroup.alpha = 0;
-            _rectTransform.transform.localPosition = new Vector3(960, -1000f, 0f);
+            _rectTransform.transform.localPosition = new Vector3(0, 1300, 0f);
             _rectTransform.DOAnchorPos(new Vector2(960, 540), 2f);
             _canvasGroup.DOFade(1, 1);
         }
@@ -50,8 +49,8 @@ namespace UI
         public void ScreenFadeOut()
         {
             _canvasGroup.alpha = 1;
-            _rectTransform.transform.localPosition = new Vector3(960,540,0);
-            _rectTransform.DOAnchorPos(new Vector2(960, -1000), 2f);
+            _rectTransform.transform.localPosition = new Vector3(0,-0,0);
+            _rectTransform.DOAnchorPos(new Vector2(960, 1620), 2f);
             _canvasGroup.DOFade(0, 1);
         }
     }

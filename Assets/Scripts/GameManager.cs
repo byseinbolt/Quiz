@@ -27,9 +27,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _startScreenView.Initialize(_dataProvider.GameSetData);
-        _gameScreenView.ScreenFadeOut();
-        _gameOverScreenView.ScreenFadeOut();
-        _levelCompletedScreenView.ScreenFadeOut();
+       _startScreenView.ScreenFadeIn();
     }
     
     [UsedImplicitly]
@@ -56,6 +54,7 @@ public class GameManager : MonoBehaviour
         _currentLevelIndex++;
         var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
         _levelController.StartLevel(_selectedSet,currentLevel);
+        _levelCompletedScreenView.ScreenFadeOut();
     }
 
     [UsedImplicitly]
@@ -74,8 +73,8 @@ public class GameManager : MonoBehaviour
     {
         if (IsNoMoreLevels())
         {
-            _levelCompletedScreenView.ScreenFadeOut();
             _gameOverScreenView.ScreenFadeIn();
+            _gameScreenView.ScreenFadeOut();
         }
         else
         {
