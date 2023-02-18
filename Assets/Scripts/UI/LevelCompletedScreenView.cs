@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class LevelCompletedScreenView : MonoBehaviour, IScreen
+    public class LevelCompletedScreenView : MonoBehaviour
     {
         [SerializeField]
         private Image _winImage;

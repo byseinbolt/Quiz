@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using GameData;
-using JetBrains.Annotations;
-using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -38,7 +36,6 @@ public class LevelController : MonoBehaviour
         _goalItem = GetGoal();
         _currentGoalItem = _goalItem;
         _goalSelected.Invoke(_goalItem.ItemName);
-        
     }
     
     private void OnCellClicked(Cell cell)

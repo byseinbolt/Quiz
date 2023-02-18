@@ -6,11 +6,10 @@ using UnityEngine.Events;
 
 namespace UI
 {
-    public class StartScreenView : MonoBehaviour, IScreen
+    public class StartScreenView : MonoBehaviour
     {
-        //подумать над названием ивента
         [SerializeField]
-        private UnityEvent<GameSetView> _onSetClicked;
+        private UnityEvent<GameSetView> _onGameSetClicked;
         
         [SerializeField] 
         private GameSetView _gameSetViewPrefab;
@@ -33,7 +32,7 @@ namespace UI
             foreach (var gameSetData in gameSetsData)
             {
                 var gameSetViewInstance = Instantiate(_gameSetViewPrefab, _iconSpawnPosition);
-                gameSetViewInstance.SetClickCallback(value => _onSetClicked.Invoke(value));
+                gameSetViewInstance.SetClickCallback(value => _onGameSetClicked.Invoke(value));
                 gameSetViewInstance.Initialize(gameSetData);
             }
         }

@@ -3,24 +3,27 @@ using GameData;
 using JetBrains.Annotations;
 using UI;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private LevelController _levelController;
+    
     [SerializeField]
     private DataProvider _dataProvider;
     
     [SerializeField]
     private StartScreenView _startScreenView;
+    
     [SerializeField]
     private GameScreenView _gameScreenView;
+    
     [SerializeField]
     private LevelCompletedScreenView _levelCompletedScreenView;
+    
     [SerializeField]
     private GameOverScreenView _gameOverScreenView;
-    
+
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
 
@@ -48,17 +51,18 @@ public class GameManager : MonoBehaviour
     }
     
     [UsedImplicitly]
-    // при клике на кнопку NextLevel в LevelCompletedScreen
+    // from click on NextLevel in LevelCompletedScreen
     public void LoadNextLevel()
     {
         _currentLevelIndex++;
         var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
         _levelController.StartLevel(_selectedSet,currentLevel);
         _levelCompletedScreenView.ScreenFadeOut();
+        _gameScreenView.ScreenFadeIn();
     }
 
     [UsedImplicitly]
-    // при клике на RestartButton
+    // from click on RestartButton
     public void RestartGame()
     {
         _currentLevelIndex = 0;
@@ -66,10 +70,9 @@ public class GameManager : MonoBehaviour
         _startScreenView.ScreenFadeIn();
     }
     
-    // TODO: название не очень, 
     [UsedImplicitly]
-    // пока вызывается через unityevent levelCompletedScreenView
-    public void CheckLevel(Cell cell)
+    // calls from UnityEvent in LevelController 
+    public void CheckGameOver(Cell cell)
     {
         if (IsNoMoreLevels())
         {

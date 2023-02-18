@@ -8,7 +8,10 @@ namespace GameData
       public string ItemName => _itemName;
       public Sprite ItemView => _itemView;
       
-      [SerializeField] private string _itemName; 
-      [SerializeField] private Sprite _itemView;
+      [SerializeField]
+      private string _itemName; 
+      
+      [SerializeField]
+      private Sprite _itemView;
    }
 }

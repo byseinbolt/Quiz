@@ -1,12 +1,11 @@
 ﻿using DG.Tweening;
-using GameData;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
 namespace UI
 {
-    public class GameScreenView : MonoBehaviour,IScreen
+    public class GameScreenView : MonoBehaviour
     {
         [SerializeField] 
         private TextMeshProUGUI _goalLabel;
@@ -22,8 +21,8 @@ namespace UI
         }
         
        [UsedImplicitly]
-        // когда спавн закончился (через UnityEvent)
-        public void SetGoal(string goalItemName)
+       // from UnityEvent in LevelController
+       public void SetGoal(string goalItemName)
         {
             _goalLabel.text = $"Find {goalItemName}";
         }

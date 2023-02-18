@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2463b53077d48b6af9969e9b92a8aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onSetClicked:
+  _onGameSetClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1736882480}
@@ -1407,7 +1407,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1736882480}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CheckLevel
+        m_MethodName: CheckGameOver
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1884,18 +1884,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5052831693833915675}
-        m_TargetAssemblyTypeName: UI.GameScreenView, Assembly-CSharp
-        m_MethodName: ScreenFadeIn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1695497325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2166,18 +2154,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1736882480}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5052831693833915675}
-        m_TargetAssemblyTypeName: UI.GameScreenView, Assembly-CSharp
-        m_MethodName: ScreenFadeOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
