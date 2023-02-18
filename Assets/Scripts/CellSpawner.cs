@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using DG.Tweening;
 using GameData;
 using Unity.VisualScripting;
@@ -25,7 +26,30 @@ public class CellSpawner : MonoBehaviour
     private List<GameItem> _oneLevelUsedGameItems = new();
     private List<Cell> _cells = new();
 
-    public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems, LevelData currentLevel)
+    // public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems, LevelData currentLevel)
+    // {
+    //     DestroyPreviousLevelCells();
+    //     _oneLevelUsedGameItems = new List<GameItem>();
+    //     
+    //     for (var i = 0; i < currentLevel.LevelElementsCount; i++)
+    //     {
+    //         var randomGameItem = GetRandomItem(selectedGameSetItems);
+    //         
+    //         if (_oneLevelUsedGameItems.Contains(randomGameItem))
+    //         {
+    //             i--;
+    //             continue;
+    //         }
+    //         _oneLevelUsedGameItems.Add(randomGameItem);
+    //         
+    //         var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
+    //         cell.SetClickCallback(value => OnClicked?.Invoke(value));
+    //         cell.Initialize(randomGameItem.ItemView);
+    //         _cells.Add(cell);
+    //     }
+    // }
+    
+    public IEnumerator Spawn(IReadOnlyList<GameItem> selectedGameSetItems, LevelData currentLevel)
     {
         DestroyPreviousLevelCells();
         _oneLevelUsedGameItems = new List<GameItem>();
@@ -42,9 +66,17 @@ public class CellSpawner : MonoBehaviour
             _oneLevelUsedGameItems.Add(randomGameItem);
             
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
-            _cells.Add(cell);
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
             cell.Initialize(randomGameItem.ItemView);
+            _cells.Add(cell);
+            
+            if (currentLevel.LevelName == "Easy")
+            {
+                PlayAnimation(cell);
+                yield return new WaitForSeconds(1f);
+                cell.Image.sprite = randomGameItem.ItemView;
+            }
+            
         }
     }
 
@@ -64,6 +96,10 @@ public class CellSpawner : MonoBehaviour
         return selectedGameSetItems[randomElementIndex];
     }
 
-    
+    private void PlayAnimation(Cell cell)
+    {
+        cell.transform.localScale = Vector3.zero;
+        cell.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
+    }
     
 }
