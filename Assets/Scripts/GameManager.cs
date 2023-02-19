@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     // calls from UnityEvent in LevelController 
     public void CheckGameOver(Cell cell)
     {
-        if (IsNoMoreLevels())
+        if (IsLastLevel())
         {
             _levelCompletedScreenView.ScreenFadeIn();
             _gameScreenView.ScreenFadeOut();
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private bool IsNoMoreLevels()
+    private bool IsLastLevel()
     {
         return _currentLevelIndex == _dataProvider.GameLevelSettings.Levels.Length - 1;
     }

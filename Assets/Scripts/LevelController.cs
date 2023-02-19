@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using GameData;
@@ -51,15 +49,21 @@ public class LevelController : MonoBehaviour
             PlayRotationAnimation(cell, button);
         }
     }
-    
+    //1. Изменить метод GetGoal and убрать его из этого класса
+    //2. Создать 1 класс на все скрины и оттуда вытягивать нужные методы Fadein and FadeOut и изменить логику методов
+    //3. Все рандомайзеры вынести в отдельный утилитарный класс
+    //4. Внедрить стейт машину
+    //5. Сделать метод расширения для List<T>
+    //6. Подумать куда вынести настройки бека в Cell
+    //7. Изменить логику спавна in Cellspawner
     private GameItem GetGoal()
     {
-        var randomUsedGameItemIndex = Random.Range(0, _cellSpawner.OneLevelUsedGameItems.Count);
-        while (_currentGoalItem == _cellSpawner.OneLevelUsedGameItems[randomUsedGameItemIndex])
+        var randomUsedGameItemIndex = Random.Range(0, _cellSpawner.UsedItems.Count);
+        while (_currentGoalItem == _cellSpawner.UsedItems[randomUsedGameItemIndex])
         {
-            randomUsedGameItemIndex = Random.Range(0, _cellSpawner.OneLevelUsedGameItems.Count);
+            randomUsedGameItemIndex = Random.Range(0, _cellSpawner.UsedItems.Count);
         }
-        return _cellSpawner.OneLevelUsedGameItems[randomUsedGameItemIndex];
+        return _cellSpawner.UsedItems[randomUsedGameItemIndex];
     }
     
     private void OnDestroy()
@@ -70,7 +74,8 @@ public class LevelController : MonoBehaviour
     private void PlayRotationAnimation(Cell cell, Button button)
     {
         button.interactable = false;
-        cell.Image.rectTransform.DORotate(new Vector3(0, 180, 0), 0.5f).SetEase(Ease.InBounce)
+        cell.Image.rectTransform.DORotate(new Vector3(0, 180, 0), 0.5f)
+            .SetEase(Ease.InBounce)
             .SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => button.interactable = true);
     }

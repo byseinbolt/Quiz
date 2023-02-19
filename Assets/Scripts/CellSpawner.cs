@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class CellSpawner : MonoBehaviour
 {
     public event Action<Cell> OnClicked;
-    public IReadOnlyList<GameItem> OneLevelUsedGameItems => _oneLevelUsedGameItems;
+    public IReadOnlyList<GameItem> UsedItems => _usedItems;
 
     [SerializeField]
     private RectTransform _cellsSpawnPosition;
@@ -18,24 +18,24 @@ public class CellSpawner : MonoBehaviour
     [SerializeField]
     private Cell _cellPrefab;
     
-    private List<GameItem> _oneLevelUsedGameItems = new();
+    private List<GameItem> _usedItems = new();
     private List<Cell> _cells = new();
     
     public IEnumerator Spawn(IReadOnlyList<GameItem> selectedGameSetItems, LevelData currentLevel)
     {
         DestroyPreviousLevelCells();
-        _oneLevelUsedGameItems = new List<GameItem>();
+        _usedItems = new List<GameItem>();
         
         for (var i = 0; i < currentLevel.LevelElementsCount; i++)
         {
             var randomGameItem = GetRandomItem(selectedGameSetItems);
             
-            if (_oneLevelUsedGameItems.Contains(randomGameItem))
+            if (_usedItems.Contains(randomGameItem))
             {
                 i--;
                 continue;
             }
-            _oneLevelUsedGameItems.Add(randomGameItem);
+            _usedItems.Add(randomGameItem);
             
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
@@ -59,7 +59,7 @@ public class CellSpawner : MonoBehaviour
             Destroy(cell.gameObject);
         }
     }
-
+    
     private GameItem GetRandomItem(IReadOnlyList<GameItem> selectedGameSetItems)
     {
         var randomElementIndex = Random.Range(0, selectedGameSetItems.Count);

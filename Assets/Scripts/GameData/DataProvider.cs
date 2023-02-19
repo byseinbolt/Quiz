@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace GameData
 {
-    public class DataProvider : MonoBehaviour
+    [CreateAssetMenu(fileName = "DataProvider", menuName = "DataProvider")]
+    public class DataProvider : ScriptableObject
     {
         public IEnumerable<GameSetData> GameSetData => _gameSetsData;
 
