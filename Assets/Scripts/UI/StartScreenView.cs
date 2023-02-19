@@ -41,7 +41,7 @@ namespace UI
         {
             _canvasGroup.alpha = 0;
             _rectTransform.transform.localPosition = new Vector3(0, 1300, 0f);
-            _rectTransform.DOAnchorPos(new Vector2(960, 540), 2f);
+            _rectTransform.DOAnchorPos(new Vector2(960, 540), 1f);
             _canvasGroup.DOFade(1, 1);
         }
 
@@ -49,7 +49,7 @@ namespace UI
         {
             _canvasGroup.alpha = 1;
             _rectTransform.transform.localPosition = new Vector3(0,-0,0);
-            _rectTransform.DOAnchorPos(new Vector2(960, 1620), 2f);
+            _rectTransform.DOAnchorPos(new Vector2(960, 1620), 1f);
             _canvasGroup.DOFade(0, 1);
         }
     }

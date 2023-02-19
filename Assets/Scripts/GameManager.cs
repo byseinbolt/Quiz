@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private LevelCompletedScreenView _levelCompletedScreenView;
     
-    [SerializeField]
-    private GameOverScreenView _gameOverScreenView;
-
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
 
@@ -62,11 +59,11 @@ public class GameManager : MonoBehaviour
     }
 
     [UsedImplicitly]
-    // from click on RestartButton
+    // from click on MainMenuButton
     public void RestartGame()
     {
         _currentLevelIndex = 0;
-        _gameOverScreenView.ScreenFadeOut();
+        _levelCompletedScreenView.ScreenFadeOut();
         _startScreenView.ScreenFadeIn();
     }
     
@@ -76,13 +73,15 @@ public class GameManager : MonoBehaviour
     {
         if (IsNoMoreLevels())
         {
-            _gameOverScreenView.ScreenFadeIn();
+            _levelCompletedScreenView.ScreenFadeIn();
             _gameScreenView.ScreenFadeOut();
+            _levelCompletedScreenView.ShowRestartView();
         }
         else
         {
             _gameScreenView.ScreenFadeOut();
             _levelCompletedScreenView.ScreenFadeIn();
+            _levelCompletedScreenView.ShowNextLevelButton();
         }
     }
 

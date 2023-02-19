@@ -42,7 +42,8 @@ public class LevelController : MonoBehaviour
     {
         if (cell.Image.sprite == _goalItem.ItemView)
         {
-            _levelCompleted.Invoke(cell);
+            cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.InBounce)
+                .OnComplete(() => _levelCompleted.Invoke(cell));
         }
         else
         {
