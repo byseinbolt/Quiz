@@ -48,8 +48,7 @@ public class LevelController : MonoBehaviour
         else
         {
             var button = cell.GetComponent<Button>();
-            button.interactable = false;
-            StartCoroutine(PlayRotationAnimation(cell, button));
+            PlayRotationAnimation(cell, button);
         }
     }
     
@@ -68,13 +67,12 @@ public class LevelController : MonoBehaviour
         _cellSpawner.OnClicked -= OnCellClicked;
     }
 
-    private IEnumerator PlayRotationAnimation(Cell cell, Button button)
+    private void PlayRotationAnimation(Cell cell, Button button)
     {
-        var sequence = DOTween.Sequence();
-        sequence.Append(cell.Image.rectTransform.DORotate(new Vector3(0, 180, 0), 0.5f).SetEase(Ease.InBounce))
-            .SetLoops(2, LoopType.Yoyo);
-        yield return new WaitForSeconds(1f);
-        button.interactable = true;
+        button.interactable = false;
+        cell.Image.rectTransform.DORotate(new Vector3(0, 180, 0), 0.5f).SetEase(Ease.InBounce)
+            .SetLoops(2, LoopType.Yoyo)
+            .OnComplete(() => button.interactable = true);
     }
     
 }
