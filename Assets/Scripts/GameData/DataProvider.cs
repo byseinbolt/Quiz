@@ -15,5 +15,12 @@ namespace GameData
         
         [SerializeField]
         private GameLevelSettings _gameLevelSettings;
+
+        public LevelData GetLevel(int index)
+        {
+            return _gameLevelSettings.Levels[index];
+        }
+        
+        
     }
 }

@@ -8,10 +8,10 @@ namespace UI
     public class StartScreen : BaseScreen
     {
         [SerializeField]
-        private UnityEvent<GameSet> _onGameSetClicked;
+        private UnityEvent<GameSetView> _onGameSetClicked;
         
         [SerializeField] 
-        private GameSet _gameSetViewPrefab;
+        private GameSetView _gameSetViewViewPrefab;
     
         [SerializeField]
         private Transform _iconSpawnPosition;
@@ -20,7 +20,7 @@ namespace UI
         {
             foreach (var gameSetData in gameSetsData)
             {
-                var gameSetViewInstance = Instantiate(_gameSetViewPrefab, _iconSpawnPosition);
+                var gameSetViewInstance = Instantiate(_gameSetViewViewPrefab, _iconSpawnPosition);
                 gameSetViewInstance.SetClickCallback(value => _onGameSetClicked.Invoke(value));
                 gameSetViewInstance.Initialize(gameSetData);
             }

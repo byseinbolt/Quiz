@@ -32,17 +32,10 @@ public class GameManager : MonoBehaviour
     
     [UsedImplicitly]
     // from UnityEvent in startScreenController
-    public void OnGameSetInstanceClicked(GameSet setView)
+    public void OnGameSetInstanceClicked(GameSetView setViewView)
     {
-        foreach (var gameSetData in _dataProvider.GameSetData)
-        {
-            if (gameSetData.GameSetName == setView.GameSetName)
-            {
-                _selectedSet = gameSetData.GameItems;
-                var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
-                _levelController.StartLevel(_selectedSet, currentLevel);
-            }
-        }
+        var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
+        _levelController.StartLevel(setViewView.GameSetData.GameItems, currentLevel);
         _startScreenView.Hide();
         _gameScreenView.Show();
     }

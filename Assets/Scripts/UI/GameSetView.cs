@@ -5,28 +5,30 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameSet : MonoBehaviour
+    public class GameSetView : MonoBehaviour
     {
         public string GameSetName { get; private set; }
+        public GameSetData GameSetData { get; private set; }
         
         [SerializeField]
         private Image _icon;
         
-        private Action<GameSet> _onClicked;
+        private Action<GameSetView> _onClicked;
         
+
         public void Initialize(GameSetData gameSetData)
         {
-            _icon.sprite = gameSetData.GameSetView;
-            GameSetName = gameSetData.GameSetName;
+            GameSetData = gameSetData;
+            _icon.sprite = GameSetData.GameSetView;
+            GameSetName = GameSetData.GameSetName;
         }
         
         public void Click()
         {
             _onClicked?.Invoke(this);
-            
         }
         
-        public void SetClickCallback(Action<GameSet> onClicked)
+        public void SetClickCallback(Action<GameSetView> onClicked)
         {
             _onClicked = onClicked;
         }
