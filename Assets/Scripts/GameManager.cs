@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     private int _currentLevelIndex;
 
     private void Start()
-    {
-        _startScreenView.Initialize(_dataProvider.GameSetData);
+    { 
+       _startScreenView.Initialize(_dataProvider.GameSetData);
        _startScreenView.Show();
     }
     
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
                 _levelController.StartLevel(_selectedSet, currentLevel);
             }
         }
-        _startScreenView.Show();
+        _startScreenView.Hide();
         _gameScreenView.Show();
     }
     
