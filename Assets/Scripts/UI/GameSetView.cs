@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameData;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,20 +8,18 @@ namespace UI
 {
     public class GameSetView : MonoBehaviour
     {
-        public string GameSetName { get; private set; }
-        public GameSetData GameSetData { get; private set; }
-        
         [SerializeField]
         private Image _icon;
-        
+
+        private string _gameSetName;
+        private GameSetData _gameSetData;
         private Action<GameSetView> _onClicked;
         
-
         public void Initialize(GameSetData gameSetData)
         {
-            GameSetData = gameSetData;
-            _icon.sprite = GameSetData.GameSetView;
-            GameSetName = GameSetData.GameSetName;
+            _gameSetData = gameSetData;
+            _icon.sprite = _gameSetData.GameSetView;
+            _gameSetName = _gameSetData.GameSetName;
         }
         
         public void Click()
@@ -31,6 +30,11 @@ namespace UI
         public void SetClickCallback(Action<GameSetView> onClicked)
         {
             _onClicked = onClicked;
+        }
+
+        public IReadOnlyList<GameItem> GetSetItems()
+        {
+            return _gameSetData.GameItems;
         }
     }
 }

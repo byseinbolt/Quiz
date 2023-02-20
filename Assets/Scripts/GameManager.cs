@@ -32,10 +32,11 @@ public class GameManager : MonoBehaviour
     
     [UsedImplicitly]
     // from UnityEvent in startScreenController
-    public void OnGameSetInstanceClicked(GameSetView setViewView)
+    public void OnGameSetInstanceClicked(GameSetView setView)
     {
+        _selectedSet = setView.GetSetItems();
         var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
-        _levelController.StartLevel(setViewView.GameSetData.GameItems, currentLevel);
+        _levelController.StartLevel(_selectedSet, currentLevel);
         _startScreenView.Hide();
         _gameScreenView.Show();
     }
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         _currentLevelIndex++;
-        var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
+        var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
         _levelController.StartLevel(_selectedSet,currentLevel);
         _levelCompletedScreenView.Hide();
         _gameScreenView.Show();

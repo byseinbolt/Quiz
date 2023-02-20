@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class CellSpawner : MonoBehaviour
 {
     public event Action<Cell> OnClicked;
-    public IReadOnlyList<GameItem> UsedItems => _usedItems;
+    public IEnumerable<GameItem> UsedItems => _usedItems;
 
     [SerializeField]
     private RectTransform _cellsSpawnPosition;

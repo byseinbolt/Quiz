@@ -14,13 +14,13 @@ namespace UI
         private GameSetView _gameSetViewViewPrefab;
     
         [SerializeField]
-        private Transform _iconSpawnPosition;
+        private Transform _iconsParent;
 
         public void Initialize(IEnumerable<GameSetData> gameSetsData)
         {
             foreach (var gameSetData in gameSetsData)
             {
-                var gameSetViewInstance = Instantiate(_gameSetViewViewPrefab, _iconSpawnPosition);
+                var gameSetViewInstance = Instantiate(_gameSetViewViewPrefab, _iconsParent);
                 gameSetViewInstance.SetClickCallback(value => _onGameSetClicked.Invoke(value));
                 gameSetViewInstance.Initialize(gameSetData);
             }
