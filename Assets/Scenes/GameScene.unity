@@ -634,21 +634,12 @@ MonoBehaviour:
   _onGameSetClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1736882480}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnGameSetInstanceClicked
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      - {m_Target: {fileID: 1736882480}, m_TargetAssemblyTypeName: GameManager, Assembly-CSharp, m_MethodName: OnGameSetInstanceClicked, m_Mode: 0, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
+    m_CallsDirty: 1
   _gameSetViewPrefab: {fileID: 4738830253471466901, guid: c8aeb0f3c05f9444e90ee4fbde53cdfc, type: 3}
   _iconSpawnPosition: {fileID: 400610918}
   _canvasGroup: {fileID: 428614549}
+  _rectTransform: {fileID: 0}
 --- !u!1 &438981392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1930,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1736882481}
   - component: {fileID: 1736882480}
-  - component: {fileID: 1736882482}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1960,7 +1950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelController: {fileID: 1456499675}
-  _dataProvider: {fileID: 1736882482}
+  _dataProvider: {fileID: 11400000, guid: a297797bbff72d749bc72cd367a9431a, type: 2}
   _startScreenView: {fileID: 428614550}
   _gameScreenView: {fileID: 5052831693833915675}
   _levelCompletedScreenView: {fileID: 2034272728}
@@ -1979,23 +1969,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1736882482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736882479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a546f749664c3baa88566c1ed9d0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameSetsData:
-  - {fileID: 11400000, guid: a45266f92d59fed4280f1a92df614638, type: 2}
-  - {fileID: 11400000, guid: bdd0792fab2942e38f9b35ce4c4f29c4, type: 2}
-  - {fileID: 11400000, guid: 6fd83b4ba848a6c459593c561fb3f24e, type: 2}
-  _gameLevelSettings: {fileID: 11400000, guid: b6fa74bb7bcd11c4aa510255bcc54ae9, type: 2}
 --- !u!1 &1774113574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,6 +2453,7 @@ MonoBehaviour:
   _nextLevelButton: {fileID: 1695497323}
   _finalCongratulationsPanel: {fileID: 1774113575}
   _betweenLevelsCongratulationsPanels: {fileID: 523972524}
+  _rectTransform: {fileID: 0}
 --- !u!1 &2050510678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,6 +2712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _goalLabel: {fileID: 5052831693846248704}
   _canvasGroup: {fileID: 5052831693833915676}
+  _rectTransform: {fileID: 0}
 --- !u!225 &5052831693833915676
 CanvasGroup:
   m_ObjectHideFlags: 0
