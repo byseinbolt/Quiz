@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameSetView : MonoBehaviour
+    public class GameSet : MonoBehaviour
     {
         public string GameSetName { get; private set; }
         
         [SerializeField]
         private Image _icon;
         
-        private Action<GameSetView> _onClicked;
+        private Action<GameSet> _onClicked;
         
         public void Initialize(GameSetData gameSetData)
         {
@@ -26,7 +26,7 @@ namespace UI
             
         }
         
-        public void SetClickCallback(Action<GameSetView> onClicked)
+        public void SetClickCallback(Action<GameSet> onClicked)
         {
             _onClicked = onClicked;
         }

@@ -5,14 +5,11 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class LevelCompletedScreenView : MonoBehaviour
+    public class LevelCompletedScreen : BaseScreen
     {
         [SerializeField]
         private Image _winImage;
         
-        [SerializeField]
-        private CanvasGroup _canvasGroup;
-
         [SerializeField]
         private RectTransform _restartButton;
 
@@ -25,14 +22,6 @@ namespace UI
         [SerializeField]
         private RectTransform _betweenLevelsCongratulationsPanels;
         
-        
-        private RectTransform _rectTransform;
-
-        private void Awake()
-        {
-            _rectTransform = GetComponent<RectTransform>();
-        }
-
         [UsedImplicitly]
         public void ShowWinImage(Cell cell)
         {
@@ -53,23 +42,6 @@ namespace UI
             _finalCongratulationsPanel.localScale = Vector3.zero;
             _restartButton.localScale = Vector3.zero;
            PlayOutBounceAnimation(_nextLevelButton, _betweenLevelsCongratulationsPanels);
-        }
-        
-
-        public void ScreenFadeIn()
-        {
-            _canvasGroup.alpha = 0;
-            _rectTransform.transform.localPosition = new Vector3(1350, 0f, 0f);
-            _rectTransform.DOAnchorPos(new Vector2(960, 540), 1f);
-            _canvasGroup.DOFade(1, 1);
-        }
-
-        public void ScreenFadeOut()
-        {
-            _canvasGroup.alpha = 1;
-            _rectTransform.transform.localPosition = new Vector3(0,0,0);
-            _rectTransform.DOAnchorPos(new Vector2(2880, 540), 1f);
-            _canvasGroup.DOFade(0, 1);
         }
 
         private void PlayOutBounceAnimation(params RectTransform[] rectTransforms)

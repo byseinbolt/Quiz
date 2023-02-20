@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 428614546}
   - component: {fileID: 428614550}
   - component: {fileID: 428614549}
+  - component: {fileID: 428614551}
   m_Layer: 0
   m_Name: StartScreen
   m_TagString: Untagged
@@ -631,15 +632,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2463b53077d48b6af9969e9b92a8aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeController: {fileID: 428614551}
   _onGameSetClicked:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 1736882480}, m_TargetAssemblyTypeName: GameManager, Assembly-CSharp, m_MethodName: OnGameSetInstanceClicked, m_Mode: 0, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
+      - m_Target: {fileID: 1736882480}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnGameSetInstanceClicked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _gameSetViewPrefab: {fileID: 4738830253471466901, guid: c8aeb0f3c05f9444e90ee4fbde53cdfc, type: 3}
   _iconSpawnPosition: {fileID: 400610918}
+--- !u!114 &428614551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428614544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba56074f04e48cd9abffbf270648737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _start: {fileID: 428614545}
+  _end: {fileID: 1545461436}
   _canvasGroup: {fileID: 428614549}
-  _rectTransform: {fileID: 0}
+  _duration: 1
 --- !u!1 &438981392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,6 +2355,7 @@ GameObject:
   - component: {fileID: 2034272724}
   - component: {fileID: 2034272727}
   - component: {fileID: 2034272728}
+  - component: {fileID: 2034272729}
   m_Layer: 0
   m_Name: LevelCompletedScreen
   m_TagString: Untagged
@@ -2447,13 +2474,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1988b95a9a3e4a42ad2ba0b67b903bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeController: {fileID: 2034272729}
   _winImage: {fileID: 618118066}
-  _canvasGroup: {fileID: 2034272727}
   _restartButton: {fileID: 1822106672}
   _nextLevelButton: {fileID: 1695497323}
   _finalCongratulationsPanel: {fileID: 1774113575}
   _betweenLevelsCongratulationsPanels: {fileID: 523972524}
-  _rectTransform: {fileID: 0}
+--- !u!114 &2034272729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034272722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba56074f04e48cd9abffbf270648737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _start: {fileID: 2034272723}
+  _end: {fileID: 1545461436}
+  _canvasGroup: {fileID: 2034272727}
+  _duration: 1
 --- !u!1 &2050510678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,6 +2649,7 @@ GameObject:
   - component: {fileID: 5052831693833915672}
   - component: {fileID: 5052831693833915675}
   - component: {fileID: 5052831693833915676}
+  - component: {fileID: 5052831693833915677}
   m_Layer: 5
   m_Name: GameScreen
   m_TagString: Untagged
@@ -2710,9 +2753,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4aec5c5d7f46d2ba8552716de40fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeController: {fileID: 5052831693833915677}
   _goalLabel: {fileID: 5052831693846248704}
-  _canvasGroup: {fileID: 5052831693833915676}
-  _rectTransform: {fileID: 0}
 --- !u!225 &5052831693833915676
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2725,6 +2767,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5052831693833915677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5052831693833915670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba56074f04e48cd9abffbf270648737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _start: {fileID: 5052831693833915671}
+  _end: {fileID: 1545461436}
+  _canvasGroup: {fileID: 5052831693833915676}
+  _duration: 1
 --- !u!114 &5052831693846248704
 MonoBehaviour:
   m_ObjectHideFlags: 0

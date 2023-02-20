@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
     private DataProvider _dataProvider;
     
     [SerializeField]
-    private StartScreenView _startScreenView;
+    private StartScreen _startScreenView;
     
     [SerializeField]
-    private GameScreenView _gameScreenView;
-    
+    private GameScreen _gameScreenView;
+
     [SerializeField]
-    private LevelCompletedScreenView _levelCompletedScreenView;
+    private LevelCompletedScreen _levelCompletedScreenView;
     
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
@@ -27,12 +27,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _startScreenView.Initialize(_dataProvider.GameSetData);
-       _startScreenView.ScreenFadeIn();
+       _startScreenView.Show();
     }
     
     [UsedImplicitly]
     // from UnityEvent in startScreenController
-    public void OnGameSetInstanceClicked(GameSetView setView)
+    public void OnGameSetInstanceClicked(GameSet setView)
     {
         foreach (var gameSetData in _dataProvider.GameSetData)
         {
@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour
                 _levelController.StartLevel(_selectedSet, currentLevel);
             }
         }
-        _startScreenView.ScreenFadeOut();
-        _gameScreenView.ScreenFadeIn();
+        _startScreenView.Show();
+        _gameScreenView.Show();
     }
     
     [UsedImplicitly]
@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour
         _currentLevelIndex++;
         var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
         _levelController.StartLevel(_selectedSet,currentLevel);
-        _levelCompletedScreenView.ScreenFadeOut();
-        _gameScreenView.ScreenFadeIn();
+        _levelCompletedScreenView.Hide();
+        _gameScreenView.Show();
     }
 
     [UsedImplicitly]
@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         _currentLevelIndex = 0;
-        _levelCompletedScreenView.ScreenFadeOut();
-        _startScreenView.ScreenFadeIn();
+        _levelCompletedScreenView.Hide();
+        _startScreenView.Show();
     }
     
     [UsedImplicitly]
@@ -73,14 +73,14 @@ public class GameManager : MonoBehaviour
     {
         if (IsLastLevel())
         {
-            _levelCompletedScreenView.ScreenFadeIn();
-            _gameScreenView.ScreenFadeOut();
+            _levelCompletedScreenView.Show();
+            _gameScreenView.Hide();
             _levelCompletedScreenView.ShowRestartView();
         }
         else
         {
-            _gameScreenView.ScreenFadeOut();
-            _levelCompletedScreenView.ScreenFadeIn();
+            _gameScreenView.Hide();
+            _levelCompletedScreenView.Show();
             _levelCompletedScreenView.ShowNextLevelButton();
         }
     }
