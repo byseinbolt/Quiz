@@ -10,10 +10,10 @@ namespace UI
     {
         [SerializeField]
         private Image _icon;
-
-        private string _gameSetName;
-        private GameSetData _gameSetData;
+        
         private Action<GameSetView> _onClicked;
+        private GameSetData _gameSetData;
+        private string _gameSetName;
         
         public void Initialize(GameSetData gameSetData)
         {
