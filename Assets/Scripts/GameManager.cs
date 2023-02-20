@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         _currentLevelIndex++;
-        var currentLevel = _dataProvider.GameLevelSettings.Levels[_currentLevelIndex];
+        var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
         _levelController.StartLevel(_selectedSet,currentLevel);
         _levelCompletedScreenView.Hide();
         _gameScreenView.Show();
