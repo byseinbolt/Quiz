@@ -12,6 +12,7 @@ public class Cell : MonoBehaviour
     [SerializeField]
     private Image _background;
     
+    [SerializeField]
     private BackgroundSettingsCell _backgroundCell;
     private Action<Cell> _onClicked;
     

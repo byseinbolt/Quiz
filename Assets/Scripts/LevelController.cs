@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using GameData;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class LevelController : MonoBehaviour
 {
@@ -14,10 +12,11 @@ public class LevelController : MonoBehaviour
     
     [SerializeField]
     private UnityEvent<string> _goalSelected;
-    
+
     private CellSpawner _cellSpawner;
     private GameItem _goalItem;
-    
+    private IReadOnlyList<GameItem> _levelItems;
+
     private void Awake()
     {
         _cellSpawner = GetComponent<CellSpawner>();
@@ -30,8 +29,9 @@ public class LevelController : MonoBehaviour
     
     public void StartLevel(IReadOnlyList<GameItem> selectedGameSet, LevelData currentLevel)
     {
-         StartCoroutine(_cellSpawner.Spawn(selectedGameSet, currentLevel));
-        _goalItem = GetGoal(_goalItem);
+        _levelItems = selectedGameSet.GetRandomItems(currentLevel.LevelElementsCount);
+        _cellSpawner.Spawn(_levelItems);
+        _goalItem = _levelItems.GetRandomItem(_goalItem);
         _goalSelected.Invoke(_goalItem.ItemName);
     }
     
@@ -49,18 +49,9 @@ public class LevelController : MonoBehaviour
             PlayRotationAnimation(cell, button);
         }
     }
-    //1. Изменить метод GetGoal(изменен) and убрать его из этого класса
-    //2. Внедрить стейт машину
-    //3. Сделать метод расширения для List<T>
-    //4. Подумать куда вынести настройки бека в Cell
-    //5. Изменить логику спавна in Cellspawner
-    private GameItem GetGoal(GameItem previous)
-    {
-        var items = _cellSpawner.UsedItems.Where(item => item != previous).ToList();
-        var randomIndex = Random.Range(0, items.Count);
-        return items[randomIndex];
-    }
     
+    //2. Внедрить стейт машину
+
     private void OnDestroy()
     {
         _cellSpawner.OnClicked -= OnCellClicked;
