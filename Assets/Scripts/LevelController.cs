@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using GameData;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class LevelController : MonoBehaviour
 {

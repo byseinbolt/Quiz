@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using GameData;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class CellSpawner : MonoBehaviour
 {
