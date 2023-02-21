@@ -27,10 +27,8 @@ public class CellSpawner : MonoBehaviour
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
             cell.Initialize(item.ItemView);
             _cells.Add(cell);
-
-            PlayAnimation(cell);
-            
         }
+        PlayAnimation(_cells);
     }
 
     //TODO : Изменить на пул
@@ -42,12 +40,17 @@ public class CellSpawner : MonoBehaviour
         {
             Destroy(cell.gameObject);
         }
+
+        _cells = new List<Cell>();
     }
 
-    private void PlayAnimation(Cell cell)
+    private void PlayAnimation(List<Cell> cells)
     {
         var sequence = DOTween.Sequence();
-        cell.transform.localScale = Vector3.zero;
-        cell.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
+        foreach (var cell in cells)
+        {
+            cell.transform.localScale = Vector3.zero;
+            sequence.Append(cell.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce));
+        }
     }
 }

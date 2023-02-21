@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    // TODO: вынести duration в поле
     public class LevelCompletedScreen : BaseScreen
     {
         [SerializeField]

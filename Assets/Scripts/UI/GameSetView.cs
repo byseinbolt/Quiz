@@ -13,13 +13,11 @@ namespace UI
         
         private Action<GameSetView> _onClicked;
         private GameSetData _gameSetData;
-        private string _gameSetName;
         
         public void Initialize(GameSetData gameSetData)
         {
             _gameSetData = gameSetData;
             _icon.sprite = _gameSetData.GameSetView;
-            _gameSetName = _gameSetData.GameSetName;
         }
         
         public void Click()

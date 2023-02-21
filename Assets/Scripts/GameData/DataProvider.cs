@@ -7,18 +7,21 @@ namespace GameData
     public class DataProvider : ScriptableObject
     {
         public IEnumerable<GameSetData> GameSetData => _gameSetsData;
-
-        public GameLevelSettings GameLevelSettings => _gameLevelSettings;
         
         [SerializeField]
         private GameSetData[] _gameSetsData;
         
         [SerializeField]
-        private GameLevelSettings _gameLevelSettings;
+        private LevelData[] _levels;
+
+        public int LevelsCount()
+        {
+            return _levels.Length;
+        }
 
         public LevelData GetLevel(int index)
         {
-            return _gameLevelSettings.Levels[index];
+            return _levels[index];
         }
         
         

@@ -37,15 +37,14 @@ public class LevelController : MonoBehaviour
     
     private void OnCellClicked(Cell cell)
     {
+        var button = cell.GetComponent<Button>();
+        
         if (cell.Image.sprite == _goalItem.ItemView)
         {
-            cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f)
-                .SetEase(Ease.InBounce)
-                .OnComplete(() => _levelCompleted.Invoke(cell));
+           PlayDisappearAnimation(cell, button);
         }
         else
         {
-            var button = cell.GetComponent<Button>();
             PlayRotationAnimation(cell, button);
         }
     }
@@ -65,5 +64,12 @@ public class LevelController : MonoBehaviour
             .SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => button.interactable = true);
     }
-    
+
+    public void PlayDisappearAnimation(Cell cell, Button button)
+    {
+        button.interactable = false;
+        cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f)
+            .SetEase(Ease.InBounce)
+            .OnComplete(() => _levelCompleted.Invoke(cell));
+    }
 }

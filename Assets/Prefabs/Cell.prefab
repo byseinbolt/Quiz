@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7954624864008565814}
   - component: {fileID: 6365196432539378114}
   - component: {fileID: 7729850102225070914}
-  - component: {fileID: 4349039275264616666}
+  - component: {fileID: 1056448504777648960}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -226,8 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 2876329439264486575}
   _background: {fileID: 295225737073315268}
-  _backgroundCell: {fileID: 4349039275264616666}
---- !u!114 &4349039275264616666
+  _backgroundCell: {fileID: 1056448504777648960}
+--- !u!114 &1056448504777648960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
