@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using GameData;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class CellSpawner : MonoBehaviour
 {
@@ -14,34 +15,34 @@ public class CellSpawner : MonoBehaviour
     
     [SerializeField]
     private Cell _cellPrefab;
-    
-    private List<Cell> _cells = new();
-    
+
+    [SerializeField]
+    private List<Cell> _cells;
+
     public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
     {
-        DestroyPreviousLevelCells();
+        var cells = ListPool<Cell>.Get();
+       // DestroyPreviousLevelCells();
 
         foreach (var item in selectedGameSetItems)
         {
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
             cell.Initialize(item.ItemView);
-            _cells.Add(cell);
+           // _cells.Add(cell);
+            cells.Add(cell);
         }
-        PlayAnimation(_cells);
+        PlayAnimation(cells);
     }
 
-    //TODO : Изменить на пул
-    private void DestroyPreviousLevelCells()
+   //TODO : Изменить на пул
+    private void DestroyPreviousLevelCells(List<Cell> cells)
     {
         if (_cells.Count == 0) return;
-        
-        foreach (var cell in _cells.Where(cell => cell != null))
+        foreach (var cell in cells)
         {
-            Destroy(cell.gameObject);
+            cell.gameObject.SetActive(false);
         }
-
-        _cells = new List<Cell>();
     }
 
     private void PlayAnimation(List<Cell> cells)
