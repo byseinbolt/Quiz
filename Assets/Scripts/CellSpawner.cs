@@ -10,46 +10,32 @@ using Random = UnityEngine.Random;
 public class CellSpawner : MonoBehaviour
 {
     public event Action<Cell> OnClicked;
-    public IEnumerable<GameItem> UsedItems => _usedItems;
-
+    
     [SerializeField]
     private RectTransform _cellsSpawnPosition;
     
     [SerializeField]
     private Cell _cellPrefab;
     
-    private List<GameItem> _usedItems = new();
     private List<Cell> _cells = new();
     
-    public IEnumerator Spawn(IReadOnlyList<GameItem> selectedGameSetItems, LevelData currentLevel)
+    public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
     {
         DestroyPreviousLevelCells();
-        _usedItems = new List<GameItem>();
-        
-        for (var i = 0; i < currentLevel.LevelElementsCount; i++)
+
+        foreach (var item in selectedGameSetItems)
         {
-            var randomGameItem = GetRandomItem(selectedGameSetItems);
-            
-            if (_usedItems.Contains(randomGameItem))
-            {
-                i--;
-                continue;
-            }
-            _usedItems.Add(randomGameItem);
-            
             var cell = Instantiate(_cellPrefab, _cellsSpawnPosition);
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
-            cell.Initialize(randomGameItem.ItemView);
+            cell.Initialize(item.ItemView);
             _cells.Add(cell);
+
+            PlayAnimation(cell);
             
-            if (currentLevel.LevelName == "Easy")
-            {
-                PlayAnimation(cell);
-                yield return new WaitForSeconds(1f);
-            }
         }
     }
 
+    //TODO : Изменить на пул
     private void DestroyPreviousLevelCells()
     {
         if (_cells.Count == 0) return;
@@ -59,17 +45,11 @@ public class CellSpawner : MonoBehaviour
             Destroy(cell.gameObject);
         }
     }
-    
-    private GameItem GetRandomItem(IReadOnlyList<GameItem> selectedGameSetItems)
-    {
-        var randomElementIndex = Random.Range(0, selectedGameSetItems.Count);
-        return selectedGameSetItems[randomElementIndex];
-    }
 
     private void PlayAnimation(Cell cell)
     {
+        var sequence = DOTween.Sequence();
         cell.transform.localScale = Vector3.zero;
         cell.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
     }
-    
 }
