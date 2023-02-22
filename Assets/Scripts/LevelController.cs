@@ -41,7 +41,9 @@ public class LevelController : MonoBehaviour
         
         if (cell.Image.sprite == _goalItem.ItemView)
         {
-           PlayDisappearAnimation(cell, button);
+            // TODO: разобраться с анимацией при клике на правильный вариант
+           //PlayDisappearAnimation(cell, button);
+           _levelCompleted.Invoke(cell);
         }
         else
         {

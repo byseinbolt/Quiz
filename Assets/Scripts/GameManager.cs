@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     private bool IsLastLevel()
     {
-        return _currentLevelIndex == _dataProvider.LevelsCount();
+        return _currentLevelIndex == _dataProvider.LevelsCount() -1;
     }
 }
 

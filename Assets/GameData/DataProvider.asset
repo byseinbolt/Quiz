@@ -16,4 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a45266f92d59fed4280f1a92df614638, type: 2}
   - {fileID: 11400000, guid: bdd0792fab2942e38f9b35ce4c4f29c4, type: 2}
   - {fileID: 11400000, guid: 6fd83b4ba848a6c459593c561fb3f24e, type: 2}
-  _gameLevelSettings: {fileID: 11400000, guid: b6fa74bb7bcd11c4aa510255bcc54ae9, type: 2}
+  _levels:
+  - {fileID: 11400000, guid: 3f0627e832acdf44bb8dc73730fc8d37, type: 2}
+  - {fileID: 11400000, guid: d552313ef400f8d4694075f8be43e919, type: 2}
+  - {fileID: 11400000, guid: eca01212963e1b14dac0a859b8263eb6, type: 2}
