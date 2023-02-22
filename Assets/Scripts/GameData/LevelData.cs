@@ -6,6 +6,7 @@ namespace GameData
     public class LevelData : ScriptableObject
     {
         public string LevelName => _levelName;
+        
         public int LevelElementsCount => _levelElementsCount;
     
         [SerializeField]

@@ -67,7 +67,7 @@ public class LevelController : MonoBehaviour
             .OnComplete(() => button.interactable = true);
     }
 
-    public void PlayDisappearAnimation(Cell cell, Button button)
+    private void PlayDisappearAnimation(Cell cell, Button button)
     {
         button.interactable = false;
         cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f)
