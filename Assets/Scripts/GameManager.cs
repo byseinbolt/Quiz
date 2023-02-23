@@ -9,7 +9,6 @@ using States;
 
 public class GameManager : MonoBehaviour
 {
-    
     [SerializeField]
     private LevelController _levelController;
     
