@@ -1501,6 +1501,7 @@ GameObject:
   - component: {fileID: 1456499676}
   - component: {fileID: 1456499675}
   - component: {fileID: 1456499677}
+  - component: {fileID: 1456499678}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -1536,7 +1537,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2034272728}
-        m_TargetAssemblyTypeName: UI.LevelCompletedScreenView, Assembly-CSharp
+        m_TargetAssemblyTypeName: UI.LevelCompletedScreen, Assembly-CSharp
         m_MethodName: ShowWinImage
         m_Mode: 0
         m_Arguments:
@@ -1589,8 +1590,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de8f0bf0eb94d39ad5e24dc29a6cec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellsSpawnPosition: {fileID: 5052831695035287908}
+  _cellsSpawnParent: {fileID: 5052831695035287908}
   _cellPrefab: {fileID: 7729850102225070914, guid: 38f7c35cf727d974cb27217a46b6c7d9, type: 3}
+  _objectPool: {fileID: 1456499678}
+--- !u!114 &1456499678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456499674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2616c3a5789547e8a6377d0de9563840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1545461432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,9 +2084,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelController: {fileID: 1456499675}
   _dataProvider: {fileID: 11400000, guid: a297797bbff72d749bc72cd367a9431a, type: 2}
-  _startScreenView: {fileID: 428614550}
-  _gameScreenView: {fileID: 5052831693833915675}
-  _levelCompletedScreenView: {fileID: 2034272728}
+  _startScreen: {fileID: 428614550}
+  _gameScreen: {fileID: 5052831693833915675}
+  _levelCompletedScreen: {fileID: 2034272728}
 --- !u!4 &1736882481
 Transform:
   m_ObjectHideFlags: 0

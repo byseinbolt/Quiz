@@ -41,8 +41,7 @@ public class LevelController : MonoBehaviour
         
         if (cell.Image.sprite == _goalItem.ItemView)
         {
-            // TODO: разобраться с анимацией при клике на правильный вариант
-           //PlayDisappearAnimation(cell, button);
+           // PlayDisappearAnimation(cell, button);
            _levelCompleted.Invoke(cell);
         }
         else
@@ -72,6 +71,8 @@ public class LevelController : MonoBehaviour
         button.interactable = false;
         cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f)
             .SetEase(Ease.InBounce)
-            .OnComplete(() => _levelCompleted.Invoke(cell));
+            .OnComplete(() => _levelCompleted.Invoke(cell))
+            .OnComplete(() => cell.Image.rectTransform.DOScale(Vector3.one, 0.1f)
+                .OnComplete(()=> button.interactable = true));
     }
 }
