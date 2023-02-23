@@ -42,13 +42,13 @@ public class CellSpawner : MonoBehaviour
     }
     
     
-    private void PlayAnimation(List<Cell> cells)
-    {
-        var sequence = DOTween.Sequence();
-        foreach (var cell in cells)
-        {
-            cell.transform.localScale = Vector3.zero;
-            sequence.Append(cell.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce));
-        }
-    }
+   // private void PlayAnimation(List<Cell> cells)
+   // {
+   //     var sequence = DOTween.Sequence();
+   //     foreach (var cell in cells)
+   //     {
+   //         cell.transform.localScale = Vector3.zero;
+   //         sequence.Append(cell.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce));
+   //     }
+   // }
 }

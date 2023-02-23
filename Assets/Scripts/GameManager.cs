@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameData;
 using JetBrains.Annotations;
 using UI;
 using UnityEngine;
+using FSM;
 
 public class GameManager : MonoBehaviour
 {
+    private StateMachine _stateMachine;
+    
     [SerializeField]
     private LevelController _levelController;
     
@@ -21,15 +25,22 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private LevelCompletedScreen _levelCompletedScreenView;
     
+
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
 
     private void Start()
-    { 
-       _startScreenView.Initialize(_dataProvider.GameSetData);
+    {
+       _stateMachine = new StateMachine();
+       _stateMachine.AddState("StartGameState",new State(
+           onEnter: (state) =>  _startScreenView.Initialize(_dataProvider.GameSetData)));
+      // _startScreenView.Initialize(_dataProvider.GameSetData);
        _startScreenView.Show();
+       _stateMachine.SetStartState("StartGameState");
+       _stateMachine.Init();
+       _stateMachine.OnLogic();
     }
-    
+
     [UsedImplicitly]
     // from UnityEvent in startScreenController
     public void OnGameSetInstanceClicked(GameSetView setView)
