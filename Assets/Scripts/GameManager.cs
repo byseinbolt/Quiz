@@ -38,12 +38,30 @@ public class GameManager : MonoBehaviour
         _fsm.AddState("LevelCompletedState", new LevelCompletedState(_levelCompletedScreen));
         _fsm.AddState("GameOverState", new GameOverState(_levelCompletedScreen));
         
-        _fsm.AddTriggerTransition("OnSetSelected", "StartGameState", "GameState");
-        _fsm.AddTriggerTransition("OnNextLevelClicked", "LevelCompletedState", "GameState");
-        _fsm.AddTriggerTransition("OnRestartClicked", "GameOverState", "StartGameState");
-        _fsm.AddTriggerTransition("IsLastLevel", "GameState", "GameOverState");
-        _fsm.AddTriggerTransition("NotLastLevel", "GameState", "LevelCompletedState");
+        _fsm.AddTriggerTransition("OnSetSelected",
+            "StartGameState",  
+            "GameState");
         
+        _fsm.AddTriggerTransition("IsLastLevel"
+            , "GameState"
+            , "GameOverState");
+        
+        _fsm.AddTriggerTransition("OnRestartClicked",
+                 "GameOverState", 
+                  "StartGameState");
+        
+        
+        _fsm.AddTriggerTransition("NotLastLevel",
+            "GameState", 
+            "LevelCompletedState");
+        
+
+        
+        _fsm.AddTriggerTransition("OnNextLevelClicked",
+            "LevelCompletedState",
+              "GameState");
+
+
         _fsm.SetStartState("StartGameState");
         _fsm.Init();
        //_startScreenView.Initialize(_dataProvider.GameSetData);
