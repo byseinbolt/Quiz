@@ -4,7 +4,7 @@ namespace Utilities
 {
     public class ColorProvider : MonoBehaviour
     {
-        [Header("Background settings")]
+        [Header("Color Settings")]
         [SerializeField] private float _hueMin;
         [SerializeField] private float _hueMax = 1;
         [SerializeField] private float _saturationMin = 1;
