@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1746d732014a9588998a093ac7ec34, type: 3}
   m_Name: Light Green Car
   m_EditorClassIdentifier: 
-  _itemName: Green car
-  _itemView: {fileID: 1281493971, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  _name: Light Green Car
+  _view: {fileID: 1281493971, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}

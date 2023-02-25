@@ -6,18 +6,18 @@ namespace GameData
    [CreateAssetMenu(fileName = "GameItem", menuName = "GameItem")]
    public class GameItem : ScriptableObject,IComparable<GameItem> 
    { 
-      public string ItemName => _itemName;
-      public Sprite ItemView => _itemView;
+      public string Name => _name;
+      public Sprite View => _view;
       
       [SerializeField]
-      private string _itemName; 
+      private string _name; 
       
       [SerializeField]
-      private Sprite _itemView;
+      private Sprite _view;
 
       public int CompareTo(GameItem other)
       {
-         if (_itemName == other.ItemName)
+         if (_name == other.Name)
          {
             return 1;
          }

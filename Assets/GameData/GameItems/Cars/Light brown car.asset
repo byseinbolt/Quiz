@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b1746d732014a9588998a093ac7ec34, type: 3}
-  m_Name: Light brow car
+  m_Name: Light brown car
   m_EditorClassIdentifier: 
-  _itemName: Light brown car
-  _itemView: {fileID: 1918301453, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
+  _name: Light brown car
+  _view: {fileID: 1918301453, guid: 74fe9df6bc2aff24bb94612983ef792b, type: 3}
