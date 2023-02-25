@@ -27,46 +27,46 @@ public class GameManager : MonoBehaviour
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
 
-    private StateMachine _fsm;
-    
+    private StateMachine _stateMachine;
+
     private void Start()
     { 
-        _fsm = new StateMachine();
+        _stateMachine = new StateMachine();
+
+        _stateMachine.AddState("StartGameState", new StartGameState(_startScreen,_dataProvider));
+        _stateMachine.AddState("GameState", new GameState(_gameScreen));
+        _stateMachine.AddState("LevelCompletedState", new LevelCompletedState(_levelCompletedScreen));
+        _stateMachine.AddState("GameOverState", new GameOverState(_levelCompletedScreen));
         
-        _fsm.AddState("StartGameState", new StartGameState(_startScreen,_dataProvider));
-        _fsm.AddState("GameState", new GameState(_gameScreen));
-        _fsm.AddState("LevelCompletedState", new LevelCompletedState(_levelCompletedScreen));
-        _fsm.AddState("GameOverState", new GameOverState(_levelCompletedScreen));
-        
-        _fsm.AddTriggerTransition("OnSetSelected",
+        _stateMachine.AddTriggerTransition("OnSetSelected",
             "StartGameState",  
             "GameState");
         
-        _fsm.AddTriggerTransition("NotLastLevel",
+        _stateMachine.AddTriggerTransition("NotLastLevel",
             "GameState", 
             "LevelCompletedState");
         
-        _fsm.AddTriggerTransition("OnNextLevelClicked",
+        _stateMachine.AddTriggerTransition("OnNextLevelClicked",
             "LevelCompletedState",
             "GameState");
         
-        _fsm.AddTriggerTransition("IsLastLevel"
+        _stateMachine.AddTriggerTransition("IsLastLevel"
             , "GameState"
             , "GameOverState");
         
-        _fsm.AddTriggerTransition("OnRestartClicked",
+        _stateMachine.AddTriggerTransition("OnRestartClicked",
                  "GameOverState", 
                   "StartGameState");
 
-        _fsm.SetStartState("StartGameState");
-        _fsm.Init();
+        _stateMachine.SetStartState("StartGameState"); 
+        _stateMachine.Init();
     }
     
     [UsedImplicitly]
     // from UnityEvent in startScreen
     public void OnGameSetInstanceClicked(GameSetView setView)
     {
-        _fsm.Trigger("OnSetSelected");
+        _stateMachine.Trigger("OnSetSelected");
         _selectedSet = setView.GetSetItems();
         var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
         _levelController.StartLevel(_selectedSet, currentLevel);
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     // from click on NextLevel in LevelCompletedScreen
     public void LoadNextLevel()
     {
-        _fsm.Trigger("OnNextLevelClicked");
+        _stateMachine.Trigger("OnNextLevelClicked");
         _currentLevelIndex++;
         var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
         _levelController.StartLevel(_selectedSet,currentLevel);
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     // from click on MainMenuButton
     public void RestartGame()
     {
-        _fsm.Trigger("OnRestartClicked");
+        _stateMachine.Trigger("OnRestartClicked");
         _currentLevelIndex = 0;
     }
     
@@ -94,19 +94,12 @@ public class GameManager : MonoBehaviour
     // calls from UnityEvent in LevelController 
     public void CheckGameOver(Cell cell)
     {
-        if (IsLastLevel())
-        {
-            _fsm.Trigger("IsLastLevel");
-        }
-        else
-        {
-            _fsm.Trigger("NotLastLevel");
-        }
+        _stateMachine.Trigger(IsLastLevel() ? "IsLastLevel" : "NotLastLevel");
     }
 
     private bool IsLastLevel()
     {
-        return _currentLevelIndex == _dataProvider.LevelsCount() -1;
+        return _currentLevelIndex == _dataProvider.LevelsCount() - 1;
     }
 }
 
