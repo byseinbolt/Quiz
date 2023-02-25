@@ -26,14 +26,14 @@ namespace UI
         private float _durationBounceAnimation = 2f;
 
         [SerializeField] 
-        private float _durationAnimationWinImage = 2f;
+        private float _durationWinImageAnimation = 2f;
         
         [UsedImplicitly]
         public void ShowWinImage(Cell cell)
         {
             _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.sprite = cell.Image.sprite;
-            _winImage.rectTransform.DOScale(Vector3.one, _durationAnimationWinImage).SetEase(Ease.OutBounce);
+            _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation).SetEase(Ease.OutBounce);
         }
 
         public void ShowRestartView()
