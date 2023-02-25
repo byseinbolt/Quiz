@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using DG.Tweening;
 using GameData;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class CellSpawner : MonoBehaviour
 {
@@ -14,31 +13,43 @@ public class CellSpawner : MonoBehaviour
     
     [SerializeField]
     private Cell _cellPrefab;
-
-    [SerializeField]
-    private ObjectPool _objectPool;
     
-    private List<Cell> _cells = new();
+    private ObjectPool<Cell> _pool;
+    private  List<Cell> _cells = new();
 
     private void Start()
     {
-        _objectPool.CreateObjectPool(_cellPrefab, _cellsSpawnParent);
+        _pool = new ObjectPool<Cell>(() => Instantiate(_cellPrefab, _cellsSpawnParent));
     }
 
     // TODO: довести пул до ума
     public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
     {
-        _objectPool.ReleaseAll(ref _cells);
-       
-        foreach (var item in selectedGameSetItems)
+        _cells = ListPool<Cell>.Get();
+        foreach (var gameItem in selectedGameSetItems)
         {
-            var cell = _objectPool.GetObject();
+            var cell = CreateCell();
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
-            cell.Initialize(item.ItemView);
+            cell.Initialize(gameItem.View);
             _cells.Add(cell);
         }
-        
         //PlayAnimation(_cells);
+    }
+
+    public void HidePreviousLevelCells()
+    {
+        foreach (var cell in _cells)
+        {
+            cell.gameObject.SetActive(false);
+            _pool.Release(cell);
+        }
+    }
+
+    private Cell CreateCell()
+    {
+        var cell = _pool.Get();
+        cell.gameObject.SetActive(true);
+        return cell;
     }
     
     
