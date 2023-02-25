@@ -17,8 +17,7 @@ public class ObjectPool : MonoBehaviour
         cell.gameObject.SetActive(true);
         return cell;
     }
-
-    // метод для возвращения объекта в пул
+    
     public void ReleaseAll(ref List<Cell> cells)
     {
         foreach (var cell in cells)

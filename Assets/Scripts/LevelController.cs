@@ -50,8 +50,6 @@ public class LevelController : MonoBehaviour
         }
     }
     
-    //2. Внедрить стейт машину
-
     private void OnDestroy()
     {
         _cellSpawner.OnClicked -= OnCellClicked;
@@ -66,13 +64,13 @@ public class LevelController : MonoBehaviour
             .OnComplete(() => button.interactable = true);
     }
 
-    private void PlayDisappearAnimation(Cell cell, Button button)
-    {
-        button.interactable = false;
-        cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f)
-            .SetEase(Ease.InBounce)
-            .OnComplete(() => _levelCompleted.Invoke(cell))
-            .OnComplete(() => cell.Image.rectTransform.DOScale(Vector3.one, 0.1f)
-                .OnComplete(()=> button.interactable = true));
-    }
+  //  private void PlayDisappearAnimation(Cell cell, Button button)
+  //  {
+  //      button.interactable = false;
+  //      cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f)
+  //          .SetEase(Ease.InBounce)
+  //          .OnComplete(() => _levelCompleted.Invoke(cell))
+  //          .OnComplete(() => cell.Image.rectTransform.DOScale(Vector3.one, 0.1f)
+  //              .OnComplete(()=> button.interactable = true));
+  //  }
 }

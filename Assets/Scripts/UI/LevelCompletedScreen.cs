@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    // TODO: вынести duration в поле
     public class LevelCompletedScreen : BaseScreen
     {
         [SerializeField]
@@ -22,13 +21,19 @@ namespace UI
         
         [SerializeField]
         private RectTransform _betweenLevelsCongratulationsPanels;
+
+        [SerializeField]
+        private float _durationBounceAnimation = 2f;
+
+        [SerializeField] 
+        private float _durationScreen = 2f;
         
         [UsedImplicitly]
         public void ShowWinImage(Cell cell)
         {
             _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.sprite = cell.Image.sprite;
-            _winImage.rectTransform.DOScale(Vector3.one, 2f).SetEase(Ease.OutBounce);
+            _winImage.rectTransform.DOScale(Vector3.one, _durationScreen).SetEase(Ease.OutBounce);
         }
 
         public void ShowRestartView()
@@ -50,7 +55,7 @@ namespace UI
             foreach (var rectTransform in rectTransforms)
             {
                 rectTransform.localScale = Vector3.zero;
-                rectTransform.DOScale(Vector3.one, 2f).SetEase(Ease.OutBounce);
+                rectTransform.DOScale(Vector3.one, _durationBounceAnimation).SetEase(Ease.OutBounce);
             }
         }
     }

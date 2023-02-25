@@ -14,17 +14,19 @@ namespace States
         {
             _startScreen = startScreen;
             _dataProvider = dataProvider;
+            //как один из вариантов
+            _startScreen.Initialize(_dataProvider.GameSetData);
         }
 
         //TODO : временная костыль, что бы не спавнились новые иконки в начале игры, подумать как сделать лучше 
         public override void OnEnter()
         {
             _startScreen.Show();
-            if (_oneInitializeForGame < 1)
-            {
-                _startScreen.Initialize(_dataProvider.GameSetData);
-                _oneInitializeForGame++;
-            }
+           // if (_oneInitializeForGame < 1)
+           // {
+           //     _startScreen.Initialize(_dataProvider.GameSetData);
+           //     _oneInitializeForGame++;
+           // }
             //_startScreen.Initialize(_dataProvider.GameSetData);
         }
 

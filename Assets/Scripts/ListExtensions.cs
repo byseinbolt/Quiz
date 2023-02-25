@@ -12,25 +12,31 @@ public static class ListExtensions
        for (var i = 0; i < count; i++)
        {
            var randomIndex = Random.Range(0, source.Count-1);
+           
            if (items.Contains(source[randomIndex]))
            {
                i--;
                continue;
            }
+           
            items.Add(source[randomIndex]);
        }
+       
        return items;
     }
 
     public static T GetRandomItem<T>(this IReadOnlyList<T> source, T obj) where T : IComparable<T>
     {
         var randomIndex = Random.Range(0, source.Count-1);
+        
         if (obj == null)
         {
             return source[randomIndex];
         }
+        
         var items = source.Where(item => item.CompareTo(obj) != 1).ToList();
         randomIndex = Random.Range(0, items.Count - 1);
+        
         return items[randomIndex];
     }
 }
