@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     
     private IReadOnlyList<GameItem> _selectedSet;
     private int _currentLevelIndex;
-
     private StateMachine _stateMachine;
 
     private void Start()
@@ -39,7 +38,7 @@ public class GameManager : MonoBehaviour
         _stateMachine.AddState("GameOverState", new GameOverState(_levelCompletedScreen));
         
         _stateMachine.AddTriggerTransition("OnSetSelected",
-            "StartGameState",  
+            "StartGameState", 
             "GameState");
         
         _stateMachine.AddTriggerTransition("NotLastLevel",
@@ -47,16 +46,16 @@ public class GameManager : MonoBehaviour
             "LevelCompletedState");
         
         _stateMachine.AddTriggerTransition("OnNextLevelClicked",
-            "LevelCompletedState",
+            "LevelCompletedState", 
             "GameState");
         
-        _stateMachine.AddTriggerTransition("IsLastLevel"
-            , "GameState"
-            , "GameOverState");
+        _stateMachine.AddTriggerTransition("IsLastLevel",
+            "GameState", 
+            "GameOverState");
         
         _stateMachine.AddTriggerTransition("OnRestartClicked",
                  "GameOverState", 
-                  "StartGameState");
+                 "StartGameState");
 
         _stateMachine.SetStartState("StartGameState"); 
         _stateMachine.Init();

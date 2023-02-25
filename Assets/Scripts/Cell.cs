@@ -15,13 +15,13 @@ public class Cell : MonoBehaviour
     private Image _background;
     
     [SerializeField]
-    private ColorProvider _backgroundCell;
+    private ColorProvider _colorProvider;
     private Action<Cell> _onClicked;
     
     public void Initialize(Sprite gameItemView)
     {
         _image.sprite = gameItemView;
-        _background.color = _backgroundCell.GetRandomColor();
+        _background.color = _colorProvider.GetRandomColor();
     }
     
     public void Click()

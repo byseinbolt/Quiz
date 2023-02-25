@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using GameData;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -15,25 +16,25 @@ public class CellSpawner : MonoBehaviour
     private Cell _cellPrefab;
     
     private ObjectPool<Cell> _pool;
-    private  List<Cell> _cells = new();
+    private List<Cell> _cells;
 
     private void Start()
     {
         _pool = new ObjectPool<Cell>(() => Instantiate(_cellPrefab, _cellsSpawnParent));
     }
-
-    // TODO: довести пул до ума
+    
     public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
     {
         _cells = ListPool<Cell>.Get();
         foreach (var gameItem in selectedGameSetItems)
         {
             var cell = CreateCell();
+            
             cell.SetClickCallback(value => OnClicked?.Invoke(value));
             cell.Initialize(gameItem.View);
             _cells.Add(cell);
         }
-        //PlayAnimation(_cells);
+        PlayAnimation(_cells);
     }
 
     public void HidePreviousLevelCells()
@@ -53,13 +54,12 @@ public class CellSpawner : MonoBehaviour
     }
     
     
-   // private void PlayAnimation(List<Cell> cells)
-   // {
-   //     var sequence = DOTween.Sequence();
-   //     foreach (var cell in cells)
-   //     {
-   //         cell.transform.localScale = Vector3.zero;
-   //         sequence.Append(cell.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce));
-   //     }
-   // }
+   private void PlayAnimation(List<Cell> cells)
+   {
+       foreach (var cell in cells)
+       {
+           cell.transform.localScale = Vector3.zero;
+           cell.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
+       }
+   }
 }
