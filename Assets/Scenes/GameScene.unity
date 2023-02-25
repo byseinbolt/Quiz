@@ -2618,6 +2618,8 @@ MonoBehaviour:
   _nextLevelButton: {fileID: 1695497323}
   _finalCongratulationsPanel: {fileID: 1774113575}
   _betweenLevelsCongratulationsPanels: {fileID: 523972524}
+  _durationBounceAnimation: 2
+  _durationAnimationWinImage: 2
 --- !u!114 &2034272729
 MonoBehaviour:
   m_ObjectHideFlags: 0
