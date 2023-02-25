@@ -6,12 +6,10 @@ namespace States
     public class GameState : StateBase
     {
         private readonly GameScreen _gameScreen;
-        private readonly LevelController _levelController;
-    
-        public GameState(GameScreen gameScreen, LevelController levelController) : base(needsExitTime: false)
+
+        public GameState(GameScreen gameScreen) : base(needsExitTime: false)
         {
             _gameScreen = gameScreen;
-            _levelController = levelController;
         }
 
         public override void OnEnter()

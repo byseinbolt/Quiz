@@ -2,6 +2,7 @@
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 public class Cell : MonoBehaviour
 {
@@ -14,13 +15,13 @@ public class Cell : MonoBehaviour
     private Image _background;
     
     [SerializeField]
-    private BackgroundSettingsCell _backgroundCell;
+    private ColorProvider _backgroundCell;
     private Action<Cell> _onClicked;
     
     public void Initialize(Sprite gameItemView)
     {
         _image.sprite = gameItemView;
-        _background.color = _backgroundCell.CustomBackground();
+        _background.color = _backgroundCell.GetRandomColor();
     }
     
     public void Click()

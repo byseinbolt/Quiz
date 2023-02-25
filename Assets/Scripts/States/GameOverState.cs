@@ -5,7 +5,7 @@ namespace States
 {
     public class GameOverState : StateBase
     {
-        private LevelCompletedScreen _levelCompletedScreen;
+        private readonly LevelCompletedScreen _levelCompletedScreen;
         
         public GameOverState(LevelCompletedScreen levelCompletedScreen) : base(needsExitTime: false)
         {

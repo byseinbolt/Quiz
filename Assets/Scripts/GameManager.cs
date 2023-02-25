@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         _fsm = new StateMachine();
         
         _fsm.AddState("StartGameState", new StartGameState(_startScreen,_dataProvider));
-        _fsm.AddState("GameState", new GameState(_gameScreen, _levelController));
+        _fsm.AddState("GameState", new GameState(_gameScreen));
         _fsm.AddState("LevelCompletedState", new LevelCompletedState(_levelCompletedScreen));
         _fsm.AddState("GameOverState", new GameOverState(_levelCompletedScreen));
         
@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviour
 
         _fsm.SetStartState("StartGameState");
         _fsm.Init();
-       //_startScreenView.Initialize(_dataProvider.GameSetData);
-       //_startScreenView.Show();
     }
     
     [UsedImplicitly]
@@ -72,9 +70,6 @@ public class GameManager : MonoBehaviour
         _selectedSet = setView.GetSetItems();
         var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
         _levelController.StartLevel(_selectedSet, currentLevel);
-       
-        //_startScreen.Hide();
-        //_gameScreen.Show();
     }
     
     [UsedImplicitly]
@@ -85,9 +80,6 @@ public class GameManager : MonoBehaviour
         _currentLevelIndex++;
         var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
         _levelController.StartLevel(_selectedSet,currentLevel);
-        
-       // _levelCompletedScreen.Hide();
-       // _gameScreen.Show();
     }
 
     [UsedImplicitly]
@@ -96,8 +88,6 @@ public class GameManager : MonoBehaviour
     {
         _fsm.Trigger("OnRestartClicked");
         _currentLevelIndex = 0;
-        //_levelCompletedScreen.Hide();
-        //_startScreen.Show();
     }
     
     [UsedImplicitly]
@@ -107,16 +97,10 @@ public class GameManager : MonoBehaviour
         if (IsLastLevel())
         {
             _fsm.Trigger("IsLastLevel");
-           // _levelCompletedScreen.Show();
-           // _gameScreen.Hide();
-           // _levelCompletedScreen.ShowRestartView();
         }
         else
         {
             _fsm.Trigger("NotLastLevel");
-           //_gameScreen.Hide();
-           //_levelCompletedScreen.Show();
-           //_levelCompletedScreen.ShowNextLevelButton();
         }
     }
 
