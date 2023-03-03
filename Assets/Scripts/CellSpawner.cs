@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Events;
 using GameData;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class CellSpawner : MonoBehaviour
 {
-    public event Action<Cell> OnClicked;
-    
     [SerializeField]
     private RectTransform _cellsSpawnParent;
     
@@ -30,7 +29,7 @@ public class CellSpawner : MonoBehaviour
         {
             var cell = CreateCell();
             
-            cell.SetClickCallback(value => OnClicked?.Invoke(value));
+            cell.SetClickCallback(value => EventStreams.Game.Publish(new CellClickedEvent(value)));
             cell.Initialize(gameItem.View);
             _cells.Add(cell);
         }

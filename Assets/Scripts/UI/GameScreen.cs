@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using Events;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -6,16 +8,25 @@ namespace UI
 {
     public class GameScreen : BaseScreen
     {
-        [SerializeField] 
+        [SerializeField]
         private TextMeshProUGUI _goalLabel;
-        
-        [UsedImplicitly]
-       // from UnityEvent in LevelController
-       public void SetGoal(string goalItemName)
+
+        private IDisposable _subscription;
+
+        private void Awake()
         {
-            _goalLabel.text = $"Find {goalItemName}";
+            _subscription = EventStreams.Game.Subscribe<GoalSelectedEvent>(SetGoal);
+        }
+        
+        private void SetGoal(GoalSelectedEvent eventData)
+        {
+            _goalLabel.text = $"Find {eventData.Goal}";
         }
 
+        private void OnDestroy()
+        {
+            _subscription?.Dispose();
+        }
     }
-    
+
 }

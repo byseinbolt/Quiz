@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Events;
 using GameData;
 using IngameStateMachine;
 using JetBrains.Annotations;
-using UI;
+using SimpleEventBus.Disposables;
 using UnityEngine;
-
 using States;
 
-public class GameManager : MonoBehaviour
+
+public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private LevelController _levelController;
-    
     [SerializeField]
     private DataProvider _dataProvider;
     
-    private IReadOnlyList<GameItem> _selectedSet;
-    private int _currentLevelIndex;
     private StateMachine _stateMachine;
+    private int _currentLevelIndex;
+    private CompositeDisposable _subscriptions;
 
     private void Start()
     {
@@ -30,18 +26,18 @@ public class GameManager : MonoBehaviour
             GetComponent<GameOverState>()
         };
         _stateMachine = new StateMachine(states);
-        _stateMachine.Initialize();
         _stateMachine.Enter<StartGameState>();
-        
+
+        _subscriptions = new CompositeDisposable
+        {
+            EventStreams.Game.Subscribe<GameSetInstanceClickedEvent>(OnGameSetInstanceClicked),
+            EventStreams.Game.Subscribe<LevelCompletedEvent>(CheckGameOver)
+        };
     }
     
-    [UsedImplicitly]
-    // from UnityEvent in startScreen
-    public void OnGameSetInstanceClicked(GameSetView setView)
+    private void OnGameSetInstanceClicked(GameSetInstanceClickedEvent eventData)
     {
-        _selectedSet = setView.GetSetItems();
-        var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
-        _levelController.StartLevel(_selectedSet, currentLevel);
+        EventStreams.Game.Publish(new SetSelectedEvent(eventData.GameSetView, _currentLevelIndex));
         _stateMachine.Enter<GameState>();
     }
     
@@ -50,8 +46,7 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         _currentLevelIndex++;
-        var currentLevel = _dataProvider.GetLevel(_currentLevelIndex);
-        _levelController.StartLevel(_selectedSet,currentLevel);
+        EventStreams.Game.Publish(new NextLevelButtonClickedEvent(_currentLevelIndex));
         _stateMachine.Enter<GameState>();
     }
 
@@ -63,9 +58,7 @@ public class GameManager : MonoBehaviour
         _stateMachine.Enter<StartGameState>();
     }
     
-    [UsedImplicitly]
-    // calls from UnityEvent in LevelController 
-    public void CheckGameOver(Cell cell)
+    private void CheckGameOver(LevelCompletedEvent eventData)
     {
         if (IsLastLevel())
         {
@@ -80,6 +73,11 @@ public class GameManager : MonoBehaviour
     private bool IsLastLevel()
     {
         return _currentLevelIndex == _dataProvider.LevelsCount() - 1;
+    }
+
+    private void OnDestroy()
+    {
+        _subscriptions?.Dispose();
     }
 }
 

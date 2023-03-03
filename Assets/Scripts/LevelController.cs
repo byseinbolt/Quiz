@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Events;
 using GameData;
+using SimpleEventBus.Disposables;
+using SimpleEventBus.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,38 +13,44 @@ using Utilities;
 public class LevelController : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent<Cell> _levelCompleted;
+    private DataProvider _dataProvider;
     
-    [SerializeField]
-    private UnityEvent<string> _goalSelected;
-
     private CellSpawner _cellSpawner;
     private GameItem _goalItem;
-    private IReadOnlyList<GameItem> _levelItems;
+    private IReadOnlyList<GameItem> _selectedSetItems;
+    private IReadOnlyList<GameItem> _currentLevelItems;
+    private LevelData _currentLevel;
+
+    private CompositeDisposable _subscriptions;
 
     private void Awake()
     {
         _cellSpawner = GetComponent<CellSpawner>();
-        _cellSpawner.OnClicked += OnCellClicked;
+
+        _subscriptions = new CompositeDisposable
+        {
+            EventStreams.Game.Subscribe<SetSelectedEvent>(OnSetSelected),
+            EventStreams.Game.Subscribe<NextLevelButtonClickedEvent>(OnNextLevelButtonClicked),
+            EventStreams.Game.Subscribe<CellClickedEvent>(OnCellClicked)
+        };
     }
     
-    public void StartLevel(IReadOnlyList<GameItem> selectedGameSet, LevelData currentLevel)
+    public void StartLevel()
     {
-        _levelItems = selectedGameSet.GetRandomItems(currentLevel.LevelElementsCount);
-        _cellSpawner.Spawn(_levelItems);
+        _cellSpawner.Spawn(_currentLevelItems);
         
-        _goalItem = _levelItems.GetRandomItem(_goalItem);
-        _goalSelected.Invoke(_goalItem.Name);
+        _goalItem = _currentLevelItems.GetRandomItem(_goalItem);
+        EventStreams.Game.Publish(new GoalSelectedEvent(_goalItem.Name));
     }
     
-    private void OnCellClicked(Cell cell)
+    private void OnCellClicked(CellClickedEvent eventData)
     {
-        var button = cell.GetComponent<Button>();
+        var cell = eventData.Cell;
+        var button = cell.Button;
         
         if (cell.Image.sprite == _goalItem.View)
         {
-            // TODO: подумать над названием метода
-            PlayDisappearAnimation(cell, button);
+            LevelCompleted(cell, button);
         }
         else
         {
@@ -48,11 +58,36 @@ public class LevelController : MonoBehaviour
         }
     }
     
-    private void OnDestroy()
+    private void LevelCompleted(Cell cell, Button button)
     {
-        _cellSpawner.OnClicked -= OnCellClicked;
+        var sequence = DOTween.Sequence();
+      
+        sequence.AppendCallback(() => button.interactable = false)
+            .Append(cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.InBounce))
+            .AppendCallback(() => EventStreams.Game.Publish(new LevelCompletedEvent(cell)))
+            .AppendInterval(0.5f)
+            .AppendCallback(() => _cellSpawner.HidePreviousLevelCells())
+            .Append(cell.Image.rectTransform.DOScale(Vector3.one, 0.1f))
+            .AppendCallback(() => button.interactable = true);
+    }
+    
+    private void OnNextLevelButtonClicked(NextLevelButtonClickedEvent eventData)
+    {
+        _currentLevelItems = GetLevelItems(eventData.LevelIndex);
     }
 
+    private void OnSetSelected(SetSelectedEvent eventData)
+    {
+        _selectedSetItems = eventData.SetView.GetSetItems();
+        _currentLevelItems = GetLevelItems(eventData.LevelIndex);
+    }
+
+    private IReadOnlyList<GameItem> GetLevelItems(int levelIndex)
+    {
+        _currentLevel = _dataProvider.GetLevel(levelIndex);
+         return _selectedSetItems.GetRandomItems(_currentLevel.ElementsCount);
+    }
+    
     private void PlayRotationAnimation(Cell cell, Button button)
     {
         button.interactable = false;
@@ -62,16 +97,8 @@ public class LevelController : MonoBehaviour
             .OnComplete(() => button.interactable = true);
     }
     
-  private void PlayDisappearAnimation(Cell cell, Button button)
-  {
-      var sequence = DOTween.Sequence();
-      
-      sequence.AppendCallback(() => button.interactable = false)
-          .Append(cell.Image.rectTransform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.InBounce))
-          .AppendCallback(() => _levelCompleted.Invoke(cell))
-          .AppendInterval(0.5f)
-          .AppendCallback(() => _cellSpawner.HidePreviousLevelCells())
-          .Append(cell.Image.rectTransform.DOScale(Vector3.one, 0.1f))
-          .AppendCallback(() => button.interactable = true);
-  }
+    private void OnDestroy()
+    {
+        _subscriptions?.Dispose();
+    }
 }
