@@ -545,8 +545,8 @@ GameObject:
   - component: {fileID: 428614548}
   - component: {fileID: 428614547}
   - component: {fileID: 428614546}
-  - component: {fileID: 428614550}
   - component: {fileID: 428614549}
+  - component: {fileID: 428614550}
   - component: {fileID: 428614551}
   m_Layer: 0
   m_Name: StartScreen
@@ -664,22 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadeController: {fileID: 428614551}
-  _onGameSetClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1736882480}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnGameSetInstanceClicked
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _gameSetViewViewPrefab: {fileID: 4738830253471466901, guid: c8aeb0f3c05f9444e90ee4fbde53cdfc, type: 3}
+  _gameSetViewPrefab: {fileID: 4738830253471466901, guid: c8aeb0f3c05f9444e90ee4fbde53cdfc, type: 3}
   _iconsParent: {fileID: 400610918}
 --- !u!114 &428614551
 MonoBehaviour:
@@ -1520,48 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e8cacacea47b4bb07835e1ca037cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1736882480}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CheckGameOver
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2034272728}
-        m_TargetAssemblyTypeName: UI.LevelCompletedScreen, Assembly-CSharp
-        m_MethodName: ShowWinImage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _goalSelected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5052831693833915675}
-        m_TargetAssemblyTypeName: UI.GameScreenView, Assembly-CSharp
-        m_MethodName: SetGoal
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _dataProvider: {fileID: 11400000, guid: a297797bbff72d749bc72cd367a9431a, type: 2}
 --- !u!4 &1456499676
 Transform:
   m_ObjectHideFlags: 0
@@ -2072,7 +2016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1990277c602c4ec1b46728f494bde565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelController: {fileID: 1456499675}
   _dataProvider: {fileID: 11400000, guid: a297797bbff72d749bc72cd367a9431a, type: 2}
 --- !u!4 &1736882481
 Transform:
@@ -2128,6 +2071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameScreen: {fileID: 5052831693833915675}
+  _levelController: {fileID: 1456499675}
 --- !u!114 &1736882485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2796,8 +2740,8 @@ GameObject:
   - component: {fileID: 5052831693833915674}
   - component: {fileID: 5052831693833915673}
   - component: {fileID: 5052831693833915672}
-  - component: {fileID: 5052831693833915675}
   - component: {fileID: 5052831693833915676}
+  - component: {fileID: 5052831693833915675}
   - component: {fileID: 5052831693833915677}
   m_Layer: 5
   m_Name: GameScreen
