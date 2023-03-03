@@ -1,23 +1,24 @@
-﻿using FSM;
+﻿using IngameStateMachine;
 using UI;
+using UnityEngine;
 
 namespace States
 {
-    public class GameState : StateBase
+    public class GameState : MonoBehaviour, IState
     {
-        private readonly GameScreen _gameScreen;
-
-        public GameState(GameScreen gameScreen) : base(needsExitTime: false)
+        [SerializeField]
+        private GameScreen _gameScreen;
+        
+        public void Initialize(StateMachine stateMachine)
         {
-            _gameScreen = gameScreen;
         }
 
-        public override void OnEnter()
+        public  void OnEnter()
         {
             _gameScreen.Show();
         }
 
-        public override void OnExit()
+        public  void OnExit()
         {
             _gameScreen.Hide();
         }

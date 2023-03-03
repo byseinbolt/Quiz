@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 2876329439264486575}
   _background: {fileID: 295225737073315268}
-  _backgroundCell: {fileID: 1056448504777648960}
+  _colorProvider: {fileID: 1056448504777648960}
 --- !u!114 &1056448504777648960
 MonoBehaviour:
   m_ObjectHideFlags: 0

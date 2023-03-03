@@ -1604,7 +1604,7 @@ GameObject:
   - component: {fileID: 1545461434}
   - component: {fileID: 1545461433}
   m_Layer: 5
-  m_Name: MainScreen
+  m_Name: RootScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2049,6 +2049,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1736882481}
   - component: {fileID: 1736882480}
+  - component: {fileID: 1736882485}
+  - component: {fileID: 1736882484}
+  - component: {fileID: 1736882483}
+  - component: {fileID: 1736882482}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2070,9 +2074,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelController: {fileID: 1456499675}
   _dataProvider: {fileID: 11400000, guid: a297797bbff72d749bc72cd367a9431a, type: 2}
-  _startScreen: {fileID: 428614550}
-  _gameScreen: {fileID: 5052831693833915675}
-  _levelCompletedScreen: {fileID: 2034272728}
 --- !u!4 &1736882481
 Transform:
   m_ObjectHideFlags: 0
@@ -2088,6 +2089,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736882482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736882479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a53175139ce42a8a46a08204327c209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelCompletedScreen: {fileID: 2034272728}
+--- !u!114 &1736882483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736882479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3f027878864790b10f732308a7dfac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelCompletedScreen: {fileID: 2034272728}
+--- !u!114 &1736882484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736882479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c770f025574b73ac82b38fe067c39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameScreen: {fileID: 5052831693833915675}
+--- !u!114 &1736882485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736882479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f280d6a1b4741ba870c71c1d9eabf97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startScreen: {fileID: 428614550}
+  _dataProvider: {fileID: 11400000, guid: a297797bbff72d749bc72cd367a9431a, type: 2}
 --- !u!1 &1774113574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,7 +2628,7 @@ MonoBehaviour:
   _finalCongratulationsPanel: {fileID: 1774113575}
   _betweenLevelsCongratulationsPanels: {fileID: 523972524}
   _durationBounceAnimation: 2
-  _durationAnimationWinImage: 2
+  _durationWinImageAnimation: 2
 --- !u!114 &2034272729
 MonoBehaviour:
   m_ObjectHideFlags: 0

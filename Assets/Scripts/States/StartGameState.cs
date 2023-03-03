@@ -1,25 +1,39 @@
 ﻿using FSM;
 using GameData;
+using IngameStateMachine;
 using UI;
+using UnityEngine;
+using StateMachine = IngameStateMachine.StateMachine;
 
 namespace States
 {
-    public class StartGameState : StateBase
+    public class StartGameState : MonoBehaviour, IState
     {
-        private readonly StartScreen _startScreen;
+        [SerializeField]
+        private StartScreen _startScreen;
+
+        [SerializeField]
+        private DataProvider _dataProvider;
+
+        private bool _isStartGame = true;
         
-        public StartGameState(StartScreen startScreen, DataProvider dataProvider) : base(needsExitTime: false)
+
+        public void Initialize(StateMachine stateMachine)
         {
-            _startScreen = startScreen;
-            _startScreen.Initialize(dataProvider.GameSetData);
-        }
-        
-        public override void OnEnter()
-        {
-            _startScreen.Show();
+            
         }
 
-        public override void OnExit()
+        public  void OnEnter()
+        {
+            _startScreen.Show();
+            if (!_isStartGame) return;
+            _startScreen.Initialize(_dataProvider.GameSetData);
+            _isStartGame = false;
+
+
+        }
+
+        public  void OnExit()
         {
             _startScreen.Hide();
         }

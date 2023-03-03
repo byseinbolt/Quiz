@@ -1,26 +1,29 @@
-﻿using FSM;
-using UI;
+﻿using UI;
+using IngameStateMachine;
+using UnityEngine;
+using StateMachine = IngameStateMachine.StateMachine;
 
 namespace States
 {
-    public class GameOverState : StateBase
+    public class GameOverState : MonoBehaviour, IState
     {
-        private readonly LevelCompletedScreen _levelCompletedScreen;
+        [SerializeField]
+        private LevelCompletedScreen _levelCompletedScreen;
         
-        public GameOverState(LevelCompletedScreen levelCompletedScreen) : base(needsExitTime: false)
+        public void Initialize(StateMachine stateMachine)
         {
-            _levelCompletedScreen = levelCompletedScreen;
         }
 
-        public override void OnEnter()
+        public  void OnEnter()
         {
             _levelCompletedScreen.Show();
             _levelCompletedScreen.ShowRestartView();
         }
 
-        public override void OnExit()
+        public void OnExit()
         {
             _levelCompletedScreen.Hide();
         }
+        
     }
 }
