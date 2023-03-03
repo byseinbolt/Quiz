@@ -1,5 +1,4 @@
 ﻿using System;
-using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -7,6 +6,7 @@ using Utilities;
 public class Cell : MonoBehaviour
 {
     public Image Image => _image;
+    public Button Button => _button;
     
     [SerializeField]
     private Image _image;
@@ -15,7 +15,11 @@ public class Cell : MonoBehaviour
     private Image _background;
     
     [SerializeField]
+    private Button _button;
+    
+    [SerializeField]
     private ColorProvider _colorProvider;
+    
     private Action<Cell> _onClicked;
     
     public void Initialize(Sprite gameItemView)
