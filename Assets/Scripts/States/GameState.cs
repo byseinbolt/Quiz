@@ -8,14 +8,14 @@ namespace States
     {
         [SerializeField]
         private GameScreen _gameScreen;
-        
-        public void Initialize(StateMachine stateMachine)
-        {
-        }
 
+        [SerializeField]
+        private LevelController _levelController;
+        
         public  void OnEnter()
         {
             _gameScreen.Show();
+            _levelController.StartLevel();
         }
 
         public  void OnExit()

@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using FSM;
+﻿using System.Collections.Generic;
+using Events;
 using GameData;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace UI
 {
     public class StartScreen : BaseScreen
     {
-        [SerializeField]
-        private UnityEvent<GameSetView> _onGameSetClicked;
-        
         [SerializeField] 
-        private GameSetView _gameSetViewViewPrefab;
+        private GameSetView _gameSetViewPrefab;
     
         [SerializeField]
         private Transform _iconsParent;
@@ -22,8 +17,9 @@ namespace UI
         {
             foreach (var gameSetData in gameSetsData)
             {
-                var gameSetViewInstance = Instantiate(_gameSetViewViewPrefab, _iconsParent);
-                gameSetViewInstance.SetClickCallback(value => _onGameSetClicked.Invoke(value));
+                var gameSetViewInstance = Instantiate(_gameSetViewPrefab, _iconsParent);
+                gameSetViewInstance.SetClickCallback(value => 
+                    EventStreams.Game.Publish(new GameSetInstanceClickedEvent(value)));
                 gameSetViewInstance.Initialize(gameSetData);
             }
         }

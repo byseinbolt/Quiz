@@ -3,7 +3,6 @@ using GameData;
 using IngameStateMachine;
 using UI;
 using UnityEngine;
-using StateMachine = IngameStateMachine.StateMachine;
 
 namespace States
 {
@@ -17,20 +16,15 @@ namespace States
 
         private bool _isStartGame = true;
         
-
-        public void Initialize(StateMachine stateMachine)
-        {
-            
-        }
-
         public  void OnEnter()
         {
             _startScreen.Show();
-            if (!_isStartGame) return;
-            _startScreen.Initialize(_dataProvider.GameSetData);
-            _isStartGame = false;
 
-
+            if (_isStartGame)
+            {
+                _startScreen.Initialize(_dataProvider.GameSetData);
+                _isStartGame = false;
+            }
         }
 
         public  void OnExit()

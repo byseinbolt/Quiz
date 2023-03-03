@@ -2,7 +2,6 @@
 using IngameStateMachine;
 using UI;
 using UnityEngine;
-using StateMachine = IngameStateMachine.StateMachine;
 
 namespace States
 {
@@ -11,10 +10,6 @@ namespace States
         [SerializeField]
         private LevelCompletedScreen _levelCompletedScreen;
         
-        public void Initialize(StateMachine stateMachine)
-        {
-        }
-
         public void OnEnter()
         {
             _levelCompletedScreen.Show();

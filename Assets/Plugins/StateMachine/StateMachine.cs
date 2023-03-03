@@ -5,7 +5,7 @@ namespace IngameStateMachine
 {
     public class StateMachine
     {
-        private readonly Dictionary<Type, IState> _states = new Dictionary<Type, IState>();
+        private readonly Dictionary<Type, IState> _states = new();
         private IState _currentState;
 
         public StateMachine(params IState[] states)
@@ -15,15 +15,7 @@ namespace IngameStateMachine
                 _states[state.GetType()] = state;
             }
         }
-
-        public void Initialize()
-        {
-            foreach (var statePairs in _states)
-            {
-                statePairs.Value.Initialize(this);
-            }
-        }
-
+        
         public virtual void Enter<TState>()
             where TState : IState
         {
