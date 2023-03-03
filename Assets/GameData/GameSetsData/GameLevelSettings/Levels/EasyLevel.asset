@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EasyLevel
   m_EditorClassIdentifier: 
   _levelName: Easy
-  _levelElementsCount: 3
+  _elementsCount: 3

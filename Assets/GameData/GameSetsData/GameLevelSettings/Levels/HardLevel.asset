@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HardLevel
   m_EditorClassIdentifier: 
   _levelName: Hard
-  _levelElementsCount: 9
+  _elementsCount: 9

@@ -7,12 +7,12 @@ namespace GameData
     {
         public string LevelName => _levelName;
         
-        public int LevelElementsCount => _levelElementsCount;
+        public int ElementsCount => _elementsCount;
     
         [SerializeField]
         private string _levelName;
         
         [SerializeField]
-        private int _levelElementsCount;
+        private int _elementsCount;
     }
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MediumLevel
   m_EditorClassIdentifier: 
   _levelName: Medium
-  _levelElementsCount: 6
+  _elementsCount: 6
