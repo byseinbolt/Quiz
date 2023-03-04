@@ -38,14 +38,14 @@ namespace UI
 
         private void Awake()
         {
-            _subscription = EventStreams.Game.Subscribe<LevelCompletedEvent>(OnLevelCompleted);
+            _subscription = EventStreams.Game.Subscribe<WinAnimationCompletedEvent>(OnLevelCompleted);
         }
 
-        private void OnLevelCompleted(LevelCompletedEvent eventData)
+        private void OnLevelCompleted(WinAnimationCompletedEvent eventData)
         {
             _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.sprite = eventData.Cell.Image.sprite;
-            _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation);
+            _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation).SetEase(Ease.OutBounce);
         }
         
         public void ShowRestartView()
