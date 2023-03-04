@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Events;
 using GameData;
+using Pools;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class CellSpawner : MonoBehaviour
 {
@@ -14,51 +14,35 @@ public class CellSpawner : MonoBehaviour
     [SerializeField]
     private Cell _cellPrefab;
     
-    private ObjectPool<Cell> _pool;
-    private List<Cell> _cells;
-
+    private MonoBehaviourPool<Cell> _pool;
+    
     private void Start()
     {
-        _pool = new ObjectPool<Cell>(() => Instantiate(_cellPrefab, _cellsSpawnParent));
+        _pool = new MonoBehaviourPool<Cell>(_cellPrefab, _cellsSpawnParent);
     }
     
     public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
     {
-        _cells = ListPool<Cell>.Get();
         foreach (var gameItem in selectedGameSetItems)
         {
-            var cell = CreateCell();
-            
+            var cell = _pool.Take();
             cell.SetClickCallback(value => EventStreams.Game.Publish(new CellClickedEvent(value)));
             cell.Initialize(gameItem.View);
-            _cells.Add(cell);
         }
-        PlayAnimation(_cells);
+        PlayAnimation(_pool.UsedItems.ToList());
     }
 
     public void HidePreviousLevelCells()
     {
-        foreach (var cell in _cells)
-        {
-            cell.gameObject.SetActive(false);
-            _pool.Release(cell);
-        }
+       _pool.ReleaseAll();
     }
-
-    private Cell CreateCell()
+                               
+    private void PlayAnimation(List<Cell> cells)
     {
-        var cell = _pool.Get();
-        cell.gameObject.SetActive(true);
-        return cell;
-    }
-    
-    
-   private void PlayAnimation(List<Cell> cells)
-   {
        foreach (var cell in cells)
        {
            cell.transform.localScale = Vector3.zero;
            cell.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
        }
-   }
+    }
 }

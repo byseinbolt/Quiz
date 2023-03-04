@@ -6,10 +6,10 @@ namespace Pools
 {
     public class MonoBehaviourPool<T> where T : Component
     {
-        public ReadOnlyCollection<T> UsedItems { get; private set; }
+        public ReadOnlyCollection<T> UsedItems { get; }
 
-        private readonly List<T> _notUsedItems = new List<T>();
-        private readonly List<T> _usedItems = new List<T>();
+        private readonly List<T> _notUsedItems = new();
+        private readonly List<T> _usedItems = new();
 
         private readonly T _prefab;
         private readonly Transform _parent;
