@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Events;
@@ -15,10 +16,12 @@ public class CellSpawner : MonoBehaviour
     private Cell _cellPrefab;
     
     private MonoBehaviourPool<Cell> _pool;
+    private IDisposable _subscription;
     
     private void Start()
     {
         _pool = new MonoBehaviourPool<Cell>(_cellPrefab, _cellsSpawnParent);
+        _subscription = EventStreams.Game.Subscribe<GameScreenFadedEvent>(HidePreviousLevelCells);
     }
     
     public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
@@ -32,7 +35,7 @@ public class CellSpawner : MonoBehaviour
         PlayAnimation(_pool.UsedItems.ToList());
     }
 
-    public void HidePreviousLevelCells()
+    public void HidePreviousLevelCells(GameScreenFadedEvent eventData)
     {
        _pool.ReleaseAll();
     }
@@ -44,5 +47,10 @@ public class CellSpawner : MonoBehaviour
            cell.transform.localScale = Vector3.zero;
            cell.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
        }
+    }
+
+    private void OnDestroy()
+    {
+        _subscription?.Dispose();
     }
 }
