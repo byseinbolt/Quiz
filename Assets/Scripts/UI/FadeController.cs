@@ -5,6 +5,7 @@ namespace UI
 {
     public class FadeController : MonoBehaviour
     {
+        [Header("References")]
         [SerializeField] 
         private Transform _start;
 
@@ -14,6 +15,8 @@ namespace UI
         [SerializeField]
         private CanvasGroup _canvasGroup;
 
+        [Space]
+        [Header("Animation settings")]
         [SerializeField] 
         private float _duration = 1f;
 
