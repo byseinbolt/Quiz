@@ -1,11 +1,8 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Events;
 using SimpleEventBus.Disposables;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using Utilities;
 
 namespace UI
 {
@@ -50,9 +47,12 @@ namespace UI
             var sequence = DOTween.Sequence();
 
             sequence.AppendCallback(() => eventData.Cell.Button.interactable = false)
-                .Append(eventData.Cell.Image.rectTransform.DOScale(Vector3.zero, _disappearDuration))
+                .Append(eventData.Cell.Image.rectTransform.DOScale(Vector3.zero, _disappearDuration).SetEase(Ease.InBounce))
                 .AppendCallback(() => EventStreams.Game.Publish(new WinAnimationCompletedEvent(eventData.Cell)))
-                .AppendInterval(_waitingTimeBeforeHidingCells);
+                .AppendInterval(_waitingTimeBeforeHidingCells)
+                .AppendCallback(() => EventStreams.Game.Publish(new GameScreenFadedEvent()))
+                .Append(eventData.Cell.Image.rectTransform.DOScale(Vector3.one, _upscaleDuration))
+                     .AppendCallback(() => eventData.Cell.Button.interactable = true);
 
         }
 

@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using DG.Tweening;
 using Events;
 using GameData;
 using SimpleEventBus.Disposables;
 using UnityEngine;
-using UnityEngine.UI;
 using Utilities;
 
 public class LevelController : MonoBehaviour
@@ -12,26 +10,13 @@ public class LevelController : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private DataProvider _dataProvider;
-
-    [Space]
-    [Header("Animation settings")] 
-    [SerializeField]
-    private float _disappearDuration;
-
-    [SerializeField, Range(0.1f, 0.3f)]
-    private float _upscaleDuration;
-
-    [SerializeField]
-    private float _waitingTimeBeforeHidingCells;
     
     private CellSpawner _cellSpawner;
     private GameItem _goalItem;
     private IReadOnlyList<GameItem> _selectedSetItems;
     private IReadOnlyList<GameItem> _currentLevelItems;
-    private LevelData _currentLevel;
     private CompositeDisposable _subscriptions;
     
-
     private void Awake()
     {
         _cellSpawner = GetComponent<CellSpawner>();
@@ -60,29 +45,12 @@ public class LevelController : MonoBehaviour
         if (cell.Image.sprite == _goalItem.View)
         {
             EventStreams.Game.Publish(new LevelCompletedEvent(cell));
-            LevelCompletedLogic(cell, button);
         }
         else
         {
             EventStreams.Game.Publish(new WrongCellClickedEvent(cell, button));
         }
     }
-    
-    // TODO: разгрузить этот метод !!!
-    private void LevelCompletedLogic(Cell cell, Button button)
-    {
-        var sequence = DOTween.Sequence();
-      
-        sequence.AppendCallback(() => button.interactable = false)
-            .Append(cell.Image.rectTransform.DOScale(Vector3.zero, _disappearDuration))
-            .AppendInterval(_disappearDuration)
-            .AppendCallback(() => EventStreams.Game.Publish(new LevelCompletedEvent(cell)))
-            .AppendInterval(_waitingTimeBeforeHidingCells)
-            .AppendCallback(() => _cellSpawner.HidePreviousLevelCells())
-            .Append(cell.Image.rectTransform.DOScale(Vector3.one, _upscaleDuration))
-            .AppendCallback(() => button.interactable = true);
-    }
-    
     private void OnNextLevelButtonClicked(NextLevelButtonClickedEvent eventData)
     {
         _currentLevelItems = GetLevelItems(eventData.LevelIndex);
@@ -96,8 +64,8 @@ public class LevelController : MonoBehaviour
 
     private IReadOnlyList<GameItem> GetLevelItems(int levelIndex)
     {
-        _currentLevel = _dataProvider.GetLevel(levelIndex);
-         return _selectedSetItems.GetRandomItems(_currentLevel.ElementsCount);
+        var currentLevel = _dataProvider.GetLevel(levelIndex);
+         return _selectedSetItems.GetRandomItems(currentLevel.ElementsCount);
     }
     
     private void OnDestroy()
