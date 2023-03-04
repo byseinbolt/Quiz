@@ -1506,9 +1506,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dataProvider: {fileID: 11400000, guid: a297797bbff72d749bc72cd367a9431a, type: 2}
-  _disappearDuration: 1.5
-  _upscaleDuration: 0.1
-  _waitingTimeBeforeHidingCells: 0.5
 --- !u!4 &1456499676
 Transform:
   m_ObjectHideFlags: 0
@@ -2001,7 +1998,7 @@ GameObject:
   - component: {fileID: 1736882483}
   - component: {fileID: 1736882482}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2851,9 +2848,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeController: {fileID: 5052831693833915677}
   _goalLabel: {fileID: 5052831693846248704}
-  _disappearDuration: 0
-  _upscaleDuration: 0
-  _waitingTimeBeforeHidingCells: 0
+  _disappearDuration: 1.5
+  _upscaleDuration: 0.1
+  _waitingTimeBeforeHidingCells: 0.5
   _rotationDegreesY: 180
   _rotationDuration: 0.5
 --- !u!225 &5052831693833915676
