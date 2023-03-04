@@ -46,16 +46,14 @@ namespace UI
         
         public void ShowRestartView()
         {
-            _nextLevelButton.localScale = Vector3.zero;
-            _betweenLevelsCongratulationsPanels.localScale = Vector3.zero;
+            Downscale(_nextLevelButton, _betweenLevelsCongratulationsPanels);
             PlayOutBounceAnimation(_finalCongratulationsPanel,_restartButton);
         }
 
         public void ShowNextLevelButton()
         {
-            _finalCongratulationsPanel.localScale = Vector3.zero;
-            _restartButton.localScale = Vector3.zero;
-           PlayOutBounceAnimation(_nextLevelButton, _betweenLevelsCongratulationsPanels);
+            Downscale(_finalCongratulationsPanel,_restartButton);
+            PlayOutBounceAnimation(_nextLevelButton, _betweenLevelsCongratulationsPanels);
         }
 
         private void PlayOutBounceAnimation(params RectTransform[] rectTransforms)
@@ -64,6 +62,14 @@ namespace UI
             {
                 rectTransform.localScale = Vector3.zero;
                 rectTransform.DOScale(Vector3.one, _durationBounceAnimation).SetEase(Ease.OutBounce);
+            }
+        }
+
+        private void Downscale(params RectTransform[] rectTransforms)
+        {
+            foreach (var rectTransform in rectTransforms)
+            {
+                rectTransform.localScale = Vector3.zero;
             }
         }
 

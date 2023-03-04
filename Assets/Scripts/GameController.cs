@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     private int _currentLevelIndex;
     private CompositeDisposable _subscriptions;
 
-    private void Start()
+    private void Awake()
     {
         var states = new IState[]
         {
