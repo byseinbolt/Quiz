@@ -1,5 +1,4 @@
-﻿using FSM;
-using IngameStateMachine;
+﻿using IngameStateMachine;
 using UI;
 using UnityEngine;
 
