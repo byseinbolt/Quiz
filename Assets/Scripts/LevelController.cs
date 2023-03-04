@@ -20,7 +20,6 @@ public class LevelController : MonoBehaviour
     private IReadOnlyList<GameItem> _selectedSetItems;
     private IReadOnlyList<GameItem> _currentLevelItems;
     private LevelData _currentLevel;
-
     private CompositeDisposable _subscriptions;
 
     private void Awake()

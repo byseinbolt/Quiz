@@ -42,7 +42,6 @@ namespace UI
             _winImage.sprite = eventData.Cell.Image.sprite;
             _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation).SetEase(Ease.OutBounce);
         }
-
         
         public void ShowRestartView()
         {
