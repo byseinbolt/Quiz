@@ -3,11 +3,14 @@ using DG.Tweening;
 using Events;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace UI
 {
+     
     public class LevelCompletedScreen : BaseScreen
     {
+        [Header("References")]
         [SerializeField]
         private Image _winImage;
         
@@ -23,6 +26,8 @@ namespace UI
         [SerializeField]
         private RectTransform _betweenLevelsCongratulationsPanels;
 
+        [Space]
+        [Header("Animation settings")]
         [SerializeField]
         private float _durationBounceAnimation = 2f;
 
@@ -40,38 +45,34 @@ namespace UI
         {
             _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.sprite = eventData.Cell.Image.sprite;
-            _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation).SetEase(Ease.OutBounce);
+            _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation);
         }
         
         public void ShowRestartView()
         {
-            Downscale(_nextLevelButton, _betweenLevelsCongratulationsPanels);
-            PlayOutBounceAnimation(_finalCongratulationsPanel,_restartButton);
+            _nextLevelButton.localScale = Vector3.zero;
+            _betweenLevelsCongratulationsPanels.localScale = Vector3.zero;
+            PlayOutBounceAnimation(Vector3.one, _durationBounceAnimation,
+                _finalCongratulationsPanel, _restartButton);
         }
 
         public void ShowNextLevelButton()
         {
-            Downscale(_finalCongratulationsPanel,_restartButton);
-            PlayOutBounceAnimation(_nextLevelButton, _betweenLevelsCongratulationsPanels);
+            _finalCongratulationsPanel.localScale = Vector3.zero;
+            _restartButton.localScale = Vector3.zero;
+            PlayOutBounceAnimation(Vector3.one, _durationBounceAnimation, 
+                _nextLevelButton, _betweenLevelsCongratulationsPanels);
         }
-
-        private void PlayOutBounceAnimation(params RectTransform[] rectTransforms)
+        
+        private void PlayOutBounceAnimation(Vector3 scale, float duration, params RectTransform[] components)
         {
-            foreach (var rectTransform in rectTransforms)
+            foreach (var rectTransform in components)
             {
                 rectTransform.localScale = Vector3.zero;
-                rectTransform.DOScale(Vector3.one, _durationBounceAnimation).SetEase(Ease.OutBounce);
+                rectTransform.DOScale(scale, duration).SetEase(Ease.OutBounce);
             }
         }
-
-        private void Downscale(params RectTransform[] rectTransforms)
-        {
-            foreach (var rectTransform in rectTransforms)
-            {
-                rectTransform.localScale = Vector3.zero;
-            }
-        }
-
+        
         private void OnDestroy()
         {
             _subscription?.Dispose();
