@@ -3,11 +3,11 @@ using SimpleEventBus.Events;
 
 namespace Events
 {
-    public class LevelCompletedEvent : EventBase
+    public class TargetCellClickedEvent : EventBase
     { 
         public Cell Cell { get; }
 
-        public LevelCompletedEvent(Cell cell)
+        public TargetCellClickedEvent(Cell cell)
         {
             Cell = cell;
         }

@@ -37,12 +37,12 @@ namespace UI
             {
                 EventStreams.Game.Subscribe<GoalSelectedEvent>(SetGoal),
                 EventStreams.Game.Subscribe<WrongCellClickedEvent>(OnWrongCellClicked),
-                EventStreams.Game.Subscribe<LevelCompletedEvent>(OnLevelCompleted)
+                EventStreams.Game.Subscribe<TargetCellClickedEvent>(OnLevelCompleted)
             };
         }
 
         // TODO: разобраться как вызвать метод исчезновения ячеек
-        private void OnLevelCompleted(LevelCompletedEvent eventData)
+        private void OnLevelCompleted(TargetCellClickedEvent eventData)
         {
             var sequence = DOTween.Sequence();
 

@@ -44,7 +44,7 @@ public class LevelController : MonoBehaviour
         
         if (cell.Image.sprite == _goalItem.View)
         {
-            EventStreams.Game.Publish(new LevelCompletedEvent(cell));
+            EventStreams.Game.Publish(new TargetCellClickedEvent(cell));
         }
         else
         {
