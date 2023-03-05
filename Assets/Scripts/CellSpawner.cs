@@ -29,7 +29,6 @@ public class CellSpawner : MonoBehaviour
         foreach (var gameItem in selectedGameSetItems)
         {
             var cell = _pool.Take();
-            cell.SetClickCallback(value => EventStreams.Game.Publish(new CellClickedEvent(value)));
             cell.Initialize(gameItem.View);
         }
         PlayAnimation(_pool.UsedItems.ToList());

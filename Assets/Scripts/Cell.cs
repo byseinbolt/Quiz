@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Events;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -20,21 +20,15 @@ public class Cell : MonoBehaviour
     [SerializeField]
     private ColorProvider _colorProvider;
     
-    private Action<Cell> _onClicked;
-    
     public void Initialize(Sprite gameItemView)
     {
         _image.sprite = gameItemView;
         _background.color = _colorProvider.GetRandomColor();
+        _button.onClick.AddListener(OnClick);
     }
     
-    public void Click()
+    private void OnClick()
     {
-        _onClicked?.Invoke(this);
-    }
-    
-    public void SetClickCallback(Action<Cell> onClicked)
-    {
-        _onClicked = onClicked;
+        EventStreams.Game.Publish(new CellClickedEvent(this));
     }
 }
