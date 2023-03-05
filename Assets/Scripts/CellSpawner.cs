@@ -21,7 +21,7 @@ public class CellSpawner : MonoBehaviour
     private void Start()
     {
         _pool = new MonoBehaviourPool<Cell>(_cellPrefab, _cellsSpawnParent);
-        _subscription = EventStreams.Game.Subscribe<GameScreenFadedEvent>(HidePreviousLevelCells);
+        _subscription = EventStreams.Game.Subscribe<HideCellsRequest>(HidePreviousLevelCells);
     }
     
     public void Spawn(IReadOnlyList<GameItem> selectedGameSetItems)
@@ -34,7 +34,7 @@ public class CellSpawner : MonoBehaviour
         PlayAnimation(_pool.UsedItems.ToList());
     }
 
-    public void HidePreviousLevelCells(GameScreenFadedEvent eventData)
+    public void HidePreviousLevelCells(HideCellsRequest eventData)
     {
        _pool.ReleaseAll();
     }

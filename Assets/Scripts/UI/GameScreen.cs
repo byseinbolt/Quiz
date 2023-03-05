@@ -50,7 +50,7 @@ namespace UI
                 .Append(eventData.Cell.Image.rectTransform.DOScale(Vector3.zero, _disappearDuration).SetEase(Ease.InBounce))
                 .AppendCallback(() => EventStreams.Game.Publish(new WinAnimationCompletedEvent(eventData.Cell)))
                 .AppendInterval(_waitingTimeBeforeHidingCells)
-                .AppendCallback(() => EventStreams.Game.Publish(new GameScreenFadedEvent()))
+                .AppendCallback(() => EventStreams.Game.Publish(new HideCellsRequest()))
                 .Append(eventData.Cell.Image.rectTransform.DOScale(Vector3.one, _upscaleDuration))
                      .AppendCallback(() => eventData.Cell.Button.interactable = true);
 
