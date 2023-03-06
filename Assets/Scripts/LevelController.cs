@@ -1,12 +1,19 @@
+using System;
 using System.Collections.Generic;
 using Events;
 using GameData;
 using SimpleEventBus.Disposables;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities;
 
 public class LevelController : MonoBehaviour
 {
+    public event Action<Cell> TargetCellClicked;
+    public event Action<Cell> WrongCellClicked;
+
+    public event Action<string> GoalSelected; 
+
     [Header("References")]
     [SerializeField]
     private DataProvider _dataProvider;
@@ -25,8 +32,9 @@ public class LevelController : MonoBehaviour
         {
             EventStreams.Game.Subscribe<SetSelectedEvent>(OnSetSelected),
             EventStreams.Game.Subscribe<NextLevelButtonClickedEvent>(OnNextLevelButtonClicked),
-            EventStreams.Game.Subscribe<CellClickedEvent>(OnCellClicked)
         };
+
+        _cellSpawner.OnClicked += OnCellClicked;
     }
     
     public void StartLevel()
@@ -34,21 +42,18 @@ public class LevelController : MonoBehaviour
         _cellSpawner.Spawn(_currentLevelItems);
         
         _goalItem = _currentLevelItems.GetRandomItem(_goalItem);
-        EventStreams.Game.Publish(new GoalSelectedEvent(_goalItem.Name));
+        GoalSelected?.Invoke(_goalItem.Name);
     }
     
-    private void OnCellClicked(CellClickedEvent eventData)
+    private void OnCellClicked(Cell cell)
     {
-        var cell = eventData.Cell;
-        var button = cell.Button;
-        
         if (cell.Image.sprite == _goalItem.View)
         {
-            EventStreams.Game.Publish(new TargetCellClickedEvent(cell));
+            TargetCellClicked?.Invoke(cell);
         }
         else
         {
-            EventStreams.Game.Publish(new WrongCellClickedEvent(cell, button));
+            WrongCellClicked?.Invoke(cell);
         }
     }
     private void OnNextLevelButtonClicked(NextLevelButtonClickedEvent eventData)
