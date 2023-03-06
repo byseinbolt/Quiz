@@ -10,6 +10,9 @@ namespace UI
     {
         [SerializeField]
         private Image _icon;
+
+        [SerializeField]
+        private Button _button;
         
         private Action<GameSetView> _onClicked;
         private GameSetData _gameSetData;
@@ -18,9 +21,10 @@ namespace UI
         {
             _gameSetData = gameSetData;
             _icon.sprite = _gameSetData.GameSetView;
+            _button.onClick.AddListener(Click);
         }
         
-        public void Click()
+        private void Click()
         {
             _onClicked?.Invoke(this);
         }
