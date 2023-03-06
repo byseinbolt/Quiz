@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class CellSpawner : MonoBehaviour
 {
+    public event Action<Cell> OnClicked;
+    
     [SerializeField]
     private RectTransform _cellsSpawnParent;
     
@@ -29,6 +31,7 @@ public class CellSpawner : MonoBehaviour
         foreach (var gameItem in selectedGameSetItems)
         {
             var cell = _pool.Take();
+            cell.SetClickCallBack(value => OnClicked?.Invoke(value));
             cell.Initialize(gameItem.View);
         }
         PlayAnimation(_pool.UsedItems.ToList());
