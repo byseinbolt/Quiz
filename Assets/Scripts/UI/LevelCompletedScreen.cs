@@ -38,10 +38,10 @@ namespace UI
 
         private void Awake()
         {
-            _subscription = EventStreams.Game.Subscribe<WinAnimationCompletedEvent>(OnLevelCompleted);
+            _subscription = EventStreams.Game.Subscribe<LevelCompletedEvent>(OnLevelCompleted);
         }
 
-        private void OnLevelCompleted(WinAnimationCompletedEvent eventData)
+        private void OnLevelCompleted(LevelCompletedEvent eventData)
         {
             _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.sprite = eventData.Cell.Image.sprite;

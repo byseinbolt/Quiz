@@ -30,46 +30,35 @@ namespace UI
         private float _rotationDuration;
         
         private CompositeDisposable _subscriptions;
-
-        private void Awake()
-        {
-            _subscriptions = new CompositeDisposable
-            {
-                EventStreams.Game.Subscribe<GoalSelectedEvent>(SetGoal),
-                EventStreams.Game.Subscribe<WrongCellClickedEvent>(OnWrongCellClicked),
-                EventStreams.Game.Subscribe<TargetCellClickedEvent>(OnLevelCompleted)
-            };
-        }
-
-        // TODO: разобраться как вызвать метод исчезновения ячеек
-        private void OnLevelCompleted(TargetCellClickedEvent eventData)
+        
+        public void OnTargetCellClicked(Cell cell)
         {
             var sequence = DOTween.Sequence();
 
-            sequence.AppendCallback(() => eventData.Cell.Button.interactable = false)
-                .Append(eventData.Cell.Image.rectTransform.DOScale(Vector3.zero, _disappearDuration).SetEase(Ease.InBounce))
-                .AppendCallback(() => EventStreams.Game.Publish(new WinAnimationCompletedEvent(eventData.Cell)))
+            sequence.AppendCallback(() => cell.Button.interactable = false)
+                .Append(cell.Image.rectTransform.DOScale(Vector3.zero, _disappearDuration).SetEase(Ease.InBounce))
+                .AppendCallback(() => EventStreams.Game.Publish(new LevelCompletedEvent(cell)))
                 .AppendInterval(_waitingTimeBeforeHidingCells)
                 .AppendCallback(() => EventStreams.Game.Publish(new HideCellsRequest()))
-                .Append(eventData.Cell.Image.rectTransform.DOScale(Vector3.one, _upscaleDuration))
-                     .AppendCallback(() => eventData.Cell.Button.interactable = true);
+                .Append(cell.Image.rectTransform.DOScale(Vector3.one, _upscaleDuration))
+                     .AppendCallback(() => cell.Button.interactable = true);
 
         }
 
-        private void SetGoal(GoalSelectedEvent eventData)
+        public void SetGoal(string goal)
         {
-            _goalLabel.text = $"Find {eventData.Goal}";
+            _goalLabel.text = $"Find {goal}";
         }
         
-        private void OnWrongCellClicked(WrongCellClickedEvent eventData)
+        public void OnWrongCellClicked(Cell cell)
         {
             var sequence = DOTween.Sequence();
             
-            sequence.AppendCallback(() => eventData.Button.interactable = false)
-                .Append(eventData.Cell.Image.rectTransform.DORotate(new Vector3(0, _rotationDegreesY, 0), _rotationDuration)
+            sequence.AppendCallback(() => cell.Button.interactable = false)
+                .Append(cell.Image.rectTransform.DORotate(new Vector3(0, _rotationDegreesY, 0), _rotationDuration)
                     .SetEase(Ease.InBounce)
                     .SetLoops(2, LoopType.Yoyo))
-                .AppendCallback(() => eventData.Button.interactable = true);
+                .AppendCallback(() => cell.Button.interactable = true);
         }
 
         private void OnDestroy()

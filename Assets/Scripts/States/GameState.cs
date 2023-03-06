@@ -1,4 +1,5 @@
-﻿using IngameStateMachine;
+﻿using System;
+using IngameStateMachine;
 using UI;
 using UnityEngine;
 
@@ -11,7 +12,14 @@ namespace States
 
         [SerializeField]
         private LevelController _levelController;
-        
+
+        private void Awake()
+        {
+            _levelController.GoalSelected += _gameScreen.SetGoal;
+            _levelController.WrongCellClicked += _gameScreen.OnWrongCellClicked;
+            _levelController.TargetCellClicked += _gameScreen.OnTargetCellClicked;
+        }
+
         public  void OnEnter()
         {
             _gameScreen.Show();
