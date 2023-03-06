@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
         _subscriptions = new CompositeDisposable
         {
             EventStreams.Game.Subscribe<GameSetInstanceClickedEvent>(OnGameSetInstanceClicked),
-            EventStreams.Game.Subscribe<WinAnimationCompletedEvent>(CheckGameOver)
+            EventStreams.Game.Subscribe<LevelCompletedEvent>(CheckGameOver)
         };
     }
     
@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
         _stateMachine.Enter<StartGameState>();
     }
     
-    private void CheckGameOver(WinAnimationCompletedEvent eventData)
+    private void CheckGameOver(LevelCompletedEvent eventData)
     {
         if (IsLastLevel())
         {

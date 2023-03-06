@@ -2,11 +2,11 @@ using SimpleEventBus.Events;
 
 namespace Events
 {
-    public class WinAnimationCompletedEvent : EventBase
+    public class LevelCompletedEvent : EventBase
     {
         public Cell Cell { get; }
 
-        public WinAnimationCompletedEvent(Cell cell)
+        public LevelCompletedEvent(Cell cell)
         {
             Cell = cell;
         }
