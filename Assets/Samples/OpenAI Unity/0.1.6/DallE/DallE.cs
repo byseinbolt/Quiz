@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
 using AIQuiz.Scripts;
-using ImageGenerator;
-using ImageGenerator.Scripts;
 
 
 namespace OpenAI
