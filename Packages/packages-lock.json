@@ -1,11 +1,13 @@
 {
   "dependencies": {
-    "com.inspiaaa.unityhfsm": {
-      "version": "https://github.com/Inspiaaa/UnityHFSM.git#upm",
+    "com.srcnalt.openai-unity": {
+      "version": "https://github.com/srcnalt/OpenAI-Unity.git",
       "depth": 0,
       "source": "git",
-      "dependencies": {},
-      "hash": "2168c17857dfee65ab1417dee6e41b5c3b15846b"
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "hash": "d12837d394d3380542831dafc8d5c141e035d1c7"
     },
     "com.unity.2d.animation": {
       "version": "7.0.9",
@@ -165,7 +167,7 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
