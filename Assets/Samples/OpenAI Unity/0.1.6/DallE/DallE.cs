@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
+using ImageGenerator;
 
 
 namespace OpenAI
@@ -12,6 +13,7 @@ namespace OpenAI
         [SerializeField] private Button button;
         [SerializeField] private Image image;
         [SerializeField] private GameObject loadingLabel;
+        [SerializeField] private ImageSaver _imageSaver;
 
         private OpenAIApi openai = new OpenAIApi();
 
@@ -30,7 +32,7 @@ namespace OpenAI
             var response = await openai.CreateImage(new CreateImageRequest
             {
                 Prompt = inputField.text,
-                Size = ImageSize.Size512
+                Size = ImageSize.Size1024
             });
 
             if (response.Data is {Count: > 0})
@@ -44,7 +46,8 @@ namespace OpenAI
 
                 var texture = new Texture2D(2, 2);
                 texture.LoadImage(request.downloadHandler.data);
-                var sprite = Sprite.Create(texture, new Rect(0, 0, 512, 512), Vector2.zero, 1f);
+                _imageSaver.SaveImage(texture);
+                var sprite = Sprite.Create(texture, new Rect(0, 0, 1024, 1024), Vector2.zero, 1f);
                 image.sprite = sprite;
             }
             else
