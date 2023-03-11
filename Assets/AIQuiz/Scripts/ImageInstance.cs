@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using Utilities;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts
 {
     public class ImageInstance : MonoBehaviour
     {

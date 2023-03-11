@@ -1,8 +1,7 @@
-﻿using System;
-using IngameStateMachine;
+﻿using IngameStateMachine;
 using UnityEngine;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts.StartGameModule
 {
     public class StartGameState : MonoBehaviour, IState
     {

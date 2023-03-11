@@ -1,8 +1,9 @@
-﻿using UI;
+﻿using AIQuiz.Scripts.Events;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts.StartGameModule
 {
     public class StartScreen : BaseScreen
     {
@@ -19,7 +20,7 @@ namespace ImageGenerator
 
         private void Click()
         {
-            EventStreams.Game.Publish(new SendUserRequestEvent(_inputField.text));
+            EventStreams.AIQuiz.Publish(new SendUserRequestEvent(_inputField.text));
         }
     }
 }

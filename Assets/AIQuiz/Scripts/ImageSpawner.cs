@@ -1,7 +1,8 @@
 ﻿using System;
+using AIQuiz.Scripts.Events;
 using UnityEngine;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts
 {
     public class ImageSpawner : MonoBehaviour
     {
@@ -12,7 +13,7 @@ namespace ImageGenerator
         
         private void Awake()
         {
-            _subscription = EventStreams.Game.Subscribe<ImageLoadedEvent>(OnImageLoaded);
+            _subscription = EventStreams.AIQuiz.Subscribe<ImageLoadedEvent>(OnImageLoaded);
         }
 
         private void OnImageLoaded(ImageLoadedEvent eventData)

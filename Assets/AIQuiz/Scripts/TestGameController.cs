@@ -1,9 +1,9 @@
-﻿using System;
-using IngameStateMachine;
+﻿using IngameStateMachine;
 using States;
 using UnityEngine;
+using StartGameState = AIQuiz.Scripts.StartGameModule.StartGameState;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts
 {
     public class TestGameController : MonoBehaviour
     {

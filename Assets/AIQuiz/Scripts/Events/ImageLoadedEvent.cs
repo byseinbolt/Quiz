@@ -1,7 +1,7 @@
 ﻿using SimpleEventBus.Events;
 using UnityEngine;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts.Events
 {
     public class ImageLoadedEvent : EventBase
     {

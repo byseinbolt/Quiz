@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AIQuiz.Scripts.Events;
 using OpenAI;
 using TMPro;
 using UnityEngine;
@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 using Random = UnityEngine.Random;
 
 //TODO: РАЗБИТЬ НА РАЗНЫЕ КЛАССЫ
-namespace ImageGenerator
+namespace AIQuiz.Scripts
 {
    public class ImageGenerator : MonoBehaviour
    {
@@ -43,7 +43,7 @@ namespace ImageGenerator
                while (!request.isDone) await Task.Yield();
 
                var sprite = GetSprite(request);
-               EventStreams.Game.Publish(new ImageLoadedEvent(sprite));
+               EventStreams.AIQuiz.Publish(new ImageLoadedEvent(sprite));
                Debug.Log(result);
 
             }

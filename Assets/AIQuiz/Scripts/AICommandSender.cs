@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OpenAI;
 using UnityEngine;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts
 {
     public class AICommandSender : MonoBehaviour
     {

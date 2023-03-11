@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts
 {
     public class ImageSaver : MonoBehaviour
     {

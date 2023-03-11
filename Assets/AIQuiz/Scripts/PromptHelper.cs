@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts
 {
     public static class PromptHelper
     {

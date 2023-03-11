@@ -1,6 +1,6 @@
 ﻿using SimpleEventBus.Events;
 
-namespace ImageGenerator
+namespace AIQuiz.Scripts.Events
 {
     internal class SendUserRequestEvent : EventBase
     {
