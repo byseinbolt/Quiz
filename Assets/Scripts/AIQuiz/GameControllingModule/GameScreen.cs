@@ -26,7 +26,9 @@ namespace AIQuiz
                 .Append(rectTransform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.InBounce))
                 .AppendCallback(() => HideItemsRequest?.Invoke())
                 .AppendCallback(() => EventStreams.AIQuiz.Publish(new LevelPassedEvent(item.Image.sprite)))
-                .AppendCallback(Hide);
+                .AppendCallback(Hide)
+                .Append(rectTransform.DOScale(Vector3.one, 0.1f))
+                .AppendCallback(() => item.Button.interactable = true);
 
         }
 

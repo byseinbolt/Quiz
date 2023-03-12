@@ -19,10 +19,10 @@ namespace AIQuiz
 
         private void Awake()
         {
-            _userRequestSender.PromptsCollected += SendImageRequest;
+            _userRequestSender.PromptsCollected += CreateImages;
         }
 
-        private async void SendImageRequest(IEnumerable<string> prompts)
+        private async void CreateImages(IEnumerable<string> prompts)
         {
             var imageStyle = PromptHelper.Styles.GetRandomItem();
             var images = new Dictionary<string, Sprite>();
@@ -67,7 +67,7 @@ namespace AIQuiz
 
         private void OnDestroy()
         {
-            _userRequestSender.PromptsCollected -= SendImageRequest;
+            _userRequestSender.PromptsCollected -= CreateImages;
         }
     }
 }

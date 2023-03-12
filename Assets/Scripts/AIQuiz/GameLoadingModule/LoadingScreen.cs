@@ -20,7 +20,7 @@ namespace AIQuiz
         private void Awake()
         {
             _imageGenerator.ImagesLoaded += OnImagesLoaded;
-            _subscription = EventStreams.AIQuiz.Subscribe<SendUserRequestEvent>(OnUserSentRequest);
+            _subscription = EventStreams.AIQuiz.Subscribe<SendUserRequestEvent>(ShowLoadingLabel);
         }
 
         protected override void SetUIActive(bool flag)
@@ -28,7 +28,7 @@ namespace AIQuiz
             _loadingLabel.gameObject.SetActive(flag);
         }
 
-        private void OnUserSentRequest(SendUserRequestEvent eventData)
+        private void ShowLoadingLabel(SendUserRequestEvent eventData)
         {
             Show();
             _loadingLabel.text = $"Processing your {eventData.UserInput} request...";
