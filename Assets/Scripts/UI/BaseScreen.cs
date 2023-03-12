@@ -10,11 +10,17 @@ namespace UI
         public void Show()
         {
             _fadeController.FadeIn();
+            SetUIActive(true);
         }
 
         public void Hide()
         {
             _fadeController.FadeOut();
+            SetUIActive(false);
+        }
+
+        protected virtual void SetUIActive(bool flag)
+        {
         }
     }
 }

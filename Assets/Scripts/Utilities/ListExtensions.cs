@@ -41,5 +41,11 @@ namespace Utilities
         
             return items[randomIndex];
         }
+
+        public static T GetRandomItem<T>(this IReadOnlyList<T> source)
+        {
+            var randomIndex = Random.Range(0, source.Count - 1);
+            return source[randomIndex];
+        }
     }
 }

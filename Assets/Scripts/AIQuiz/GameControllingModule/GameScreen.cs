@@ -1,0 +1,48 @@
+﻿using System;
+using DG.Tweening;
+using Events;
+using TMPro;
+using UI;
+using UnityEngine;
+
+namespace AIQuiz
+{
+    public class GameScreen : BaseScreen
+    {
+        public event Action HideItemsRequest;
+        [SerializeField]
+        private TextMeshProUGUI _goalLabel;
+        
+        public void SetGoal(string goal)
+        {
+            _goalLabel.text = $"Find {goal}";
+        }
+
+        public void OnGoalItemClicked(DallEItem item)
+        {
+            var rectTransform = item.Image.rectTransform;
+            var sequence = DOTween.Sequence();
+            sequence.AppendCallback(() => item.Button.interactable = false)
+                .Append(rectTransform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.InBounce))
+                .AppendCallback(() => HideItemsRequest?.Invoke())
+                .AppendCallback(() => EventStreams.AIQuiz.Publish(new LevelPassedEvent(item.Image.sprite)))
+                .AppendCallback(Hide);
+
+        }
+
+        public void OnWrongItemClicked(DallEItem item)
+        {
+            var sequence = DOTween.Sequence();
+            sequence.AppendCallback(() => item.Button.interactable = false)
+                .Append(item.Image.rectTransform.DORotate(new Vector3(0, 60, 0), 0.5f)
+                    .SetEase(Ease.InBounce)
+                    .SetLoops(2, LoopType.Yoyo))
+                .AppendCallback(() => item.Button.interactable = true);
+        }
+
+        protected override void SetUIActive(bool flag)
+        {
+            _goalLabel.gameObject.SetActive(flag);
+        }
+    }
+}

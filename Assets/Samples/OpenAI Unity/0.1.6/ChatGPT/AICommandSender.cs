@@ -3,32 +3,32 @@ using UnityEngine.UI;
 
 namespace OpenAI
 {
-    public class ChatGPT : MonoBehaviour
+    public class AICommandSender : MonoBehaviour
     {
-        [SerializeField] private InputField inputField;
-        [SerializeField] private Button button;
-        [SerializeField] private Text textArea;
+        [SerializeField] private InputField _inputField;
+        [SerializeField] private Button _button;
+        [SerializeField] private Text _textArea;
 
-        private OpenAIApi openai = new OpenAIApi();
+        private readonly OpenAIApi openai = new();
 
         private string userInput;
         private string Instruction = "Act as a random stranger in a chat room and reply to the questions.\nQ: ";
 
         private void Start()
         {
-            button.onClick.AddListener(SendReply);
+            _button.onClick.AddListener(SendReply);
         }
 
         private async void SendReply()
         {
-            userInput = inputField.text;
+            userInput = _inputField.text;
             Instruction += $"{userInput}\nA: ";
             
-            textArea.text = "...";
-            inputField.text = "";
+            _textArea.text = "...";
+            _inputField.text = "";
 
-            button.enabled = false;
-            inputField.enabled = false;
+            _button.enabled = false;
+            _inputField.enabled = false;
             
             // Complete the instruction
             var completionResponse = await openai.CreateCompletion(new CreateCompletionRequest()
@@ -40,7 +40,7 @@ namespace OpenAI
 
             if (completionResponse.Choices is {Count: > 0})
             {
-                textArea.text = completionResponse.Choices[0].Text;
+                _textArea.text = completionResponse.Choices[0].Text;
                 Instruction += $"{completionResponse.Choices[0].Text}\nQ: ";
             }
             else
@@ -48,8 +48,8 @@ namespace OpenAI
                 Debug.LogWarning("No text was generated from this prompt.");
             }
 
-            button.enabled = true;
-            inputField.enabled = true;
+            _button.enabled = true;
+            _inputField.enabled = true;
         }
     }
 }
