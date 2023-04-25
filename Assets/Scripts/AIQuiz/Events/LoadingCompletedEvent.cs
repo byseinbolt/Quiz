@@ -2,7 +2,7 @@
 using SimpleEventBus.Events;
 using UnityEngine;
 
-namespace AIQuiz
+namespace AIQuiz.Events
 {
     public class LoadingCompletedEvent : EventBase
     {

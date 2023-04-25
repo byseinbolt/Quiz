@@ -1,9 +1,10 @@
 ﻿using System;
+using AIQuiz.Events;
 using Events;
 using Pools;
 using UnityEngine;
 
-namespace AIQuiz
+namespace AIQuiz.GameControllingModule
 {
     public class ImageSpawner : MonoBehaviour
     {

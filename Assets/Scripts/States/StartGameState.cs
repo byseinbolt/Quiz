@@ -2,6 +2,7 @@
 using IngameStateMachine;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace States
 {
@@ -18,12 +19,18 @@ namespace States
         public  void OnEnter()
         {
             _startScreen.Show();
+            _startScreen.ExitButton.onClick.AddListener(LoadStartScene);
 
             if (_isStartGame)
             {
                 _startScreen.Initialize(_dataProvider.GameSetData);
                 _isStartGame = false;
             }
+        }
+
+        private void LoadStartScene()
+        {
+            SceneManager.LoadSceneAsync(SceneNames.START_SCENE);
         }
 
         public  void OnExit()

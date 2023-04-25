@@ -1,11 +1,13 @@
 ﻿using System;
+using AIQuiz.Events;
 using DG.Tweening;
 using Events;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using StartScreen = AIQuiz.GameStartingModule.StartScreen;
 
-namespace AIQuiz
+namespace AIQuiz.GameOverControlingModule
 {
     public class GameOverScreen : BaseScreen
     {
@@ -24,12 +26,7 @@ namespace AIQuiz
             _restartButton.onClick.AddListener(RestartGame);
             _subscription = EventStreams.AIQuiz.Subscribe<LevelPassedEvent>(OnLevelPassed);
         }
-
-        protected override void SetUIActive(bool flag)
-        {
-            _restartButton.gameObject.SetActive(flag);
-        }
-
+        
         private void RestartGame()
         {
             Hide();

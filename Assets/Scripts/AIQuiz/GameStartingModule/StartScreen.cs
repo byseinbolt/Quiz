@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AIQuiz.Events;
 using Events;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace AIQuiz
+namespace AIQuiz.GameStartingModule
 {
     public class StartScreen : BaseScreen
     {
@@ -16,30 +17,24 @@ namespace AIQuiz
         private Button _sendButton;
 
         [SerializeField]
-        private TextMeshProUGUI _gameNameLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI _instructionsLabel;
-        
+        private Button _exitButton;
         
         private void Awake()
         {
             Show();
             _sendButton.onClick.AddListener(Click);
+            _exitButton.onClick.AddListener(LoadStartScene);
         }
-        
+
+        private void LoadStartScene()
+        {
+            SceneManager.LoadSceneAsync(SceneNames.START_SCENE);
+        }
+
         private void Click()
         {
             EventStreams.AIQuiz.Publish(new SendUserRequestEvent(_inputField.text));
             Hide();
-        }
-
-        protected override void SetUIActive(bool flag)
-        {
-            _gameNameLabel.gameObject.SetActive(flag);
-            _instructionsLabel.gameObject.SetActive(flag);
-            _inputField.gameObject.SetActive(flag);
-            _sendButton.gameObject.SetActive(flag);
         }
     }
 }

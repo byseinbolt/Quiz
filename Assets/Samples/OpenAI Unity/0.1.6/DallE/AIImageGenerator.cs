@@ -1,10 +1,10 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Networking;
 using System.Threading.Tasks;
+using OpenAI;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 
-
-namespace OpenAI
+namespace Samples.OpenAI_Unity._0._1._6.DallE
 {
     public class AIImageGenerator : MonoBehaviour
     {

@@ -6,23 +6,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Utilities;
 
-namespace AIQuiz
+namespace AIQuiz.GameLoadingModule
 {
     public class ImageGenerator : MonoBehaviour
     {
         public event Action<Dictionary<string,Sprite>> ImagesLoaded;
-        
-        [SerializeField]
-        private UserRequestSender _userRequestSender;
-        
         private readonly OpenAIApi _openai = new();
-
-        private void Awake()
-        {
-            _userRequestSender.PromptsCollected += CreateImages;
-        }
-
-        private async void CreateImages(IEnumerable<string> prompts)
+        
+        public async void CreateImages(IEnumerable<string> prompts)
         {
             var imageStyle = PromptHelper.Styles.GetRandomItem();
             var images = new Dictionary<string, Sprite>();
@@ -56,18 +47,13 @@ namespace AIQuiz
             ImagesLoaded?.Invoke(images);
             
         }
-
+        
         private Sprite CreateSprite(UnityWebRequest request)
         {
             var texture = new Texture2D(2, 2);
             texture.LoadImage(request.downloadHandler.data);
             var sprite = Sprite.Create(texture, new Rect(0, 0, 256, 256), Vector2.zero, 1f);
             return sprite;
-        }
-
-        private void OnDestroy()
-        {
-            _userRequestSender.PromptsCollected -= CreateImages;
         }
     }
 }

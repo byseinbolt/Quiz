@@ -1,11 +1,12 @@
 ﻿using System;
+using AIQuiz.Events;
 using DG.Tweening;
 using Events;
 using TMPro;
 using UI;
 using UnityEngine;
 
-namespace AIQuiz
+namespace AIQuiz.GameControllingModule
 {
     public class GameScreen : BaseScreen
     {
@@ -40,11 +41,6 @@ namespace AIQuiz
                     .SetEase(Ease.InBounce)
                     .SetLoops(2, LoopType.Yoyo))
                 .AppendCallback(() => item.Button.interactable = true);
-        }
-
-        protected override void SetUIActive(bool flag)
-        {
-            _goalLabel.gameObject.SetActive(flag);
         }
     }
 }

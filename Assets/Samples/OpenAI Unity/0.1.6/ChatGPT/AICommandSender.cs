@@ -1,7 +1,8 @@
+using OpenAI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OpenAI
+namespace Samples.OpenAI_Unity._0._1._6.ChatGPT
 {
     public class AICommandSender : MonoBehaviour
     {

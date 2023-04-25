@@ -3,11 +3,9 @@ using DG.Tweening;
 using Events;
 using UnityEngine;
 using UnityEngine.UI;
-using Utilities;
 
 namespace UI
 {
-     
     public class LevelCompletedScreen : BaseScreen
     {
         [Header("References")]
@@ -43,8 +41,8 @@ namespace UI
 
         private void OnLevelCompleted(LevelCompletedEvent eventData)
         {
-            _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.sprite = eventData.Cell.Image.sprite;
+            _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation).SetEase(Ease.OutBounce);
         }
         

@@ -1,14 +1,14 @@
 ﻿using SimpleEventBus.Events;
 
-namespace AIQuiz
+namespace AIQuiz.Events
 {
     public class SendUserRequestEvent : EventBase
     {
-        public string UserInput { get; }
+        public string Topic { get; }
 
-        public SendUserRequestEvent(string userInput)
+        public SendUserRequestEvent(string topic)
         {
-            UserInput = userInput;
+            Topic = topic;
         }
     }
 }

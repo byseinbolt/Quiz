@@ -60,7 +60,7 @@ namespace UI
                     .SetLoops(2, LoopType.Yoyo))
                 .AppendCallback(() => cell.Button.interactable = true);
         }
-
+        
         private void OnDestroy()
         {
             _subscriptions?.Dispose();

@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using AIQuiz.Events;
 using Events;
 using OpenAI;
 using UnityEngine;
 
-namespace AIQuiz
+namespace AIQuiz.GameLoadingModule
 {
     public class UserRequestSender : MonoBehaviour
     {
-        public event Action<IReadOnlyList<string>> PromptsCollected; 
+        public event Action<IReadOnlyList<string>> PromptsCollected;
+        
+        [SerializeField]
+        private ImageGenerator _imageGenerator;
         
         [SerializeField]
         private int _elementsCount;
@@ -24,9 +28,9 @@ namespace AIQuiz
         
         private async void SendRequest(SendUserRequestEvent eventData)
         {
-            var completionResponse = await _openAI.CreateCompletion(new CreateCompletionRequest()
+            var completionResponse = await _openAI.CreateCompletion(new CreateCompletionRequest
             {
-                Prompt = $"Write {_elementsCount} types of {eventData.UserInput} in given format: 'result,result,result'",
+                Prompt = $"Write {_elementsCount} types of {eventData.Topic} in given format: 'result,result,result'",
                 Model = "text-davinci-003",
                 MaxTokens = 128
             });
@@ -36,6 +40,7 @@ namespace AIQuiz
                 var result = completionResponse.Choices[0].Text;
                 _prompts = result.Split(',');
                 PromptsCollected?.Invoke(_prompts);
+                _imageGenerator.CreateImages(_prompts);
             }
             else
             {

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using AIQuiz.GameLoadingModule;
 using UnityEngine;
 using Utilities;
 
-namespace AIQuiz
+namespace AIQuiz.GameControllingModule
 {
     public class GoalSelector : MonoBehaviour
     {

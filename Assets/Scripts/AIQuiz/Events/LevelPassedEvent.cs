@@ -1,7 +1,7 @@
 ﻿using SimpleEventBus.Events;
 using UnityEngine;
 
-namespace AIQuiz
+namespace AIQuiz.Events
 {
     public class LevelPassedEvent : EventBase
     {
