@@ -11,6 +11,7 @@ namespace AIQuiz.GameControllingModule
     public class GameScreen : BaseScreen
     {
         public event Action HideItemsRequest;
+        
         [SerializeField]
         private TextMeshProUGUI _goalLabel;
         
@@ -30,7 +31,6 @@ namespace AIQuiz.GameControllingModule
                 .AppendCallback(Hide)
                 .Append(rectTransform.DOScale(Vector3.one, 0.1f))
                 .AppendCallback(() => item.Button.interactable = true);
-
         }
 
         public void OnWrongItemClicked(DallEItem item)

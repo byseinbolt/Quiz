@@ -9,10 +9,10 @@ namespace UI
     public class StartScreen : BaseScreen
     {
         public Button ExitButton => _exitButton;
-        
-        [SerializeField] 
+
+        [SerializeField]
         private GameSetView _gameSetViewPrefab;
-    
+
         [SerializeField]
         private Transform _iconsParent;
 
@@ -24,7 +24,7 @@ namespace UI
             foreach (var gameSetData in gameSetsData)
             {
                 var gameSetViewInstance = Instantiate(_gameSetViewPrefab, _iconsParent);
-                gameSetViewInstance.SetClickCallback(value => 
+                gameSetViewInstance.SetClickCallback(value =>
                     EventStreams.Game.Publish(new GameSetInstanceClickedEvent(value)));
                 gameSetViewInstance.Initialize(gameSetData);
             }

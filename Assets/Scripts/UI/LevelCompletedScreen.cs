@@ -11,7 +11,7 @@ namespace UI
         [Header("References")]
         [SerializeField]
         private Image _winImage;
-        
+
         [SerializeField]
         private RectTransform _restartButton;
 
@@ -20,7 +20,7 @@ namespace UI
 
         [SerializeField]
         private RectTransform _finalCongratulationsPanel;
-        
+
         [SerializeField]
         private RectTransform _betweenLevelsCongratulationsPanels;
 
@@ -29,7 +29,7 @@ namespace UI
         [SerializeField]
         private float _durationBounceAnimation = 2f;
 
-        [SerializeField] 
+        [SerializeField]
         private float _durationWinImageAnimation = 2f;
 
         private IDisposable _subscription;
@@ -45,7 +45,7 @@ namespace UI
             _winImage.rectTransform.localScale = Vector3.zero;
             _winImage.rectTransform.DOScale(Vector3.one, _durationWinImageAnimation).SetEase(Ease.OutBounce);
         }
-        
+
         public void ShowRestartView()
         {
             _nextLevelButton.localScale = Vector3.zero;
@@ -58,10 +58,10 @@ namespace UI
         {
             _finalCongratulationsPanel.localScale = Vector3.zero;
             _restartButton.localScale = Vector3.zero;
-            PlayOutBounceAnimation(Vector3.one, _durationBounceAnimation, 
+            PlayOutBounceAnimation(Vector3.one, _durationBounceAnimation,
                 _nextLevelButton, _betweenLevelsCongratulationsPanels);
         }
-        
+
         private void PlayOutBounceAnimation(Vector3 scale, float duration, params RectTransform[] components)
         {
             foreach (var rectTransform in components)
@@ -70,7 +70,7 @@ namespace UI
                 rectTransform.DOScale(scale, duration).SetEase(Ease.OutBounce);
             }
         }
-        
+
         private void OnDestroy()
         {
             _subscription?.Dispose();

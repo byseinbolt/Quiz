@@ -11,6 +11,7 @@ namespace AIQuiz.GameLoadingModule
     public class ImageGenerator : MonoBehaviour
     {
         public event Action<Dictionary<string,Sprite>> ImagesLoaded;
+        
         private readonly OpenAIApi _openai = new();
         
         public async void CreateImages(IEnumerable<string> prompts)
@@ -45,7 +46,6 @@ namespace AIQuiz.GameLoadingModule
             }
             
             ImagesLoaded?.Invoke(images);
-            
         }
         
         private Sprite CreateSprite(UnityWebRequest request)

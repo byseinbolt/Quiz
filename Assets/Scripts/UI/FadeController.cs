@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace UI
@@ -9,12 +8,12 @@ namespace UI
         [Header("References")]
         [SerializeField]
         private CanvasGroup _canvasGroup;
-        
+
         [Space]
-        [Header("Animation settings")]
+        [Header("Animation settings")] 
         [SerializeField]
         private float _duration = 1f;
-        
+
         public void FadeIn()
         {
             _canvasGroup.alpha = 0;

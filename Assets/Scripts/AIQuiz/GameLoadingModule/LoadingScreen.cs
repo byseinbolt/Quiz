@@ -10,7 +10,6 @@ namespace AIQuiz.GameLoadingModule
 {
     public class LoadingScreen : BaseScreen
     {
-        
         [SerializeField]
         private ImageGenerator _imageGenerator;
 

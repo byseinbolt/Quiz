@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +7,7 @@ public class GameStarter : MonoBehaviour
 {
     [SerializeField]
     private Button _aiSceneButton;
-    
+
     [SerializeField]
     private Button _standardSceneButton;
 

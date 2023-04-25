@@ -2,7 +2,6 @@
 
 namespace AIQuiz.GameControllingModule
 {
-    // TODO: Вопрос для Никиты: нарушает ли этот класс принцип SRP?
     public class GameController : MonoBehaviour
     {
         [SerializeField]

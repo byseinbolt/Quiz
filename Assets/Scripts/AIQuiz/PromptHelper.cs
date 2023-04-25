@@ -12,6 +12,5 @@ namespace AIQuiz
             "Digital Art",
             "Salvador Dali"
         };
-
     }
 }

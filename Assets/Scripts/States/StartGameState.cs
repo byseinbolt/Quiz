@@ -10,13 +10,13 @@ namespace States
     {
         [SerializeField]
         private StartScreen _startScreen;
-
+        
         [SerializeField]
         private DataProvider _dataProvider;
 
         private bool _isStartGame = true;
-        
-        public  void OnEnter()
+
+        public void OnEnter()
         {
             _startScreen.Show();
             _startScreen.ExitButton.onClick.AddListener(LoadStartScene);
@@ -33,7 +33,7 @@ namespace States
             SceneManager.LoadSceneAsync(SceneNames.START_SCENE);
         }
 
-        public  void OnExit()
+        public void OnExit()
         {
             _startScreen.Hide();
         }

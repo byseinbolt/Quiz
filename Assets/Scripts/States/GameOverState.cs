@@ -8,8 +8,8 @@ namespace States
     {
         [SerializeField]
         private LevelCompletedScreen _levelCompletedScreen;
-        
-        public  void OnEnter()
+
+        public void OnEnter()
         {
             _levelCompletedScreen.Show();
             _levelCompletedScreen.ShowRestartView();
@@ -19,6 +19,6 @@ namespace States
         {
             _levelCompletedScreen.Hide();
         }
-        
+
     }
 }

@@ -6,12 +6,11 @@ using SimpleEventBus.Disposables;
 using UnityEngine;
 using States;
 
-
 public class GameController : MonoBehaviour
 {
     [SerializeField]
     private DataProvider _dataProvider;
-    
+
     private StateMachine _stateMachine;
     private int _currentLevelIndex;
     private CompositeDisposable _subscriptions;
@@ -34,13 +33,13 @@ public class GameController : MonoBehaviour
             EventStreams.Game.Subscribe<LevelCompletedEvent>(CheckGameOver)
         };
     }
-    
+
     private void OnGameSetInstanceClicked(GameSetInstanceClickedEvent eventData)
     {
         EventStreams.Game.Publish(new SetSelectedEvent(eventData.GameSetView, _currentLevelIndex));
         _stateMachine.Enter<GameState>();
     }
-    
+
     [UsedImplicitly]
     // from click on NextLevel in LevelCompletedScreen
     public void LoadNextLevel()
@@ -57,7 +56,7 @@ public class GameController : MonoBehaviour
         _currentLevelIndex = 0;
         _stateMachine.Enter<StartGameState>();
     }
-    
+
     private void CheckGameOver(LevelCompletedEvent eventData)
     {
         if (IsLastLevel())

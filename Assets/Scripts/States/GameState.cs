@@ -1,5 +1,4 @@
-﻿using System;
-using IngameStateMachine;
+﻿using IngameStateMachine;
 using UI;
 using UnityEngine;
 
@@ -20,13 +19,13 @@ namespace States
             _levelController.TargetCellClicked += _gameScreen.OnTargetCellClicked;
         }
 
-        public  void OnEnter()
+        public void OnEnter()
         {
             _gameScreen.Show();
             _levelController.StartLevel();
         }
 
-        public  void OnExit()
+        public void OnExit()
         {
             _gameScreen.Hide();
         }
